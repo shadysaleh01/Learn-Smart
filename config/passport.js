@@ -31,7 +31,6 @@ passport.use(
         }
         // If none of the above, return the user
         return done(null, dbUser);
-        console.log("hello")
       });
     }
   )
