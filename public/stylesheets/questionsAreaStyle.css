@@ -1,0 +1,12 @@
+#main-contain {
+  margin-top: 2rem;
+}
+
+#answer-column {
+  padding-top: 1.5rem;
+}
+
+.answer {
+  border-style: solid;
+  border-radius: 10%;
+}
