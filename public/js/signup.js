@@ -1,8 +1,8 @@
 $(document).ready(() => {
   // Getting references to our form and input
+  const signUpForm = $("form#form");
   const firstNameInput = $("input#first_name");
   const lastNameInput = $("input#last_name");
-  const signUpForm = $("form#form");
   const emailInput = $("input#email");
   const passwordInput = $("input#password");
 
@@ -11,6 +11,8 @@ $(document).ready(() => {
   signUpForm.on("submit", (event) => {
     event.preventDefault();
     const userData = {
+      firstName: firstNameInput.val().trim(),
+      lastName: lastNameInput.val().trim(),
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
@@ -19,9 +21,11 @@ $(document).ready(() => {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData.email, userData.password);
+    signUpUser(userData.email, userData.password)
+      ;
     emailInput.val("");
     passwordInput.val("");
+
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
