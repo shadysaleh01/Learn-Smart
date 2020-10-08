@@ -5,17 +5,18 @@ form.login {
 
 #login-section {
   overflow: auto;
-  /* display: flex; */
-  /* min-height: 10000px; */
   width: 100%;
   margin-top: 5%;
   margin-bottom: 5%;   
 }
-#form {
+#formDiv {
   width: 50%;
   margin: center;
 }
 
+#form {
+  margin-bottom: 20px;
+}
 footer{
   text-align: center;
   padding: 25px
