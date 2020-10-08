@@ -2,3 +2,25 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+
+#login-section {
+  overflow: auto;
+  width: 100%;
+  margin-top: 5%;
+  margin-bottom: 5%;   
+}
+h2 {
+  color: rgb(38,166,154);
+}
+#formDiv {
+  width: 50%;
+  margin: center;
+}
+
+#form {
+  margin-bottom: 20px;
+}
+footer{
+  text-align: center;
+  padding: 25px
+}

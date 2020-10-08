@@ -1,0 +1,59 @@
+#main-contain {
+  margin-top: 2rem;
+}
+
+#answer-column {
+  padding-top: 1.5rem;
+}
+
+#question-display {
+  font-size: 36px;
+}
+.answer,
+.clickers {
+  border-style: solid;
+  border-radius: 10%;
+  cursor: pointer;
+  box-shadow: 0px 5px 0px black;
+  transition: all ease 0.1s;
+}
+
+.answer:hover {
+  background-color: dodgerblue;
+  color: white;
+  border: solid black;
+}
+
+.answer:active,
+.clickers:active {
+  transform: translateY(3px);
+  box-shadow: 0px 2px 3px black;
+}
+
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+#clicker-area {
+  padding-top: 4rem;
+}
+/* .clicker-column {
+  margin-left: 10%;
+  margin-right: 10%;
+} */
+.clickers {
+  color: white;
+  border: solid black;
+}
+
+span {
+  border: solid black;
+  border-radius: 33%;
+  padding: 0.5rem;
+}

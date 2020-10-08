@@ -1,0 +1,41 @@
+#aboutUs {
+   /* background-color: rgb(136, 84, 15); */
+   overflow: auto;
+   display: flex;
+   /* min-height: 10000px; */
+   width: 100%;
+   margin-top: 10%;
+   margin-bottom: 10%;   
+ }
+
+#title{
+   font-size:50px;
+font-family: serif;
+text-align: center;
+color: coral;
+margin-bottom: 60px;
+
+ }
+section img {
+   opacity: 0.3;
+}
+
+#card{
+   font-size: 20px;
+
+   /* background: lightblue url("https://www.easyrecyclage.com/wp-content/uploads/2019/01/Easyrecyclage_Quiz_Recyclage.jpg") no-repeat center ;
+   background-color: rgba(25, 10, 0, 0.10); 
+   opacity: 0.2;    */
+   /* font-weight: 600; */
+}
+.row {
+   width: 65%;
+   margin: auto;
+   height: auto;
+}
+
+/* Footer Section */
+footer{
+   text-align: center;
+   padding: 25px
+}
