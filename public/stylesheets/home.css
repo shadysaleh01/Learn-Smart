@@ -6,4 +6,24 @@ section#aboutUs {
    
  }
 
+ section h2 {
+font-family: serif;
+text-align: center;
+color: coral;
+
+ }
+section img {
+   opacity: 0.3;
+}
+
+#p{
+   color: black;
+   font-weight: 600;
+   font-family: Bradley Hand, cursive;
+}
+
+#row {
+   width: 60%;
+   margin: auto;
+}
 
