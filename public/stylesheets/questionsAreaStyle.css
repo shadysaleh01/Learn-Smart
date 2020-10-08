@@ -9,10 +9,13 @@
 #question-display {
   font-size: 36px;
 }
-.answer {
+.answer,
+.clickers {
   border-style: solid;
   border-radius: 10%;
   cursor: pointer;
+  box-shadow: 0px 5px 0px black;
+  transition: all ease 0.1s;
 }
 
 .answer:hover {
@@ -21,11 +24,36 @@
   border: solid black;
 }
 
+.answer:active,
+.clickers:active {
+  transform: translateY(3px);
+  box-shadow: 0px 2px 3px black;
+}
+
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
 #clicker-area {
   padding-top: 4rem;
 }
+/* .clicker-column {
+  margin-left: 10%;
+  margin-right: 10%;
+} */
 .clickers {
-  border: ridge black;
   color: white;
-  cursor: pointer;
+  border: solid black;
+}
+
+span {
+  border: solid black;
+  border-radius: 33%;
+  padding: 0.5rem;
 }
