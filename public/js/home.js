@@ -1,10 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
-   var elems = document.querySelectorAll('.slider');
-   var options = { indicators: true, height: 450, interval: 2500 }
-   var instance = M.Slider.init(elems, options);
-
-});
-
+//////* Nav Bar */////
 $('nav a').on('click', function (e) {
    // Define variable of the clicked »a« element (»this«) and get its href value.
    var href = $(this).attr('href');
@@ -18,3 +12,12 @@ $('nav a').on('click', function (e) {
    );
    e.preventDefault();
 });
+
+//////* Banner Section *//////
+document.addEventListener('DOMContentLoaded', function () {
+   var elems = document.querySelectorAll('.slider');
+   var options = { indicators: true, height: 450, interval: 2500 }
+   var instance = M.Slider.init(elems, options);
+
+});
+
