@@ -6,7 +6,26 @@
   padding-top: 1.5rem;
 }
 
+#question-display {
+  font-size: 36px;
+}
 .answer {
   border-style: solid;
   border-radius: 10%;
+  cursor: pointer;
+}
+
+.answer:hover {
+  background-color: dodgerblue;
+  color: white;
+  border: solid black;
+}
+
+#clicker-area {
+  padding-top: 4rem;
+}
+.clickers {
+  border: ridge black;
+  color: white;
+  cursor: pointer;
 }

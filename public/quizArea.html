@@ -62,17 +62,17 @@
     </nav>
 
     <main id="main-contain" class="container">
-      <div class="row questionDisplay">
+      <div class="row">
         <div class="col s12 center-align">
-          <div id="questionDisplay section flow-text">
-            <h3>
-              This tiny tyrant ruled across Europe at 5 feet 6 inches
-            </h3>
+          <div id="question-display" class="section">
+            This tiny tyrant ruled across Europe at 5 feet 6 inches
           </div>
         </div>
       </div>
+      <!--  -->
       <div class="divider"></div>
-      <div class="row answersArea">
+      <!--  -->
+      <div class="row" id="answers-area" data-state="showing">
         <div id="answer-column" class="col s6 offset-s3 center-align">
           <p class="flow-text answer" id="answer-1">
             Napolean Bonaparte
@@ -90,7 +90,27 @@
           </p>
         </div>
       </div>
+
+      <!-- other row/columns that holds reflex clicker -->
+      <div class="row center-align hide" id="clicker-area" data-state="hiding">
+        <div class="col s6">
+          <p class="flow-text clickers blue">click me!</p>
+        </div>
+        <div class="col s6">
+          <p class="flow-text clickers red">click me!</p>
+        </div>
+      </div>
     </main>
+
+    <footer class="container">
+      <div class="row center-align">
+        <div class="col s12">
+          <button id="hide-toggle">
+            toggle
+          </button>
+        </div>
+      </div>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- <script type="text/javascript" src="js/signup.js"></script> -->
@@ -99,5 +119,30 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/signup.js"></script>
+    <script type="text/javascript">
+      $(document).ready(() => {
+        $("#hide-toggle").on("click", function(event) {
+          var state = $("#answers-area").data("state");
+          console.log(state);
+          if (state === "showing") {
+            $("#answers-area").data("state", "hiding");
+            $("#answers-area").addClass("hide");
+            $("#clicker-area").removeClass("hide");
+            $("#clicker-area").data("state", "showing");
+            $("#question-display").html(
+              "Click the <span class='red' style='color:white'>blue</span> button!"
+            );
+          } else {
+            $("#answers-area").data("state", "showing");
+            $("#answers-area").removeClass("hide");
+            $("#clicker-area").addClass("hide");
+            $("#clicker-area").data("state", "hiding");
+            $("#question-display").html(
+              "This tiny tyrant ruled across Europe at 5 feet 6 inches"
+            );
+          }
+        });
+      });
+    </script>
   </body>
 </html>
