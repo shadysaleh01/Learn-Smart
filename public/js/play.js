@@ -4,19 +4,19 @@ $(document).ready(() => {
   let categoryChoice = "____";
   $("#squad-setting").text(squadChoice);
   $("#cat-setting").text(categoryChoice);
-  $(".team-choice").on("click", function(event) {
+  $(".team-choice").on("click", function (event) {
     squadChoice = $(this).data("squad");
     console.log(squadChoice);
     $("#squad-setting").text(squadChoice);
   });
 
-  $(".category-btn").on("click", function(event) {
+  $(".category-btn").on("click", function (event) {
     categoryChoice = $(this).data("category");
     console.log(categoryChoice);
     $("#cat-setting").text(categoryChoice);
   });
 
-  $("#hide-toggle").on("click", function(event) {
+  $("#hide-toggle").on("click", function (event) {
     var state = $("#answers-area").data("state");
 
     console.log(state);
@@ -40,7 +40,7 @@ $(document).ready(() => {
   });
 
   // hide game over overlays
-  $("#hide-toggle-game-over").on("click", function(event) {
+  $("#hide-toggle-game-over").on("click", function (event) {
     // toggle the overlays
     $("#game-over").addClass("hide");
     $("#overlay-background").addClass("hide");
