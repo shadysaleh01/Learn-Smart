@@ -5,29 +5,90 @@
   <title>Passport Authentication</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="stylesheets/style.css" rel="stylesheet">
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/logout">
-        Logout
-      </a>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>Learn Squad</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="home.html"><i class="material-icons left">home</i>Home</a></li>
+        <li><a href="members.html"><i class="material-icons left">tour</i>Play</a></li>
+        <li><a href="home.html"><i class="material-icons left">more</i>About Us</a></li>
+        <li><a href="login.html"><i class="material-icons left">login</i>Login</a></li>
+      </ul>
     </div>
-  </div>
-</nav>
-  <div class="container">
+  </nav>
+
+  <main id="main-contain" class="container">
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Welcome <span class="member-name"></span></h2>
+      <div class="col s12 center-align">
+        <div id="question-display" class="section">
+          This tiny tyrant ruled across Europe at 5 feet 6 inches
+        </div>
+      </div>
+    </div>
+    <!--  -->
+    <div class="divider"></div>
+    <!--  -->
+    <div class="row" id="answers-area" data-state="showing">
+      <div id="answer-column" class="col s6 offset-s3 center-align">
+        <p class="flow-text answer no-select" id="answer-1">
+          Napolean Bonaparte
+        </p>
+        <p class="flow-text answer no-select" id="answer-2">
+          Alexander the Great
+        </p>
+
+        <p class="flow-text answer no-select" id="answer-3">
+          Julius Caesar
+        </p>
+
+        <p class="flow-text answer no-select" id="answer-4">
+          Attila the Hun
+        </p>
+      </div>
+    </div>
+
+    <!-- other row/columns that holds reflex clicker -->
+    <div class="row center-align hide" id="clicker-area" data-state="hiding">
+      <div class="col s6 clicker-column">
+        <p class="flow-text clickers blue no-select">click me!</p>
+      </div>
+      <div class="col s6 clicker-column">
+        <p class="flow-text clickers red no-select">click me!</p>
+      </div>
+    </div>
+  </main>
+
+  <div class="container">
+    <div class="row center-align">
+      <div class="col s12">
+        <button id="hide-toggle">
+          toggle
+        </button>
       </div>
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <footer class="page-footer">
+    © 2020 Copyright Text
+  </footer>
+
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/signup.js"></script>
+
   <script type="text/javascript" src="js/members.js"></script>
 
 </body>
