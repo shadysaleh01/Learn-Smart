@@ -62,6 +62,102 @@
     </nav>
 
     <main id="main-contain" class="container">
+      <!-- categories section -->
+      <div class="row center-align">
+        <div class="col s12 flow-text">
+          <h2>Pick a Category</h2>
+        </div>
+      </div>
+      <div class="row category1 center-align">
+        <div class="col s4">
+          <p
+            class="category-btn no-select flow-text"
+            data-category="geography"
+            id="geography"
+          >
+            Geography
+          </p>
+        </div>
+        <div class="col s4">
+          <p
+            class="category-btn no-select flow-text"
+            data-category="science"
+            id="science"
+          >
+            Science
+          </p>
+        </div>
+        <div class="col s4">
+          <p
+            class="category-btn no-select flow-text"
+            data-category="miscellaneous"
+            id="miscellaneous"
+          >
+            Miscellaneous
+          </p>
+        </div>
+      </div>
+      <div class="row category2 center-align">
+        <div class="col s4">
+          <p
+            class="category-btn no-select flow-text"
+            data-category="computerScience"
+            id="computerScience"
+          >
+            Computer Science
+          </p>
+        </div>
+        <div class="col s4">
+          <p
+            class="category-btn no-select flow-text"
+            data-category="sports"
+            id="sports"
+          >
+            Sports
+          </p>
+        </div>
+        <div class="col s4">
+          <p
+            class="category-btn no-select flow-text"
+            data-category="entertainment"
+            id="entertainment"
+          >
+            Entertainment
+          </p>
+        </div>
+      </div>
+      <!-- end category rows -->
+
+      <!-- start team choice button row -->
+      <div class="row center-align">
+        <div class="col s12">
+          <h3>Pick a Squad</h3>
+        </div>
+      </div>
+      <div class="row center-align">
+        <div class="col offset-s3 s3">
+          <p class="team-choice no-select" data-squad="yellow">yellow</p>
+        </div>
+        <div class="col s3">
+          <p class="team-choice no-select" data-squad="blue">blue</p>
+        </div>
+      </div>
+
+      <div class="row center-align">
+        <div class="col s12">
+          <p class="flow-text no-select" id="play-settings">
+            take the <span id="cat-setting"></span> trial for the
+            <span id="squad-setting"></span> squad?
+          </p>
+        </div>
+      </div>
+
+      <div class="row center-align">
+        <div class="col s12">
+          <p class="flow-text no-select" id="play-btn">play!</p>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col s12 center-align">
           <div id="question-display" class="section">
@@ -142,8 +238,25 @@
     <script type="text/javascript">
       $(document).ready(() => {
         // hide multiple choice toggle
+        let squadChoice = "____";
+        let categoryChoice = "____";
+        $("#squad-setting").text(squadChoice);
+        $("#cat-setting").text(categoryChoice);
+        $(".team-choice").on("click", function(event) {
+          squadChoice = $(this).data("squad");
+          console.log(squadChoice);
+          $("#squad-setting").text(squadChoice);
+        });
+
+        $(".category-btn").on("click", function(event) {
+          categoryChoice = $(this).data("category");
+          console.log(categoryChoice);
+          $("#cat-setting").text(categoryChoice);
+        });
+
         $("#hide-toggle").on("click", function(event) {
           var state = $("#answers-area").data("state");
+
           console.log(state);
           if (state === "showing") {
             $("#answers-area").data("state", "hiding");
@@ -151,7 +264,7 @@
             $("#clicker-area").removeClass("hide");
             $("#clicker-area").data("state", "showing");
             $("#question-display").html(
-              "Click the <span class='red' style='color:white'>blue</span> button!"
+              "Click the <span class='red' id='clickerSpan' style='color:white'>blue</span> button!"
             );
           } else {
             $("#answers-area").data("state", "showing");
