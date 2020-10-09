@@ -41,10 +41,10 @@ module.exports = function (app) {
       where: {
         id: req.body.id
       }
-    }).then(function (data) {
+    }).then((data) => {
       res.json(data);
     })
-      .catch(function (err) {
+      .catch((err) => {
         // Whenever a validation or flag fails, an error is thrown
         // We can "catch" the error to prevent it from being "thrown", which could crash our node app
         res.json(err);
@@ -59,14 +59,25 @@ module.exports = function (app) {
       where: {
         id: req.body.id
       }
-    }).then(function (data) {
+    }).then((data) => {
       res.json(data);
     })
-      .catch(function (err) {
+      .catch((err) => {
         // Whenever a validation or flag fails, an error is thrown
         // We can "catch" the error to prevent it from being "thrown", which could crash our node app
         res.json(err);
       });
+  })
+
+  // Get route for returning a single user
+  app.get("/api/user/:id", (req, res) => {
+    db.User.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then((data) => {
+      res.json(data)
+    })
   })
 
 
@@ -86,13 +97,13 @@ module.exports = function (app) {
   // });
 
   // Get route for returning questoins of a specific category
-  app.get("/api/questions/category/:category", function (req, res) {
+  app.get("/api/questions/category/:category", (req, res) => {
     db.Questions.findAll({
       where: {
         category: req.params.category
       }
     })
-      .then(function (data) {
+      .then((data) => {
         res.json(data);
       });
   });
