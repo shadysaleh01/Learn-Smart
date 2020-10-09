@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
     },
     // Second name cannot be null
-    secondName: {
+    lastName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
