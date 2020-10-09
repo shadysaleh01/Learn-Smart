@@ -14,6 +14,7 @@ $(document).ready(() => {
     categoryChoice = $(this).data("category");
     console.log(categoryChoice);
     $("#cat-setting").text(categoryChoice);
+    categoryChosen(categoryChoice)
   });
 
   $("#hide-toggle").on("click", function (event) {
@@ -45,9 +46,26 @@ $(document).ready(() => {
     $("#game-over").addClass("hide");
     $("#overlay-background").addClass("hide");
   });
-  // This file just does a GET request to figure out which user is logged in
-  // and updates the HTML on the page
-  $.get("/api/user_data").then((data) => {
-    $(".member-name").text(data.email);
-  });
+
 });
+
+// function categoryChosen(category) {
+
+//   $.get(`/api/questions/category/${category}`, (data) => {
+//     console.log(data)
+//     const questionsArr = data.question
+//     const answersArr = data.answer
+//     for (let i = 0; i < data.length; i++) {
+//       $("#question-display").text(data.question[0])
+//       $("#answer-1").text(data.answer)
+//       $("#answer-2").text(data.answer[i])
+//       $("#answer-3").text(data.answer[i])
+//       $("#answer-4").text(data.answer[i])
+
+//     }
+//   })
+
+
+// }
+
+
