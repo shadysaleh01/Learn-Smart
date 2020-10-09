@@ -101,11 +101,35 @@
         </div>
       </div>
     </main>
+    <!-- GAME OVER POP UP AREA!!!!!!!!!!!!!!!!!!!!!! -->
 
+    <div class="position-absolute" id="overlay-background"></div>
+    <!-- game over pop up section of the application -->
+    <section class="container" id="game-over">
+      <div class="row">
+        <div class="col s12">
+          <h2>GAME OVER!</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <button id="hide-toggle-game-over">
+            toggle
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- GAME OVER POP UP END!!!!!!!!!!!!!!!!!!!!!!! -->
     <footer class="container">
       <div class="row center-align">
-        <div class="col s12">
+        <div class="col s6">
           <button id="hide-toggle">
+            toggle
+          </button>
+        </div>
+        <div class="col s6">
+          <button id="hide-toggle-game-over">
             toggle
           </button>
         </div>
@@ -113,14 +137,11 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- <script type="text/javascript" src="js/signup.js"></script> -->
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/signup.js"></script>
     <script type="text/javascript">
       $(document).ready(() => {
+        // hide multiple choice toggle
         $("#hide-toggle").on("click", function(event) {
           var state = $("#answers-area").data("state");
           console.log(state);
@@ -141,6 +162,13 @@
               "This tiny tyrant ruled across Europe at 5 feet 6 inches"
             );
           }
+        });
+
+        // hide game over overlays
+        $("#hide-toggle-game-over").on("click", function(event) {
+          // toggle the overlays
+          $("#game-over").addClass("hide");
+          $("#overlay-background").addClass("hide");
         });
       });
     </script>
