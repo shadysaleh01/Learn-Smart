@@ -33,6 +33,82 @@ module.exports = function (app) {
       });
   });
 
+  // PUT route for updating squad
+  app.put("/api/squad", (req, res) => {
+    db.User.update({
+      squad: req.body.squad
+    }, {
+      where: {
+        id: req.body.id
+      }
+    }).then((data) => {
+      res.json(data);
+    })
+      .catch((err) => {
+        // Whenever a validation or flag fails, an error is thrown
+        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+        res.json(err);
+      });
+  })
+
+  // PUT route for updating score
+  app.put("/api/score", (req, res) => {
+    db.User.update({
+      score: req.body.score
+    }, {
+      where: {
+        id: req.body.id
+      }
+    }).then((data) => {
+      res.json(data);
+    })
+      .catch((err) => {
+        // Whenever a validation or flag fails, an error is thrown
+        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+        res.json(err);
+      });
+  })
+
+
+
+  // Get route for returning a single user
+  app.get("/api/user/:id", (req, res) => {
+    db.User.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then((data) => {
+      res.json(data)
+    })
+  })
+
+
+  // // Route for getting some data about our user to be used client side
+  // app.get("/api/user_data", (req, res) => {
+  //   if (!req.user) {
+  //     // The user is not logged in, send back an empty object
+  //     res.json({});
+  //   } else {
+  //     // Otherwise send back the user's email and id
+  //     // Sending back a password, even a hashed password, isn't a good idea
+  //     res.json({
+  //       email: req.user.email,
+  //       id: req.user.id
+  //     });
+  //   }
+  // });
+
+  // Get route for returning questoins of a specific category
+  app.get("/api/questions/category/:category", (req, res) => {
+    db.Questions.findAll({
+      where: {
+        category: req.params.category
+      }
+    })
+      .then((data) => {
+        res.json(data);
+      });
+  });
 
   // Route for logging user out
   app.get("/logout", (req, res) => {
@@ -40,25 +116,8 @@ module.exports = function (app) {
     res.redirect("/");
   });
 
-  // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", (req, res) => {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        email: req.user.email,
-        id: req.user.id
-      });
-    }
-  });
 
-  // app.post("api/user_data", (req, res) => {
 
-  //   db.
 
-  // })
 };
 
