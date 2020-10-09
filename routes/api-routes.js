@@ -33,7 +33,25 @@ module.exports = function (app) {
       });
   });
 
-  // PUT route for updating posts
+  // PUT route for updating squad
+  app.put("/api/squad", (req, res) => {
+    db.User.update({
+      squad: req.body.squad
+    }, {
+      where: {
+        id: req.body.id
+      }
+    }).then((data) => {
+      res.json(data);
+    })
+      .catch((err) => {
+        // Whenever a validation or flag fails, an error is thrown
+        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+        res.json(err);
+      });
+  })
+
+  // PUT route for updating score
   app.put("/api/score", (req, res) => {
     db.User.update({
       score: req.body.score
@@ -51,23 +69,7 @@ module.exports = function (app) {
       });
   })
 
-  // PUT route for updating posts
-  app.put("/api/squad", (req, res) => {
-    db.User.update({
-      squad: req.body.squad
-    }, {
-      where: {
-        id: req.body.id
-      }
-    }).then((data) => {
-      res.json(data);
-    })
-      .catch((err) => {
-        // Whenever a validation or flag fails, an error is thrown
-        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
-        res.json(err);
-      });
-  })
+
 
   // Get route for returning a single user
   app.get("/api/user/:id", (req, res) => {
