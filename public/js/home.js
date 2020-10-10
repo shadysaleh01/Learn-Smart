@@ -21,3 +21,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+
+function validateUser(link) {
+   if (localStorage.isAuthenticated === "true") {
+
+      if (link === "play") {
+         window.location.replace("/play.html")
+      } else {
+         window.location.replace("/home.html")
+      }
+   } else {
+      window.location.replace("/login.html");
+   }
+}
+
+function logout() {
+   localStorage.setItem("isAuthenticated", false);
+   window.location.replace("/home.html");
+}

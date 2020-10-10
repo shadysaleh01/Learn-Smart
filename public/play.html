@@ -44,9 +44,14 @@
               ><i class="material-icons left">more</i>About Us</a
             >
           </li>
-          <li>
-            <a href="login.html"
-              ><i class="material-icons left">login</i>Login</a
+          <li id="login">
+            <a onclick="logout()"
+              ><i class="material-icons left">login</i>Logout</a
+            >
+          </li>
+          <li id="logout">
+            <a onclick="logout()"
+              ><i class="material-icons left">login</i>Logout</a
             >
           </li>
         </ul>
@@ -336,5 +341,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script type="text/javascript" src="js/play.js"></script>
+    <script type="text/javascript">
+
+   function logout() {
+    localStorage.setItem("isAuthenticated", false);
+    window.location.replace("/home.html");
+  }
+    </script>
   </body>
 </html>
