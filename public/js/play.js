@@ -1,5 +1,8 @@
+const { all } = require("sequelize/types/lib/operators");
+
 $(document).ready(() => {
   // hide multiple choice toggle
+  console.log("alkhfgpoa")
   let squadChoice = "____";
   let categoryChoice = "____";
   $("#squad-setting").text(squadChoice);
@@ -14,6 +17,7 @@ $(document).ready(() => {
     categoryChoice = $(this).data("category");
     console.log(categoryChoice);
     $("#cat-setting").text(categoryChoice);
+    categoryChosen(categoryChoice)
   });
 
   $("#hide-toggle").on("click", function (event) {
@@ -79,8 +83,75 @@ $(document).ready(() => {
       $("#q-and-a").removeClass("hide");
     }
   });
+  function categoryChosen(category) {
+    $.get(`/api/questions/category/${category}`, (data) => {
+      let allAnswersArr = []
+      let fourChoices = []
 
+      for (let i = 0; i < data.length; i++) {
+        allAnswersArr.push(data[i].answer)
+      }
+      for (let i = 0; i < 3; i++) {
+        fourChoices.push(allAnswersArr[i])
+      }
+
+      $("#hide-toggle").on("click", () => {
+        let randomData = data[Math.floor(Math.random() * data.length)]
+        fourChoices.push(randomData.answer)
+        // let dddd = []
+        // for (let i = 0; i < 4; i++) {
+        //   dddd.push(fourChoices[Math.floor(Math.random() * 4)])
+        // }
+        // console.log(dddd)
+        $("#question-display").text(randomData.question)
+        $("#answer-1").text(fourChoices[0])
+        $("#answer-2").text(fourChoices[1])
+        $("#answer-3").text(fourChoices[2])
+        $("#answer-4").text(fourChoices[3])
+      })
+    });
+  }
+
+  $(".team-choice").on("click", function (event) {
+    let squad = $(this).data("squad");
+    squadChosen(squad)
+  });
+
+  function squadChosen(squad) {
+    $.ajax({
+      method: "PUT",
+      url: "/api/squad",
+      data: squad
+    }).then(() => {
+
+    })
+
+  }
 });
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
