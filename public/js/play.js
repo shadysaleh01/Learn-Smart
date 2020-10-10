@@ -86,7 +86,11 @@ $(document).ready(() => {
         //   dddd.push(fourChoices[Math.floor(Math.random() * 4)])
         // }
         // console.log(dddd)
-
+        $("#question-display").text(randomData.question)
+        $("#answer-1").text(fourChoices[0])
+        $("#answer-2").text(fourChoices[1])
+        $("#answer-3").text(fourChoices[2])
+        $("#answer-4").text(fourChoices[3])
       })
     });
   }
