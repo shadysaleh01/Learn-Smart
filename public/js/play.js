@@ -72,7 +72,9 @@ $(document).ready(() => {
       for (let i = 0; i < data.length; i++) {
         allAnswersArr.push(data[i].answer)
       }
-
+      for (let i = 0; i < 3; i++) {
+        fourChoices.push(allAnswersArr[i])
+      }
     });
   }
 
