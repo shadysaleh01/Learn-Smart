@@ -55,159 +55,177 @@
 
     <main id="main-contain" class="container">
       <!-- categories section -->
-      <div class="row center-align">
-        <div class="col s12 flow-text">
-          <h2>Pick a Category</h2>
-        </div>
-      </div>
-      <div class="row category1 center-align">
-        <div class="col s4">
-          <p
-            class="category-btn no-select flow-text"
-            data-category="geography"
-            id="geography"
-          >
-            Geography
-          </p>
-        </div>
-        <div class="col s4">
-          <p
-            class="category-btn no-select flow-text"
-            data-category="science"
-            id="science"
-          >
-            Science
-          </p>
-        </div>
-        <div class="col s4">
-          <p
-            class="category-btn no-select flow-text"
-            data-category="miscellaneous"
-            id="miscellaneous"
-          >
-            Miscellaneous
-          </p>
-        </div>
-      </div>
-      <div class="row category2 center-align">
-        <div class="col s4">
-          <p
-            class="category-btn no-select flow-text"
-            data-category="computerScience"
-            id="computerScience"
-          >
-            Computer Science
-          </p>
-        </div>
-        <div class="col s4">
-          <p
-            class="category-btn no-select flow-text"
-            data-category="sports"
-            id="sports"
-          >
-            Sports
-          </p>
-        </div>
-        <div class="col s4">
-          <p
-            class="category-btn no-select flow-text"
-            data-category="entertainment"
-            id="entertainment"
-          >
-            Entertainment
-          </p>
-        </div>
-      </div>
-      <!-- end category rows -->
+      <div id="cat-encap" data-state="showing">
+        <!-- cat encap wraps around the categories/squad select display -->
+            <div class="row center-align">
+            <div class="col s12 flow-text">
+              <h2>Pick a Category</h2>
+            </div>
+          </div>
+          <div class="row category1 center-align">
+            <div class="col s4">
+              <p
+                class="category-btn no-select flow-text"
+                data-category="geography"
+                id="geography"
+              >
+                Geography
+              </p>
+            </div>
+            <div class="col s4">
+              <p
+                class="category-btn no-select flow-text"
+                data-category="science"
+                id="science"
+              >
+                Science
+              </p>
+            </div>
+            <div class="col s4">
+              <p
+                class="category-btn no-select flow-text"
+                data-category="miscellaneous"
+                id="miscellaneous"
+              >
+                Miscellaneous
+              </p>
+            </div>
+          </div>
+          <div class="row category2 center-align">
+            <div class="col s4">
+              <p
+                class="category-btn no-select flow-text"
+                data-category="computerScience"
+                id="computerScience"
+              >
+                Computer Science
+              </p>
+            </div>
+            <div class="col s4">
+              <p
+                class="category-btn no-select flow-text"
+                data-category="sports"
+                id="sports"
+              >
+                Sports
+              </p>
+            </div>
+            <div class="col s4">
+              <p
+                class="category-btn no-select flow-text"
+                data-category="entertainment"
+                id="entertainment"
+              >
+                Entertainment
+              </p>
+            </div>
+          </div>
+          <!-- end categories -->
+          <!-- start team choice button row -->
+          <div class="row center-align">
+            <div class="col s12">
+              <h3>Pick a Squad</h3>
+            </div>
+          </div>
+          <div class="row center-align">
+            <div class="col offset-s3 s3">
+              <p class="team-choice no-select" data-squad="yellow">yellow</p>
+            </div>
+            <div class="col s3">
+              <p class="team-choice no-select" data-squad="blue">blue</p>
+            </div>
+          </div>
+    
+          <div class="row center-align">
+            <div class="col s12">
+              <p class="flow-text no-select" id="play-settings">
+                take the <span id="cat-setting"></span> trial for the
+                <span id="squad-setting"></span> squad?
+              </p>
+            </div>
+          </div>
+    
+          <div class="row center-align">
+            <div class="col s12">
+              <p class="flow-text no-select" id="play-btn">play!</p>
+            </div>
+          </div>
+          <!-- end team choices/play button -->
 
-      <!-- start team choice button row -->
-      <div class="row center-align">
-        <div class="col s12">
-          <h3>Pick a Squad</h3>
-        </div>
+          <!-- end encapsulate category/team-choice/play-btn -->
       </div>
-      <div class="row center-align">
-        <div class="col offset-s3 s3">
-          <p class="team-choice no-select" data-squad="yellow">yellow</p>
-        </div>
-        <div class="col s3">
-          <p class="team-choice no-select" data-squad="blue">blue</p>
-        </div>
-      </div>
+      
+      
 
-      <div class="row center-align">
-        <div class="col s12">
-          <p class="flow-text no-select" id="play-settings">
-            take the <span id="cat-setting"></span> trial for the
-            <span id="squad-setting"></span> squad?
-          </p>
-        </div>
-      </div>
+      
+      
 
-      <div class="row center-align">
-        <div class="col s12">
-          <p class="flow-text no-select" id="play-btn">play!</p>
-        </div>
-      </div>
+      <!-- encapsulates -->
+      <div id="q-and-a" class="hide" data-state="hiding">
 
-      <div class="row">
-        <div class="col s12 center-align">
-          <div id="question-display" class="section">
-            This tiny tyrant ruled across Europe at 5 feet 6 inches
+        <div class="row">
+          <div class="col s12 center-align">
+            <div id="question-display" class="section">
+              This tiny tyrant ruled across Europe at 5 feet 6 inches
+            </div>
           </div>
         </div>
-      </div>
-      <!--  -->
-      <div class="divider"></div>
-      <!--  -->
-      <div class="row" id="answers-area" data-state="showing">
-        <div id="answer-column" class="col s6 offset-s3 center-align">
-          <p class="flow-text answer no-select" id="answer-1">
-            Napolean Bonaparte
-          </p>
-          <p class="flow-text answer no-select" id="answer-2">
-            Alexander the Great
-          </p>
+        <!--  -->
+        <div class="divider"></div>
+        <!--  -->
+        <div class="row" id="answers-area" data-state="showing">
+          <div id="answer-column" class="col s6 offset-s3 center-align">
+            <p class="flow-text answer no-select" id="answer-1">
+              Napolean Bonaparte
+            </p>
+            <p class="flow-text answer no-select" id="answer-2">
+              Alexander the Great
+            </p>
 
-          <p class="flow-text answer no-select" id="answer-3">
-            Julius Caesar
-          </p>
+            <p class="flow-text answer no-select" id="answer-3">
+              Julius Caesar
+            </p>
 
-          <p class="flow-text answer no-select" id="answer-4">
-            Attila the Hun
-          </p>
+            <p class="flow-text answer no-select" id="answer-4">
+              Attila the Hun
+            </p>
+          </div>
         </div>
-      </div>
 
-      <!-- other row/columns that holds reflex clicker -->
-      <div class="row center-align hide" id="clicker-area" data-state="hiding">
-        <div class="col s6 clicker-column">
-          <p class="flow-text clickers blue no-select">click me!</p>
+        <!-- other row/columns that holds reflex clicker prompts -->
+        <div class="row center-align hide" id="clicker-area" data-state="hiding">
+          <div class="col s6 clicker-column">
+            <p class="flow-text clickers blue no-select">click me!</p>
+          </div>
+          <div class="col s6 clicker-column">
+            <p class="flow-text clickers red no-select">click me!</p>
+          </div>
         </div>
-        <div class="col s6 clicker-column">
-          <p class="flow-text clickers red no-select">click me!</p>
-        </div>
+
       </div>
     </main>
     <!-- GAME OVER POP UP AREA!!!!!!!!!!!!!!!!!!!!!! -->
-
-    <div class="position-absolute" id="overlay-background"></div>
-    <!-- game over pop up section of the application -->
-    <section class="container" id="game-over">
-      <div class="row">
-        <div class="col s12">
-          <h2>GAME OVER!</h2>
+    <div class="hide" id="game-over-encap" data-state="hiding">
+      <div class="position-absolute" id="overlay-background"></div>
+      <!-- game over pop up section of the application -->
+      <section class="container" id="game-over">
+        <div class="row">
+          <div class="col s12">
+            <h2>GAME OVER!</h2>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col s12">
-          <button id="hide-toggle-game-over">
-            toggle
-          </button>
+        <div class="row">
+          <div class="col s12">
+            <button class="hide-toggle-game-over">
+              toggle
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
+      
 
+    <!-- toggle buttons -->
     <div class="container">
       <div class="row center-align">
         <div class="col s6">
@@ -216,7 +234,7 @@
           </button>
         </div>
         <div class="col s6">
-          <button id="hide-toggle-game-over">
+          <button class="hide-toggle-game-over">
             toggle
           </button>
         </div>
@@ -230,8 +248,7 @@
     <script type="text/javascript" src="js/materialize.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/signup.js"></script>
 
-    <script type="text/javascript" src="js/members.js"></script>
+    <script type="text/javascript" src="js/play.js"></script>
   </body>
 </html>
