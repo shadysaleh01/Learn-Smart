@@ -80,6 +80,23 @@ $(document).ready(() => {
 
   });
 
+  
+
+  $("#hide-toggle-map").on("click", function(event) {
+    let state = $("#map-encap").data("state");
+    console.log(state);
+    if(state ==="hiding"){
+      $("#map-encap").removeClass("hide");
+      $("#map-encap").data("state", "showing");
+      $("#q-and-a").data("state", "hiding");
+      $("#q-and-a").addClass("hide");
+    } else {
+      $("#map-encap").addClass("hide");
+      $("#map-encap").data("state", "hiding");
+      $("#q-and-a").data("state", "showing");
+      $("#q-and-a").removeClass("hide");
+    }
+  });
   function categoryChosen(category) {
     $.get(`/api/questions/category/${category}`, (data) => {
       let allAnswersArr = []

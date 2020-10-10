@@ -44,7 +44,12 @@
               ><i class="material-icons left">more</i>About Us</a
             >
           </li>
-          <li>
+          <li id="login">
+            <a onclick="logout()"
+              ><i class="material-icons left">login</i>Logout</a
+            >
+          </li>
+          <li id="logout">
             <a onclick="logout()"
               ><i class="material-icons left">login</i>Logout</a
             >
@@ -95,19 +100,19 @@
             <div class="col s4">
               <p
                 class="category-btn no-select flow-text"
-                data-category="computerScience"
+                data-category="computers"
                 id="computerScience"
               >
-                Computer Science
+                Computers
               </p>
             </div>
             <div class="col s4">
               <p
                 class="category-btn no-select flow-text"
-                data-category="sports"
+                data-category="history"
                 id="sports"
               >
-                Sports
+                History
               </p>
             </div>
             <div class="col s4">
@@ -216,6 +221,34 @@
         </div>
         <div class="row">
           <div class="col s12">
+            <p> <span id="user-name">XXXXXX</span> scored <span id="">XXXXXX</span> points!</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12" >
+            <!-- we are gonna have top 5 user scores -->
+            <ul id="">
+              <li>sample user 1</li>
+              <li>sample user 2</li>
+              <li>sample user 3</li>
+              <li>sample user 4</li>
+              <li>sample user 5</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <h5>you have scored enough! mark your territory</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col offset-s4 s4">
+            <p class="no-select" id="mark-map">go to map</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
             <button class="hide-toggle-game-over">
               toggle
             </button>
@@ -223,23 +256,81 @@
         </div>
       </section>
     </div>
+    <!-- GAME OVER AREA END!!!!!!!!!!!!!!!!!!!!!! -->
       
 
     <!-- toggle buttons -->
     <div class="container">
       <div class="row center-align">
-        <div class="col s6">
+        <div class="col s4">
           <button id="hide-toggle">
-            toggle
+            toggle question
           </button>
         </div>
-        <div class="col s6">
+        <div class="col s4">
           <button class="hide-toggle-game-over">
-            toggle
+            toggle game-over
+          </button>
+        </div>
+        <div class="col s4">
+          <button id="hide-toggle-map">
+            toggle map
           </button>
         </div>
       </div>
     </div>
+    <!-- MAP AREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
+    <div class="hide" id="map-encap" data-state="hiding">
+      <div class="container">
+        <div class="row center-align">
+          <div class="col s12">
+            <h3>Claim Your Space!</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s3" data-state="blue"><h5 class="mapSquare valign-wrapper no-select">x</h5>
+          </div>
+          <div class="col s3" data-state="blue"><h5 class="mapSquare valign-wrapper no-select">x</h5>
+          </div>
+          <div class="col s3" data-state="blue"><h5 class="mapSquare valign-wrapper no-select">x</h5>
+          </div>
+          <div class="col s3" data-state="blue"><h5 class="mapSquare valign-wrapper no-select">x</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s3" data-state="blue"><h5 class="mapSquare valign-wrapper no-select">x</h5>
+          </div>
+          <div class="col s3" data-state="blue"><h5 class="mapSquare valign-wrapper no-select">x</h5>
+          </div>
+          <div class="col s3" data-state="blue"><h5 class="mapSquare valign-wrapper no-select">x</h5>
+          </div>
+          <div class="col s3" data-state="blue"><h5 class="mapSquare valign-wrapper no-select">x</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s3" data-state="blue"><h5 class="mapSquare valign-wrapper no-select">x</h5>
+          </div>
+          <div class="col s3" data-state="blue"><h5 class="mapSquare valign-wrapper no-select">x</h5>
+          </div>
+          <div class="col s3" data-state="blue"><h5 class="mapSquare valign-wrapper no-select">x</h5>
+          </div>
+          <div class="col s3" data-state="blue"><h5 class="mapSquare valign-wrapper no-select">x</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s3" data-state="blue"><h5 class="mapSquare valign-wrapper no-select">x</h5>
+          </div>
+          <div class="col s3" data-state="blue"><h5 class="mapSquare valign-wrapper no-select">x</h5>
+          </div>
+          <div class="col s3" data-state="blue"><h5 class="mapSquare valign-wrapper no-select">x</h5>
+          </div>
+          <div class="col s3" data-state="blue"><h5 class="mapSquare valign-wrapper no-select">x</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAP AREA ENDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD -->
 
     <footer class="page-footer">
       © 2020 Copyright Text
