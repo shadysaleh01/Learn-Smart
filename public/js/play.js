@@ -100,7 +100,16 @@ $(document).ready(() => {
     squadChosen(squad)
   });
 
+  function squadChosen(squad) {
+    $.ajax({
+      method: "PUT",
+      url: "/api/squad",
+      data: squad
+    }).then(() => {
 
+    })
+
+  }
 
 
 
