@@ -4,19 +4,19 @@ $(document).ready(() => {
   let categoryChoice = "____";
   $("#squad-setting").text(squadChoice);
   $("#cat-setting").text(categoryChoice);
-  $(".team-choice").on("click", function(event) {
+  $(".team-choice").on("click", function (event) {
     squadChoice = $(this).data("squad");
     console.log(squadChoice);
     $("#squad-setting").text(squadChoice);
   });
 
-  $(".category-btn").on("click", function(event) {
+  $(".category-btn").on("click", function (event) {
     categoryChoice = $(this).data("category");
     console.log(categoryChoice);
     $("#cat-setting").text(categoryChoice);
   });
 
-  $("#hide-toggle").on("click", function(event) {
+  $("#hide-toggle").on("click", function (event) {
     let state = $("#q-and-a").data("state");
 
     console.log(state);
@@ -48,22 +48,21 @@ $(document).ready(() => {
   });
 
   // hide game over overlays
-  $(".hide-toggle-game-over").on("click", function(event) {
+  $(".hide-toggle-game-over").on("click", function (event) {
     // toggle the overlays
     let state = $("#game-over-encap").data("state");
     console.log(state);
-    if(state === "showing") {
+    if (state === "showing") {
       $("#game-over-encap").addClass("hide");
       $("#game-over-encap").data("state", "hiding");
     } else {
       $("#game-over-encap").removeClass("hide");
       $("#game-over-encap").data("state", "showing");
     }
-    
+
   });
-  // This file just does a GET request to figure out which user is logged in
-  // and updates the HTML on the page
-  $.get("/api/user_data").then((data) => {
-    $(".member-name").text(data.email);
-  });
+
 });
+
+
+
