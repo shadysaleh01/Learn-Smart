@@ -1,4 +1,4 @@
-const { all } = require("sequelize/types/lib/operators");
+// const { all } = require("sequelize/types/lib/operators");
 
 $(document).ready(() => {
   // hide multiple choice toggle
