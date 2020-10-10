@@ -75,7 +75,7 @@ $(document).ready(() => {
         allAnswersArr.push(data[i].answer)
       }
       for (let i = 0; i < 3; i++) {
-        fourChoices.push(allAnswersArr[Math.floor(Math.random() * allAnswersArr.length)])
+        fourChoices.push(allAnswersArr[i])
       }
 
       $("#hide-toggle").on("click", () => {
@@ -95,6 +95,18 @@ $(document).ready(() => {
     });
   }
 
+  $(".team-choice").on("click", function (event) {
+    let squad = $(this).data("squad");
+    squadChosen(squad)
+  });
+
+
+
+
+
+
+
+})
 
 
 
