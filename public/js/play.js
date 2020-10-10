@@ -66,6 +66,12 @@ $(document).ready(() => {
 
   function categoryChosen(category) {
     $.get(`/api/questions/category/${category}`, (data) => {
+      let allAnswersArr = []
+      let fourChoices = []
+
+      for (let i = 0; i < data.length; i++) {
+        allAnswersArr.push(data[i].answer)
+      }
 
     });
   }
