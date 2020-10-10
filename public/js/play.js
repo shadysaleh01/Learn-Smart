@@ -1,5 +1,6 @@
 $(document).ready(() => {
   // hide multiple choice toggle
+  console.log("alkhfgpoa")
   let squadChoice = "____";
   let categoryChoice = "____";
   $("#squad-setting").text(squadChoice);
@@ -14,6 +15,7 @@ $(document).ready(() => {
     categoryChoice = $(this).data("category");
     console.log(categoryChoice);
     $("#cat-setting").text(categoryChoice);
+    categoryChosen(categoryChoice)
   });
 
   $("#hide-toggle").on("click", function (event) {
@@ -62,7 +64,29 @@ $(document).ready(() => {
 
   });
 
-});
+  function categoryChosen(category) {
+    $.get(`/api/questions/category/${category}`, (data) => {
+
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
