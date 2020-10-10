@@ -1,3 +1,5 @@
+const { all } = require("sequelize/types/lib/operators");
+
 $(document).ready(() => {
   // hide multiple choice toggle
   console.log("alkhfgpoa")
@@ -73,8 +75,19 @@ $(document).ready(() => {
         allAnswersArr.push(data[i].answer)
       }
       for (let i = 0; i < 3; i++) {
-        fourChoices.push(allAnswersArr[i])
+        fourChoices.push(allAnswersArr[Math.floor(Math.random() * allAnswersArr.length)])
       }
+
+      $("#hide-toggle").on("click", () => {
+        let randomData = data[Math.floor(Math.random() * data.length)]
+        fourChoices.push(randomData.answer)
+        // let dddd = []
+        // for (let i = 0; i < 4; i++) {
+        //   dddd.push(fourChoices[Math.floor(Math.random() * 4)])
+        // }
+        // console.log(dddd)
+
+      })
     });
   }
 
