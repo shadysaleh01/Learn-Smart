@@ -29,6 +29,7 @@ $(document).ready(() => {
       password: password
     })
       .then(() => {
+        localStorage.setItem("emailInput", email)
         localStorage.setItem("isAuthenticated", true)
         window.location.replace("/play.html");
 

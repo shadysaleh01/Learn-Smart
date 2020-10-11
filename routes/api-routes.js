@@ -39,9 +39,10 @@ module.exports = function (app) {
       squad: req.body.squad
     }, {
       where: {
-        id: req.body.id
+        email: req.body.email
       }
     }).then((data) => {
+      console.log(data)
       res.json(data);
     })
       .catch((err) => {
@@ -57,7 +58,7 @@ module.exports = function (app) {
       score: req.body.score
     }, {
       where: {
-        id: req.body.id
+        email: req.body.email
       }
     }).then((data) => {
       res.json(data);
