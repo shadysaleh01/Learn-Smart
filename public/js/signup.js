@@ -59,5 +59,6 @@ function validateUser() {
     window.location.replace("/play.html")
   } else {
     window.location.replace("/signup.html");
+    alert("Please sign up first")
   }
 }

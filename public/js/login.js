@@ -48,5 +48,6 @@ function validateUser() {
     window.location.replace("/play.html")
   } else {
     window.location.replace("/login.html");
+    alert("Please sign in first")
   }
 }
