@@ -32,8 +32,6 @@ $(document).ready(() => {
         localStorage.setItem("userEmail", email)
         localStorage.setItem("isAuthenticated", true)
         window.location.replace("/play.html");
-
-
         // If there's an error, log the error
       })
       .catch(err => {
@@ -51,3 +49,16 @@ function validateUser() {
     alert("Please sign in first")
   }
 }
+
+// function aboutUs(e) {
+//   window.location.replace("/home.html");
+
+//   // Run a scroll animation to the position of the element which has the same id like the href value.
+//   $('html, body').animate(
+//     {
+//       scrollTop: $("#aboutUs").offset().top,
+//     },
+//     '300'
+//   );
+//   e.preventDefault();
+// }
