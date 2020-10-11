@@ -30,7 +30,7 @@ $(document).ready(() => {
 
   });
 
-  // Does a post to the signup route. If successful, we are redirected to the members page
+  // Does a post to the signup route. If successful, we are redirected to the play page
   // Otherwise we log any errors
   function signUpUser(firstName, lastName, email, password) {
     $.post("/api/signup", {
@@ -40,6 +40,8 @@ $(document).ready(() => {
       password: password
     })
       .then(() => {
+        localStorage.setItem("userEmail", email)
+        localStorage.setItem("isAuthenticated", true)
         window.location.replace("/play.html");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
@@ -51,3 +53,12 @@ $(document).ready(() => {
     $("#alert").fadeIn(500);
   }
 });
+
+function validateUser() {
+  if (localStorage.isAuthenticated === "true") {
+    window.location.replace("/play.html")
+  } else {
+    window.location.replace("/signup.html");
+    alert("Please sign up first")
+  }
+}

@@ -40,20 +40,20 @@
             >
           </li>
           <li>
-            <a href="home.html"
+            <a href="home.html#aboutUs"
               ><i class="material-icons left">more</i>About Us</a
             >
           </li>
-          <li id="login">
+          <li>
             <a onclick="logout()"
               ><i class="material-icons left">login</i>Logout</a
             >
           </li>
-          <li id="logout">
+          <!-- <li id="logout">
             <a onclick="logout()"
               ><i class="material-icons left">login</i>Logout</a
             >
-          </li>
+          </li> -->
         </ul>
       </div>
     </nav>
@@ -343,10 +343,6 @@
     <script type="text/javascript" src="js/play.js"></script>
     <script type="text/javascript">
 
-   function logout() {
-    localStorage.setItem("isAuthenticated", false);
-    window.location.replace("/home.html");
-  }
     </script>
   </body>
 </html>

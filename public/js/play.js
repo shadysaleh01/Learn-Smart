@@ -3,20 +3,20 @@
 $(document).ready(() => {
   // hide multiple choice toggle
   // debugger;
+
+
   if (!localStorage.isAuthenticated) {
     window.location.replace("/login.html");
   }
 
-  if (localStorage.isAuthenticated === "true") {
+  // if (localStorage.isAuthenticated === "true") {
+  //   document.getElementById("login").style.display = "none"
+  //   document.getElementById("logout").style.display = "block"
+  // } else {
+  //   document.getElementById("login").style.display = "block"
+  //   document.getElementById("logout").style.display = "none"
+  // }
 
-    document.getElementById("login").style.display = "none"
-    document.getElementById("logout").style.display = "block"
-  } else {
-    document.getElementById("login").style.display = "block"
-    document.getElementById("logout").style.display = "none"
-  }
-
-  console.log("alkhfgpoa")
   let squadChoice = "____";
   let categoryChoice = "____";
   $("#squad-setting").text(squadChoice);
@@ -37,7 +37,7 @@ $(document).ready(() => {
   $("#hide-toggle").on("click", function (event) {
     let state = $("#q-and-a").data("state");
 
-    console.log(state);
+    // console.log(state);
     if (state === "showing") {
       // $("#answers-area").data("state", "hiding");
       // $("#answers-area").addClass("hide");
@@ -69,7 +69,7 @@ $(document).ready(() => {
   $(".hide-toggle-game-over").on("click", function (event) {
     // toggle the overlays
     let state = $("#game-over-encap").data("state");
-    console.log(state);
+    // console.log(state);
     if (state === "showing") {
       $("#game-over-encap").addClass("hide");
       $("#game-over-encap").data("state", "hiding");
@@ -84,7 +84,7 @@ $(document).ready(() => {
 
   $("#hide-toggle-map").on("click", function (event) {
     let state = $("#map-encap").data("state");
-    console.log(state);
+    // console.log(state);
     if (state === "hiding") {
       $("#map-encap").removeClass("hide");
       $("#map-encap").data("state", "showing");
@@ -97,6 +97,8 @@ $(document).ready(() => {
       $("#q-and-a").removeClass("hide");
     }
   });
+
+
   function categoryChosen(category) {
     $.get(`/api/questions/category/${category}`, (data) => {
       let allAnswersArr = []
@@ -133,7 +135,7 @@ $(document).ready(() => {
 
 
 
-  console.log(localStorage.emailInput)
+  console.log(localStorage.userEmail)
 
 
 
@@ -151,14 +153,13 @@ $(document).ready(() => {
 
   }
 
-
-
-
-
 });
 
 
-
+function logout() {
+  localStorage.clear();
+  window.location.replace("/home.html");
+}
 
 
 

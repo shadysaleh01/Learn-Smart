@@ -22,20 +22,24 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-function validateUser(link) {
+function validateUser() {
    if (localStorage.isAuthenticated === "true") {
-
-      if (link === "play") {
-         window.location.replace("/play.html")
-      } else {
-         window.location.replace("/home.html")
-      }
+      window.location.replace("/play.html")
    } else {
       window.location.replace("/login.html");
    }
 }
 
+if (localStorage.isAuthenticated === "true") {
+
+   document.getElementById("login").style.display = "none"
+   document.getElementById("logout").style.display = "block"
+} else {
+   document.getElementById("login").style.display = "block"
+   document.getElementById("logout").style.display = "none"
+}
+
 function logout() {
-   localStorage.setItem("isAuthenticated", false);
+   localStorage.clear();
    window.location.replace("/home.html");
 }
