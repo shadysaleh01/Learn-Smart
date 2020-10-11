@@ -80,12 +80,12 @@ $(document).ready(() => {
 
   });
 
-  
 
-  $("#hide-toggle-map").on("click", function(event) {
+
+  $("#hide-toggle-map").on("click", function (event) {
     let state = $("#map-encap").data("state");
     console.log(state);
-    if(state ==="hiding"){
+    if (state === "hiding") {
       $("#map-encap").removeClass("hide");
       $("#map-encap").data("state", "showing");
       $("#q-and-a").data("state", "hiding");
@@ -133,20 +133,23 @@ $(document).ready(() => {
 
 
 
+  console.log(localStorage.emailInput)
 
 
 
+  function squadChosen(squad) {
 
-  // function squadChosen(squad) {
-  //   $.ajax({
-  //     method: "PUT",
-  //     url: "/api/squad",
-  //     data: squad
-  //   }).then(() => {
+    const twoValue = { squad: squad, email: localStorage.emailInput }
 
-  //   })
+    $.ajax({
+      method: "PUT",
+      url: "/api/squad",
+      data: twoValue
+    }).then((res) => {
+      // res.json(res)
+    })
 
-  // }
+  }
 
 
 
