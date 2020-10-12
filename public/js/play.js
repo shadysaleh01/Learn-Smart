@@ -21,10 +21,12 @@ $(document).ready(() => {
   let categoryChoice = "____";
   $("#squad-setting").text(squadChoice);
   $("#cat-setting").text(categoryChoice);
+  
   $(".team-choice").on("click", function (event) {
     squadChoice = $(this).data("squad");
     console.log(squadChoice);
     $("#squad-setting").text(squadChoice);
+    squadChosen(squadChoice);
   });
 
   $(".category-btn").on("click", function (event) {
@@ -39,25 +41,13 @@ $(document).ready(() => {
 
     // console.log(state);
     if (state === "showing") {
-      // $("#answers-area").data("state", "hiding");
-      // $("#answers-area").addClass("hide");
-      // $("#clicker-area").removeClass("hide");
-      // $("#clicker-area").data("state", "showing");
-      // $("#question-display").html(
-      //   "Click the <span class='red' id='clickerSpan' style='color:white'>blue</span> button!"
-      // );
+      
       $("#q-and-a").data("state", "hiding");
       $("#q-and-a").addClass("hide");
       $("#cat-encap").data("state", "showing");
       $("#cat-encap").removeClass("hide");
     } else {
-      // $("#answers-area").data("state", "showing");
-      // $("#answers-area").removeClass("hide");
-      // $("#clicker-area").addClass("hide");
-      // $("#clicker-area").data("state", "hiding");
-      // $("#question-display").html(
-      //   "This tiny tyrant ruled across Europe at 5 feet 6 inches"
-      // );
+      
       $("#q-and-a").data("state", "showing");
       $("#q-and-a").removeClass("hide");
       $("#cat-encap").data("state", "hiding");
@@ -177,10 +167,7 @@ $(document).ready(() => {
     });
   }
 
-  $(".team-choice").on("click", function (event) {
-    let squad = $(this).data("squad");
-    squadChosen(squad)
-  });
+  
 
 
 
@@ -190,14 +177,21 @@ $(document).ready(() => {
 
   function squadChosen(squad) {
 
-    const twoValue = { squad: squad, email: localStorage.emailInput }
-
+    const twoValue = { squad: squad, email: localStorage.getItem("userEmail") }
+    console.log(twoValue.squad);
+    console.log("--------------------------");
+    console.log(twoValue.email);
     $.ajax({
       method: "PUT",
       url: "/api/squad",
       data: twoValue
     }).then((res) => {
-      // res.json(res)
+      console.log("********************");
+      console.log(res);
+      console.log("update successful");
+      
+      // res.json(res);
+      
     })
 
   }

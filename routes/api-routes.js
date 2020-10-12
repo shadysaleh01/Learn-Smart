@@ -34,6 +34,7 @@ module.exports = function (app) {
 
   // PUT route for updating squad
   app.put("/api/squad", (req, res) => {
+    console.log("inside apiRoutes....");
     db.User.update({
       squad: req.body.squad
     }, {
@@ -41,7 +42,7 @@ module.exports = function (app) {
         email: req.body.email
       }
     }).then((data) => {
-      console.log(data)
+      console.log(data);
       res.json(data);
     })
       .catch((err) => {
