@@ -133,16 +133,8 @@ $(document).ready(() => {
     squadChosen(squad)
   });
 
-
-
-  console.log(localStorage.userEmail)
-
-
-
   function squadChosen(squad) {
-
-    const twoValue = { squad: squad, email: localStorage.emailInput }
-
+    const twoValue = { squad: squad, email: localStorage.userEmail }
     $.ajax({
       method: "PUT",
       url: "/api/squad",
@@ -150,7 +142,15 @@ $(document).ready(() => {
     }).then((res) => {
       // res.json(res)
     })
+  }
 
+  function updateScore() {
+    const twoValue = { score: score, email: localStorage.userEmail }
+    $.ajax({
+      method: "PUT",
+      url: "/api/squad",
+      data: twoValue
+    })
   }
 
 });
