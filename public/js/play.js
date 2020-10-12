@@ -101,30 +101,79 @@ $(document).ready(() => {
 
   function categoryChosen(category) {
     $.get(`/api/questions/category/${category}`, (data) => {
-      let allAnswersArr = []
-      let fourChoices = []
+      let allAnswersArr = [];
+      let fourChoices = [];
 
       for (let i = 0; i < data.length; i++) {
-        allAnswersArr.push(data[i].answer)
+        allAnswersArr.push(data[i].answer);
       }
-      for (let i = 0; i < 3; i++) {
-        fourChoices.push(allAnswersArr[i])
-      }
+      // for (let i = 0; i < 3; i++) {
+      //   fourChoices.push(allAnswersArr[i]);
+      // }
 
-      $("#hide-toggle").on("click", () => {
-        let randomData = data[Math.floor(Math.random() * data.length)]
-        fourChoices.push(randomData.answer)
+      // ! establish our correct answer first
+      // ! and push it onto our pool of choices
+      let randomDataObj = data[Math.floor(Math.random() * data.length)];
+        let correctAnswer = randomDataObj.answer;
+        fourChoices.push(correctAnswer);
+      // ! while loop that doesn't allow duplicate answer choices
+      let j = 0;
+      let temp0 = "";
+      let temp1 = "";
+      let temp2 = "";
+      while (j < 3) {
+        if( j === 1 || j === 2 ){
+          if(j === 1){
+            temp1 = allAnswersArr[Math.floor(Math.random() * allAnswersArr.length)];
+            if( temp0 !== temp1 && correctAnswer !== temp1){
+              fourChoices.push(temp1);
+              j++;
+            } 
+          } else {  // j===2, last possible answer
+            temp2 = allAnswersArr[Math.floor(Math.random() * allAnswersArr.length)];
+            if( temp2 !== temp1 && temp2 !== temp0 && temp2 !== correctAnswer){
+              fourChoices.push(temp2);
+              j++;
+            } 
+          }
+        } else { // j===0 first iteration
+          temp0 = allAnswersArr[Math.floor(Math.random() * allAnswersArr.length)];
+          if(temp0 !== correctAnswer){
+            fourChoices.push(temp0);
+          j++;
+          }
+        }
+      }
+      // ! shuffle array
+      let randomizedArray = shuffle(fourChoices);
+        // let randomData = data[Math.floor(Math.random() * data.length)];
+        // fourChoices.push(randomData.answer)
         // let dddd = []
         // for (let i = 0; i < 4; i++) {
         //   dddd.push(fourChoices[Math.floor(Math.random() * 4)])
         // }
         // console.log(dddd)
-        $("#question-display").text(randomData.question)
-        $("#answer-1").text(fourChoices[0])
-        $("#answer-2").text(fourChoices[1])
-        $("#answer-3").text(fourChoices[2])
-        $("#answer-4").text(fourChoices[3])
-      })
+        $("#question-display").text(randomDataObj.question)
+        $("#answer-1").text(randomizedArray[0])
+        $("#answer-2").text(randomizedArray[1])
+        $("#answer-3").text(randomizedArray[2])
+        $("#answer-4").text(randomizedArray[3])
+ 
+
+      // $("#hide-toggle").on("click", () => {
+      //   let randomData = data[Math.floor(Math.random() * data.length)];
+      //   fourChoices.push(randomData.answer)
+      //   // let dddd = []
+      //   // for (let i = 0; i < 4; i++) {
+      //   //   dddd.push(fourChoices[Math.floor(Math.random() * 4)])
+      //   // }
+      //   // console.log(dddd)
+      //   $("#question-display").text(randomData.question)
+      //   $("#answer-1").text(fourChoices[0])
+      //   $("#answer-2").text(fourChoices[1])
+      //   $("#answer-3").text(fourChoices[2])
+      //   $("#answer-4").text(fourChoices[3])
+      // });
     });
   }
 
@@ -155,25 +204,17 @@ $(document).ready(() => {
 
 });
 
+// taken from https://javascript.info/task/shuffle
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 
 function logout() {
   localStorage.clear();
   window.location.replace("/home.html");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
