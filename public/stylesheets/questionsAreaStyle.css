@@ -29,7 +29,9 @@
 }
 
 #cat-setting,
-#squad-setting {
+#squad-setting,
+#user-name,
+#user-score {
   color: red;
 }
 

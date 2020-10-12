@@ -51,7 +51,7 @@ module.exports = function (app) {
         res.json(err);
       });
   })
-
+  
   // PUT route for updating score
   app.put("/api/score", (req, res) => {
     db.User.update({
@@ -73,15 +73,15 @@ module.exports = function (app) {
 
 
   // Get route for returning a single user
-  app.get("/api/user/:id", (req, res) => {
-    db.User.findOne({
-      where: {
-        id: req.params.id
-      }
-    }).then((data) => {
-      res.json(data)
-    })
-  })
+  // app.get("/api/user/:id", (req, res) => {
+  //   db.User.findOne({
+  //     where: {
+  //       id: req.params.id
+  //     }
+  //   }).then((data) => {
+  //     res.json(data)
+  //   })
+  // })
 
 
   // // Route for getting some data about our user to be used client side
@@ -117,7 +117,16 @@ module.exports = function (app) {
     res.redirect("/");
   });
 
-
+  // * find user by email
+  app.get("/api/user/:email", (req, res) => {
+    db.User.findOne({
+      where: {
+        email: req.params.email
+      }
+    }).then((data) => {
+      res.json(data);
+    })
+  })
 
 
 };
