@@ -2,13 +2,22 @@ html, body {
   height: 100%;
   margin: 0;
 }
-
-.wrapper {
-  min-height: 100%;
-
-  /* Equal to height of footer */
-  /* But also accounting for potential margin-bottom of last child */
-  margin-bottom: -65px;
+.wrapper{
+  height: 100%;
+  margin: 0;
+  position: relative;
+}
+#main{
+height: 100%;
+margin: 0;
+/* Equal to height of footer */
+margin-bottom: -60px;
+}
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
 }
 form.signup,
 form.login {
@@ -18,22 +27,28 @@ form.login {
 section#login-section, section#signup-section {
   overflow: auto;
   width: 100%;
-  margin-top: 5%;
-  margin-bottom: 5%;   
+  margin-top: 3%;
+  margin-bottom: 3%;   
 }
-h2 {
+h3 {
   color: rgb(38,166,154);
 }
 #formDiv {
   width: 50%;
   margin: center;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0
 }
 
-#form {
-  margin-bottom: 20px;
+.row {
+  margin-bottom: 0px;
+}
+button {
+  margin-bottom: 15px;
 }
 footer{
   text-align: center;
-  padding: 25px;
-  height: 65px;
+  padding: 20px;
+  height: 60px;
 }
