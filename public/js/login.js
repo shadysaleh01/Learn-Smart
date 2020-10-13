@@ -50,15 +50,3 @@ function validateUser() {
   }
 }
 
-// function aboutUs(e) {
-//   window.location.replace("/home.html");
-
-//   // Run a scroll animation to the position of the element which has the same id like the href value.
-//   $('html, body').animate(
-//     {
-//       scrollTop: $("#aboutUs").offset().top,
-//     },
-//     '300'
-//   );
-//   e.preventDefault();
-// }

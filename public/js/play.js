@@ -1,4 +1,3 @@
-// const { all } = require("sequelize/types/lib/operators");
 
 let categoryData = []; // array of answer/question/category objects
 let allAnswersArr = []; // all possible answers in our category
@@ -12,14 +11,9 @@ let currentQuestion = 0;
 const quizLength = 9; // ten questions, 0 index
 
 $(document).ready(() => {
-  // hide multiple choice toggle
-  // debugger;
-
-
   if (!localStorage.isAuthenticated) {
     window.location.replace("/login.html");
   }
-
 
   $("#squad-setting").text(squadChoice);
   $("#cat-setting").text(categoryChoice);
@@ -69,10 +63,7 @@ $(document).ready(() => {
       $("#game-over-encap").removeClass("hide");
       $("#game-over-encap").data("state", "showing");
     }
-
   });
-
-
 
   $("#hide-toggle-map").on("click", function (event) {
     let state = $("#map-encap").data("state");
@@ -89,7 +80,6 @@ $(document).ready(() => {
       $("#q-and-a").removeClass("hide");
     }
   });
-
 
   function categoryChosen(category) {
     $.get(`/api/questions/category/${category}`, (data) => {
@@ -119,9 +109,6 @@ $(document).ready(() => {
 
   $(".answer").on("click", verifyResponse);
 
-
-
-
   function squadChosen(squad) {
     const twoValue = { squad: squad, email: localStorage.userEmail }
     $.ajax({
@@ -141,7 +128,6 @@ $(document).ready(() => {
       data: twoValue
     })
   }
-
 });
 
 // taken from https://javascript.info/task/shuffle
@@ -153,14 +139,12 @@ function shuffle(array) {
   return array;
 }
 
-
 function logout() {
   localStorage.clear();
   window.location.replace("/home.html");
 }
 
 // ! START THE QUIZ LOGIC HERE -------------------------------------
-
 function verifyResponse() {
   console.log("verifying.....");
   // grab the elements answer text
@@ -172,27 +156,21 @@ function verifyResponse() {
   } else {
     console.log("WRONG"); // wrong!
   }
-
   currentQuestion++;
   renderQuestion();
 }
 
-
 function renderQuestion() {
   // ! game over if we run out of questions
   if (currentQuestion >= quiz10.length) {
-
     console.log("GAME OVERRRRRRRRRRRRRRRRRR");
     gameOver();
     return;
   }
   // ! reset our answer choices which each rendered question
   fourChoices = [];
-
   // ! establish our correct answer first
   // ! and push it onto our pool of choices
-  // categoryData = shuffle(categoryData);
-  // let randomDataObj = quiz10[Math.floor(Math.random() * quiz10.length)];
   let correctAnswer = quiz10[currentQuestion].answer;
   fourChoices.push(correctAnswer);
   // ! while loop that doesn't allow duplicate answer choices
@@ -230,9 +208,7 @@ function renderQuestion() {
   $("#answer-2").text(fourChoices[1])
   $("#answer-3").text(fourChoices[2])
   $("#answer-4").text(fourChoices[3])
-
 }
-
 
 function startQuiz() {
   // ? show and hide divs stuff goes here
@@ -243,9 +219,7 @@ function startQuiz() {
   // ! reset quiz index and score
   currentQuestion = 0;
   score = 0;
-
   // ? set the timer here
-
   // ? shuffle then start rendering questions
   categoryData = shuffle(categoryData);
   // ! reset the 10 questions
@@ -262,7 +236,4 @@ function gameOver() {
   $("#game-over-encap").data("state", "showing");
   // $("#user-name").text(userName);
   $("#user-score").text(score);
-
-  // ! will update score column here with put request
-
 }
