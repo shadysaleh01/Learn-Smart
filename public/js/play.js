@@ -11,14 +11,6 @@ let quiz10 = []; // finalize our 10 questions
 let currentQuestion = 0;
 const quizLength = 9; // ten questions, 0 index
 
-let userName = ""
-
-// get user info right away: name
-$.get(`/api/user/${localStorage.userEmail}`, function(data){
-  console.log(data);
-  userName = `${data.firstName} ${data.lastName}`;
-});
-
 $(document).ready(() => {
   // hide multiple choice toggle
   // debugger;
@@ -27,14 +19,6 @@ $(document).ready(() => {
   if (!localStorage.isAuthenticated) {
     window.location.replace("/login.html");
   }
-
-  // if (localStorage.isAuthenticated === "true") {
-  //   document.getElementById("login").style.display = "none"
-  //   document.getElementById("logout").style.display = "block"
-  // } else {
-  //   document.getElementById("login").style.display = "block"
-  //   document.getElementById("logout").style.display = "none"
-  // }
 
   
   $("#squad-setting").text(squadChoice);
@@ -121,53 +105,6 @@ $(document).ready(() => {
       for (let i = 0; i < data.length; i++) {
         allAnswersArr.push(categoryData[i].answer);
       }
-      // for (let i = 0; i < 3; i++) {
-      //   fourChoices.push(allAnswersArr[i]);
-      // }
-
-      // ? startQuiz(); -------------------------------------
-
-
-      // // ! establish our correct answer first
-      // // ! and push it onto our pool of choices
-      // let randomDataObj = categoryData[Math.floor(Math.random() * categoryData.length)];
-      //   let correctAnswer = randomDataObj.answer;
-      //   fourChoices.push(correctAnswer);
-      // // ! while loop that doesn't allow duplicate answer choices
-      // let j = 0;
-      // let temp0 = "";
-      // let temp1 = "";
-      // let temp2 = "";
-      // while (j < 3) {
-      //   if( j === 1 || j === 2 ){
-      //     if(j === 1){
-      //       temp1 = allAnswersArr[Math.floor(Math.random() * allAnswersArr.length)];
-      //       if( temp0 !== temp1 && correctAnswer !== temp1){
-      //         fourChoices.push(temp1);
-      //         j++;
-      //       } 
-      //     } else {  // j===2, last possible answer
-      //       temp2 = allAnswersArr[Math.floor(Math.random() * allAnswersArr.length)];
-      //       if( temp2 !== temp1 && temp2 !== temp0 && temp2 !== correctAnswer){
-      //         fourChoices.push(temp2);
-      //         j++;
-      //       } 
-      //     }
-      //   } else { // j===0 first iteration
-      //     temp0 = allAnswersArr[Math.floor(Math.random() * allAnswersArr.length)];
-      //     if(temp0 !== correctAnswer){
-      //       fourChoices.push(temp0);
-      //     j++;
-      //     }
-      //   }
-      // }
-      // // ! shuffle array
-      //   fourChoices = shuffle(fourChoices);
-      //   $("#question-display").text(randomDataObj.question)
-      //   $("#answer-1").text(fourChoices[0]);
-      //   $("#answer-2").text(fourChoices[1]);
-      //   $("#answer-3").text(fourChoices[2]);
-      //   $("#answer-4").text(fourChoices[3]);
     });
   }
 
@@ -185,24 +122,16 @@ $(document).ready(() => {
 
 
 
-  console.log(localStorage.userEmail);
   function squadChosen(squad) {
 
-    const twoValue = { squad: squad, email: localStorage.getItem("userEmail") }
-    console.log(twoValue.squad);
-    console.log("--------------------------");
-    console.log(twoValue.email);
+    const twoValue = { squad: squad, email: localStorage.emailInput }
+
     $.ajax({
       method: "PUT",
       url: "/api/squad",
       data: twoValue
     }).then((res) => {
-      console.log("********************");
-      console.log(res);
-      console.log("update successful");
-      
-      // res.json(res);
-      
+      // res.json(res)
     })
 
   }
@@ -320,60 +249,12 @@ function startQuiz() {
     quiz10.push(categoryData[k]);
   }
   renderQuestion();
-  // // ! establish our correct answer first
-  // // ! and push it onto our pool of choices
-  // // categoryData = shuffle(categoryData);
-  // let randomDataObj = categoryData[Math.floor(Math.random() * categoryData.length)];
-  // let correctAnswer = randomDataObj.answer;
-  // fourChoices.push(correctAnswer);
-  // // ! while loop that doesn't allow duplicate answer choices
-  // let j = 0;
-  // let temp0 = "";
-  // let temp1 = "";
-  // let temp2 = "";
-  // while (j < 3) {
-  //   if( j === 1 || j === 2 ){
-  //     if(j === 1){
-  //       temp1 = allAnswersArr[Math.floor(Math.random() * allAnswersArr.length)];
-  //       if( temp0 !== temp1 && correctAnswer !== temp1){
-  //         fourChoices.push(temp1);
-  //         j++;
-  //       } 
-  //     } else {  // j===2, last possible answer
-  //       temp2 = allAnswersArr[Math.floor(Math.random() * allAnswersArr.length)];
-  //       if( temp2 !== temp1 && temp2 !== temp0 && temp2 !== correctAnswer){
-  //         fourChoices.push(temp2);
-  //         j++;
-  //       } 
-  //     }
-  //   } else { // j===0 first iteration
-  //     temp0 = allAnswersArr[Math.floor(Math.random() * allAnswersArr.length)];
-  //     if(temp0 !== correctAnswer){
-  //       fourChoices.push(temp0);
-  //     j++;
-  //     }
-  //   }
-  // }
-  //     // ! shuffle array
-  //       fourChoices = shuffle(fourChoices);
-  //       // let randomData = data[Math.floor(Math.random() * data.length)];
-  //       // fourChoices.push(randomData.answer)
-  //       // let dddd = []
-  //       // for (let i = 0; i < 4; i++) {
-  //       //   dddd.push(fourChoices[Math.floor(Math.random() * 4)])
-  //       // }
-  //       // console.log(dddd)
-  //       $("#question-display").text(randomDataObj.question)
-  //       $("#answer-1").text(fourChoices[0])
-  //       $("#answer-2").text(fourChoices[1])
-  //       $("#answer-3").text(fourChoices[2])
-  //       $("#answer-4").text(fourChoices[3])
 }
 
 function gameOver() {
   $("#game-over-encap").removeClass("hide");
   $("#game-over-encap").data("state", "showing");
-  $("#user-name").text(userName);
+  // $("#user-name").text(userName);
   $("#user-score").text(score);
 
   // ! will update score column here with put request
