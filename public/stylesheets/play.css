@@ -5,33 +5,14 @@
 html, body {
   height: 100%;
   margin: 0;
-  padding: 0;
-  /* overflow:hidden; */
 }
 
 .wrapper {
   min-height: 100%;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
-  margin-bottom: -65px;
-}
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
 
-#cat-encap{
-  background-color: rgba(255, 255, 255, 0.8);
-
-  color: black
+  /* Equal to height of footer */
+  /* But also accounting for potential margin-bottom of last child */
+  margin-bottom: -60px;
 }
 
 #answer-column {
@@ -61,9 +42,7 @@ html, body {
 }
 
 #cat-setting,
-#squad-setting,
-#user-name,
-#user-score {
+#squad-setting {
   color: red;
 }
 
@@ -160,7 +139,7 @@ html, body {
 footer {
   text-align: center;
   padding: 25px;
-  height: 65px;
+  height: 60px;
 }
 
 /* #mark-map */

@@ -1,4 +1,5 @@
 $(document).ready(() => {
+
   // Getting references to our form and inputs
   const loginForm = $("form#form");
   const emailInput = $("input#email");
@@ -217,4 +218,11 @@ function validateUser() {
     alert("Please sign in first")
   }
 }
+//////nav bar menu
+// document.addEventListener('DOMContentLoaded', function () {
+//   var elems = document.querySelectorAll('.sidenav');
+//   options = {edge: "left"}
+//   var instances = M.Sidenav.init(elems, options);
 
+
+// });
