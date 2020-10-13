@@ -32,6 +32,13 @@ module.exports = function (app) {
       });
   });
 
+  // Get route for returning a all users
+  app.get("/api/users", (req, res) => {
+    db.User.findAll({}).then((data) => {
+      res.json(data)
+    })
+  })
+
   // Get route for returning a single user
   app.get("/api/user/:email", (req, res) => {
     db.User.findOne({
