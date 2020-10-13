@@ -21,10 +21,12 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <link href="stylesheets/questionsAreaStyle.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Courgette|Open+Sans&display=swap" rel="stylesheet"> 
+    <link href="stylesheets/play.css" rel="stylesheet" />
   </head>
 
   <body>
+    <div class="wrapper">
     <nav>
       <div class="nav-wrapper">
         <a href="#!" class="brand-logo"
@@ -49,15 +51,38 @@
               ><i class="material-icons left">login</i>Logout</a
             >
           </li>
-          <!-- <li id="logout">
-            <a onclick="logout()"
-              ><i class="material-icons left">login</i>Logout</a
-            >
-          </li> -->
         </ul>
       </div>
     </nav>
-
+<Section id="animate">
+    <div class="leaf">
+      <div>  <img src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+       <div><img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+       <div>  <img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+       <div><img  src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+        <div> <img src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+      <div>   <img src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+      <div><img src="http://cdn.clipart-db.ru/rastr/autumn_leaves_025.png" height="75px" width="75px"></div>         
+    </div>
+    <div class="leaf leaf1">
+      <div>  <img src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+       <div><img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+       <div>  <img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+       <div><img  src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+        <div> <img src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+      <div>   <img src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+      <div><img src="http://cdn.clipart-db.ru/rastr/autumn_leaves_025.png" height="75px" width="75px"></div>     
+    </div>
+    <div class="leaf leaf2">
+      <div>  <img src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
+       <div><img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
+       <div>  <img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png" height="75px" width="75px" ></img></div>
+       <div><img  src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+        <div> <img src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
+      <div>   <img src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png" height="75px" width="75px"></div>
+      <div><img src="http://cdn.clipart-db.ru/rastr/autumn_leaves_025.png" height="75px" width="75px"></div>    
+    </div>
+</Section>
     <main id="main-contain" class="container">
       <!-- categories section -->
       <div id="cat-encap" data-state="showing">
@@ -140,7 +165,6 @@
               <p class="team-choice no-select" data-squad="blue">blue</p>
             </div>
           </div>
-    
           <div class="row center-align">
             <div class="col s12">
               <p class="flow-text no-select" id="play-settings">
@@ -149,25 +173,16 @@
               </p>
             </div>
           </div>
-    
           <div class="row center-align">
             <div class="col s12">
               <p class="flow-text no-select" id="play-btn">play!</p>
             </div>
           </div>
           <!-- end team choices/play button -->
-
           <!-- end encapsulate category/team-choice/play-btn -->
       </div>
-      
-      
-
-      
-      
-
       <!-- encapsulates -->
       <div id="q-and-a" class="hide" data-state="hiding">
-
         <div class="row">
           <div class="col s12 center-align">
             <div id="question-display" class="section">
@@ -196,7 +211,6 @@
             </p>
           </div>
         </div>
-
         <!-- other row/columns that holds reflex clicker prompts -->
         <div class="row center-align hide" id="clicker-area" data-state="hiding">
           <div class="col s6 clicker-column">
@@ -206,7 +220,6 @@
             <p class="flow-text clickers red no-select">click me!</p>
           </div>
         </div>
-
       </div>
     </main>
     <!-- GAME OVER POP UP AREA!!!!!!!!!!!!!!!!!!!!!! -->
@@ -257,8 +270,6 @@
       </section>
     </div>
     <!-- GAME OVER AREA END!!!!!!!!!!!!!!!!!!!!!! -->
-      
-
     <!-- toggle buttons -->
     <div class="container">
       <div class="row center-align">
@@ -329,20 +340,13 @@
         </div>
       </div>
     </div>
-
+    </div>
     <!-- MAP AREA ENDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD -->
-
     <footer class="page-footer">
       © 2020 Copyright Text
     </footer>
-
     <script type="text/javascript" src="js/materialize.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     <script type="text/javascript" src="js/play.js"></script>
-    <script type="text/javascript">
-
-    </script>
-  </body>
+</body>
 </html>

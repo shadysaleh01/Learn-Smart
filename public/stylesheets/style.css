@@ -1,9 +1,21 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
+  min-height: 100%;
+
+  /* Equal to height of footer */
+  /* But also accounting for potential margin-bottom of last child */
+  margin-bottom: -65px;
+}
 form.signup,
 form.login {
   margin-top: 50px;
 }
 
-#login-section {
+section#login-section, section#signup-section {
   overflow: auto;
   width: 100%;
   margin-top: 5%;
@@ -22,5 +34,6 @@ h2 {
 }
 footer{
   text-align: center;
-  padding: 25px
+  padding: 25px;
+  height: 65px;
 }
