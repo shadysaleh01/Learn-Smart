@@ -72,10 +72,10 @@ module.exports = function (app) {
 
 
   // Get route for returning a single user
-  app.get("/api/user/:id", (req, res) => {
+  app.get("/api/user/:email", (req, res) => {
     db.User.findOne({
       where: {
-        id: req.params.id
+        email: req.params.email
       }
     }).then((data) => {
       res.json(data)
