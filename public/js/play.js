@@ -1,5 +1,16 @@
 // const { all } = require("sequelize/types/lib/operators");
 
+let categoryData = []; // array of answer/question/category objects
+let allAnswersArr = []; // all possible answers in our category
+let fourChoices = []; // four possible choices
+
+let squadChoice = "____"; // our choices start blank
+let categoryChoice = "____";
+let score = 0;
+let quiz10 = []; // finalize our 10 questions
+let currentQuestion = 0;
+const quizLength = 9; // ten questions, 0 index
+
 $(document).ready(() => {
   // hide multiple choice toggle
   // debugger;
@@ -9,22 +20,15 @@ $(document).ready(() => {
     window.location.replace("/login.html");
   }
 
-  // if (localStorage.isAuthenticated === "true") {
-  //   document.getElementById("login").style.display = "none"
-  //   document.getElementById("logout").style.display = "block"
-  // } else {
-  //   document.getElementById("login").style.display = "block"
-  //   document.getElementById("logout").style.display = "none"
-  // }
-
-  let squadChoice = "____";
-  let categoryChoice = "____";
+  
   $("#squad-setting").text(squadChoice);
   $("#cat-setting").text(categoryChoice);
+  
   $(".team-choice").on("click", function (event) {
     squadChoice = $(this).data("squad");
     console.log(squadChoice);
     $("#squad-setting").text(squadChoice);
+    squadChosen(squadChoice);
   });
 
   $(".category-btn").on("click", function (event) {
@@ -39,25 +43,13 @@ $(document).ready(() => {
 
     // console.log(state);
     if (state === "showing") {
-      // $("#answers-area").data("state", "hiding");
-      // $("#answers-area").addClass("hide");
-      // $("#clicker-area").removeClass("hide");
-      // $("#clicker-area").data("state", "showing");
-      // $("#question-display").html(
-      //   "Click the <span class='red' id='clickerSpan' style='color:white'>blue</span> button!"
-      // );
+      
       $("#q-and-a").data("state", "hiding");
       $("#q-and-a").addClass("hide");
       $("#cat-encap").data("state", "showing");
       $("#cat-encap").removeClass("hide");
     } else {
-      // $("#answers-area").data("state", "showing");
-      // $("#answers-area").removeClass("hide");
-      // $("#clicker-area").addClass("hide");
-      // $("#clicker-area").data("state", "hiding");
-      // $("#question-display").html(
-      //   "This tiny tyrant ruled across Europe at 5 feet 6 inches"
-      // );
+      
       $("#q-and-a").data("state", "showing");
       $("#q-and-a").removeClass("hide");
       $("#cat-encap").data("state", "hiding");
@@ -101,41 +93,32 @@ $(document).ready(() => {
 
   function categoryChosen(category) {
     $.get(`/api/questions/category/${category}`, (data) => {
-      let allAnswersArr = []
-      let fourChoices = []
-
+      // ! reset our arrays every time you select a new category
+      allAnswersArr = [];
+      fourChoices = [];
+      categoryData = [];
+      // copy the data onto our global array
       for (let i = 0; i < data.length; i++) {
-        allAnswersArr.push(data[i].answer)
+        categoryData.push(data[i]);
       }
-      for (let i = 0; i < 3; i++) {
-        fourChoices.push(allAnswersArr[i])
+      // ! setting the pool of all answers in this category
+      for (let i = 0; i < data.length; i++) {
+        allAnswersArr.push(categoryData[i].answer);
       }
-
-      $("#hide-toggle").on("click", () => {
-        let randomData = data[Math.floor(Math.random() * data.length)]
-        fourChoices.push(randomData.answer)
-        // let dddd = []
-        // for (let i = 0; i < 4; i++) {
-        //   dddd.push(fourChoices[Math.floor(Math.random() * 4)])
-        // }
-        // console.log(dddd)
-        $("#question-display").text(randomData.question)
-        $("#answer-1").text(fourChoices[0])
-        $("#answer-2").text(fourChoices[1])
-        $("#answer-3").text(fourChoices[2])
-        $("#answer-4").text(fourChoices[3])
-      })
     });
   }
 
-  $(".team-choice").on("click", function (event) {
-    let squad = $(this).data("squad");
-    squadChosen(squad)
+  $("#play-btn").on("click", function(event){
+    // * verification to check if both a category && squad is chosen
+    if(squadChoice==="____" || categoryChoice==="____"){
+      return;
+    }
+    console.log("--------- lets play! ----------");
+    startQuiz();
   });
 
+  $(".answer").on("click", verifyResponse);
 
-
-  console.log(localStorage.userEmail)
 
 
 
@@ -155,25 +138,125 @@ $(document).ready(() => {
 
 });
 
+// taken from https://javascript.info/task/shuffle
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 
 function logout() {
   localStorage.clear();
   window.location.replace("/home.html");
 }
 
+// ! START THE QUIZ LOGIC HERE -------------------------------------
+
+function verifyResponse() {
+  console.log("verifying.....");
+  // grab the elements answer text
+  let thisAnswer = $(this).text();
+  console.log(`this answer: ${thisAnswer}`);
+  if(thisAnswer === quiz10[currentQuestion].answer){
+    score = score + 100;  // correct!
+    console.log(`CORRECT! your score is now ${score}`);
+  } else {
+    console.log("WRONG"); // wrong!
+  }
+
+  currentQuestion++;
+  renderQuestion();
+}
 
 
+function renderQuestion() {
+  // ! game over if we run out of questions
+  if(currentQuestion >= quiz10.length){
+    
+    console.log("GAME OVERRRRRRRRRRRRRRRRRR");
+    gameOver();
+    return;
+  }
+  // ! reset our answer choices which each rendered question
+  fourChoices = [];
+
+  // ! establish our correct answer first
+  // ! and push it onto our pool of choices
+  // categoryData = shuffle(categoryData);
+  // let randomDataObj = quiz10[Math.floor(Math.random() * quiz10.length)];
+  let correctAnswer = quiz10[currentQuestion].answer;
+  fourChoices.push(correctAnswer);
+  // ! while loop that doesn't allow duplicate answer choices
+  let j = 0;
+  let temp0 = "";
+  let temp1 = "";
+  let temp2 = "";
+  while (j < 3) {
+    if( j === 1 || j === 2 ){
+      if(j === 1){
+        temp1 = allAnswersArr[Math.floor(Math.random() * allAnswersArr.length)];
+        if( temp0 !== temp1 && correctAnswer !== temp1){
+          fourChoices.push(temp1);
+          j++;
+        } 
+      } else {  // j===2, last possible answer
+        temp2 = allAnswersArr[Math.floor(Math.random() * allAnswersArr.length)];
+        if( temp2 !== temp1 && temp2 !== temp0 && temp2 !== correctAnswer){
+          fourChoices.push(temp2);
+          j++;
+        } 
+      }
+    } else { // j===0 first iteration
+      temp0 = allAnswersArr[Math.floor(Math.random() * allAnswersArr.length)];
+      if(temp0 !== correctAnswer){
+        fourChoices.push(temp0);
+      j++;
+      }
+    }
+  }
+      // ! shuffle array
+        fourChoices = shuffle(fourChoices);
+        $("#question-display").text(quiz10[currentQuestion].question);
+        $("#answer-1").text(fourChoices[0])
+        $("#answer-2").text(fourChoices[1])
+        $("#answer-3").text(fourChoices[2])
+        $("#answer-4").text(fourChoices[3])
+
+}
 
 
+function startQuiz() {
+  // ? show and hide divs stuff goes here
+  $("#q-and-a").data("state", "showing");
+  $("#q-and-a").removeClass("hide");
+  $("#cat-encap").data("state", "hiding");
+  $("#cat-encap").addClass("hide");
+  // ! reset quiz index and score
+   currentQuestion = 0;
+   score = 0;
 
+  // ? set the timer here
 
+  // ? shuffle then start rendering questions
+  categoryData = shuffle(categoryData);
+  // ! reset the 10 questions
+  quiz10 = [];
+  // ? how many questions do we want in our quiz? loop 10 times!
+  for (let k = 0; k < 9; k++) {
+    quiz10.push(categoryData[k]);
+  }
+  renderQuestion();
+}
 
+function gameOver() {
+  $("#game-over-encap").removeClass("hide");
+  $("#game-over-encap").data("state", "showing");
+  // $("#user-name").text(userName);
+  $("#user-score").text(score);
 
-
-
-
-
-
-
-
-
+  // ! will update score column here with put request
+  
+}
