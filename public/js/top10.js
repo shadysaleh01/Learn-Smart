@@ -14,3 +14,7 @@ if (localStorage.isAuthenticated === "true") {
    document.getElementById("logout").style.display = "none"
 }
 
+function logout() {
+   localStorage.clear();
+   window.location.replace("/top10.html");
+}
