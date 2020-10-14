@@ -109,6 +109,7 @@ $(document).ready(() => {
 
   $(".answer").on("click", verifyResponse);
 
+<<<<<<< HEAD
   // event listeners for retaking quizzes
   $("#play-this-again").on("click", startQuiz);
   $("#play-new-cat").on("click", function(event) {
@@ -123,6 +124,9 @@ $(document).ready(() => {
 
 
 
+=======
+  ///// ajax to update the uesr's squad //////
+>>>>>>> f6dc778c645b90837585c8d785841909c0e4903e
   function squadChosen(squad) {
     const twoValue = { squad: squad, email: localStorage.userEmail }
     $.ajax({
@@ -134,11 +138,12 @@ $(document).ready(() => {
     })
   }
 
-  function updateScore() {
+  ////// ajax to update the uesr's sore /////
+  function updateScore(score) {
     const twoValue = { score: score, email: localStorage.userEmail }
     $.ajax({
       method: "PUT",
-      url: "/api/squad",
+      url: "/api/score",
       data: twoValue
     })
   }
