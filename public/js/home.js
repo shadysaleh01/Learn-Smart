@@ -14,20 +14,26 @@ $('nav a').on('click', function (e) {
 });
 
 //////* Banner Section *//////
-document.addEventListener('DOMContentLoaded', function () {
-   var elems = document.querySelectorAll('.slider');
-   var options = { indicators: true, height: 450, interval: 2500 }
-   var instance = M.Slider.init(elems, options);
-
-});
-
 // document.addEventListener('DOMContentLoaded', function () {
-//    var elems = document.querySelectorAll('.sidenav');
-//    var instances = M.Sidenav.init(elems, options);
-//    var instance = M.Sidenav.getInstance(elem);
-//    instance.open()
+//    var elems = document.querySelectorAll('.slider');
+//    var options = { indicators: true, height: 450, interval: 2500 }
+//    var instance = M.Slider.init(elems, options);
+
 // });
 
+document.addEventListener('DOMContentLoaded', function () {
+   var elems = document.querySelectorAll('.sidenav');
+   // var options = {}
+   var instances = M.Sidenav.init(elems, {});
+});
+var collapsibleElem = document.querySelector(".collapsible");
+var collapsibleInstance = M.Collapsible.init(collapsibleElem, {});
+
+// document.addEventListener('DOMContentLoaded', function () {
+//    var elems = document.querySelectorAll('.sidenav-trigger');
+//    // var options = {}
+//    var instances = M.Sidenav.init(elems);
+// });
 
 function validateUser() {
    if (localStorage.isAuthenticated === "true") {

@@ -18,3 +18,4 @@ function logout() {
    localStorage.clear();
    window.location.replace("/top10.html");
 }
+
