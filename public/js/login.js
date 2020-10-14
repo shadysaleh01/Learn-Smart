@@ -218,11 +218,12 @@ function validateUser() {
 
   }
 }
-//////nav bar menu
-// document.addEventListener('DOMContentLoaded', function () {
-//   var elems = document.querySelectorAll('.sidenav');
-//   options = {edge: "left"}
-//   var instances = M.Sidenav.init(elems, options);
 
-
-// });
+//////nav bar menu mobile view /////
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('.sidenav');
+  // var options = {}
+  var instances = M.Sidenav.init(elems, {});
+});
+var collapsibleElem = document.querySelector(".collapsible");
+var collapsibleInstance = M.Collapsible.init(collapsibleElem, {});

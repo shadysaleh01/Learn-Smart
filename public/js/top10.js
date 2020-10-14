@@ -19,3 +19,12 @@ function logout() {
    window.location.replace("/top10.html");
 }
 
+//////nav bar menu mobile view /////
+document.addEventListener('DOMContentLoaded', function () {
+   var elems = document.querySelectorAll('.sidenav');
+   // var options = {}
+   var instances = M.Sidenav.init(elems, {});
+});
+var collapsibleElem = document.querySelector(".collapsible");
+var collapsibleInstance = M.Collapsible.init(collapsibleElem, {});
+

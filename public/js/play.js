@@ -239,3 +239,13 @@ function gameOver() {
   // $("#user-name").text(userName);
   $("#user-score").text(score);
 }
+
+
+//////nav bar menu mobile view /////
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('.sidenav');
+  // var options = {}
+  var instances = M.Sidenav.init(elems, {});
+});
+var collapsibleElem = document.querySelector(".collapsible");
+var collapsibleInstance = M.Collapsible.init(collapsibleElem, {});
