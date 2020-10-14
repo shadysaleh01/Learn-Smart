@@ -54,14 +54,14 @@
         </ul>
       </div>
     </nav>
-
-    <main id="main-contain" class="container">
+    <section id="monster">
+    <!-- <main id="main-contain" class="container"> -->
       <!-- categories section -->
-      <div id="cat-encap" data-state="showing">
+      <div id="cat-encap" class="monkey" data-state="showing">
         <!-- cat encap wraps around the categories/squad select display -->
             <div class="row center-align">
             <div class="col s12 flow-text">
-              <h2>Pick a Category</h2>
+              <h3>Pick a Category</h3>
             </div>
           </div>
           <div class="row category1 center-align">
@@ -126,7 +126,7 @@
           <!-- start team choice button row -->
           <div class="row center-align">
             <div class="col s12">
-              <h3>Pick a Squad</h3>
+              <h4>Pick a Squad</h4>
             </div>
           </div>
           <div class="row center-align">
@@ -153,8 +153,12 @@
           <!-- end team choices/play button -->
           <!-- end encapsulate category/team-choice/play-btn -->
       </div>
+
+
+
+
       <!-- encapsulates -->
-      <div id="q-and-a" class="hide" data-state="hiding">
+      <div id="q-and-a" class="hide monkey" data-state="hiding">
         <div class="row">
           <div class="col s12 center-align">
             <div id="question-display" class="section">
@@ -166,7 +170,7 @@
         <div class="divider"></div>
         <!--  -->
         <div class="row" id="answers-area" data-state="showing">
-          <div id="answer-column" class="col s6 offset-s3 center-align">
+          <div id="answer-column" class="col offset-s1 s10 center-align">
             <p class="flow-text answer no-select" id="answer-1">
               Napolean Bonaparte
             </p>
@@ -193,28 +197,37 @@
           </div>
         </div>
       </div>
-    </main>
+
+
+
+
+    <!-- </main> -->
+
+
+
     <!-- GAME OVER POP UP AREA!!!!!!!!!!!!!!!!!!!!!! -->
-    <div class="hide" id="game-over-encap" data-state="hiding">
-      <div class="position-absolute" id="overlay-background"></div>
+    <div class="hide monkey" id="game-over-encap" data-state="hiding">
+
+
+      <!-- <div id="overlay-background"></div> -->
       <!-- game over pop up section of the application -->
-      <section class="container" id="game-over">
+      <!-- <section class="container" id="game-over"> -->
         <div class="row">
           <div class="col s12">
-            <h2>GAME OVER!</h2>
+            <h2>GAME OVER</h2>
           </div>
         </div>
         <div class="row">
           <div class="col s12">
-            <p id=""> <span id="user-name">XXXXXX</span> scored <span id="user-score">XXXXXX</span> points!</p>
+            <h3> <span id="user-name">XXXXXX</span> scored <span id="user-score">XXXXXX</span> points!</h3>
           </div>
         </div>
         
         <!-- make sure this is hidden on load-->
         <div class="row" id="results-msg">
-          <div class="col s12">
-            <h3 id="congratulations-msg" class="hide">you have scored enough points! mark your territory</h3>
-            <h3 id="try-again-msg" class="hide">you have failed your squad! try again!</h3>
+          <div class="col offset-s1 s10">
+            <h4 id="congratulations-msg" class="hide">you have scored enough points! mark your territory! X</h4>
+            <h4 id="try-again-msg" class="hide">not enough points! you have failed your squad! try again!</h4>
           </div>
         </div>
         <div class="row hide" id="map-btn">
@@ -223,50 +236,26 @@
             <p class="no-select" id="mark-map">go to map</p>
           </div>
         </div>
-        <div class="row">
+        <div class="divider" id="button-divider"></div>
+        <!-- <hr> -->
+        <div class="row" id="restart-buttons">
           <div class="offset-s2 col s4" >
-            <p id="play-this-again">retake this quiz</p>
+            <p class="no-select" id="play-this-again">retake this quiz</p>
           </div>
           <div class="col s4" >
-            <p id="play-new-cat">play new quiz</p>
+            <p class="no-select" id="play-new-cat">play new quiz</p>
           </div>
         </div>
-        <div class="row">
-          <div class="col s12">
-            <button class="hide-toggle-game-over">
-              toggle
-            </button>
-          </div>
-        </div>
-      </section>
+
+
+      <!-- </section> -->
     </div>
     <!-- GAME OVER AREA END!!!!!!!!!!!!!!!!!!!!!! -->
-    <!-- toggle buttons -->
-    <div class="container">
-      <div class="row center-align">
-        <div class="col s4">
-          <button id="hide-toggle">
-            toggle question
-          </button>
-        </div>
-        <div class="col s4">
-          <button class="hide-toggle-game-over">
-            toggle game-over
-          </button>
-        </div>
-        <div class="col s4">
-          <button id="hide-toggle-map">
-            toggle map
-          </button>
-        </div>
-      </div>
-    </div>
     <!-- MAP AREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
-    <div class="hide" id="map-encap" data-state="hiding">
-      <div class="container">
+    <div class="hide monkey" id="map-encap" data-state="hiding">
         <div class="row center-align">
           <div class="col s12">
-            <h3>Claim Your Space!</h3>
+            <h2>Claim Your Space!</h2>
           </div>
         </div>
         <div class="row">
@@ -309,13 +298,14 @@
           <div class="col s3" data-state="blue"><h5 class="mapSquare valign-wrapper no-select">x</h5>
           </div>
         </div>
-      </div>
     </div>
+</section>
+<footer class="page-footer">
+  © 2020 Copyright Text
+</footer>
     </div>
     <!-- MAP AREA ENDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD -->
-    <footer class="page-footer">
-      © 2020 Copyright Text
-    </footer>
+
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/play.js"></script>
