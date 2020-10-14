@@ -109,6 +109,7 @@ $(document).ready(() => {
 
   $(".answer").on("click", verifyResponse);
 
+  ///// ajax to update the uesr's squad //////
   function squadChosen(squad) {
     const twoValue = { squad: squad, email: localStorage.userEmail }
     $.ajax({
@@ -120,11 +121,12 @@ $(document).ready(() => {
     })
   }
 
-  function updateScore() {
+  ////// ajax to update the uesr's sore /////
+  function updateScore(score) {
     const twoValue = { score: score, email: localStorage.userEmail }
     $.ajax({
       method: "PUT",
-      url: "/api/squad",
+      url: "/api/score",
       data: twoValue
     })
   }
