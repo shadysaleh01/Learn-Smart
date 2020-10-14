@@ -10,6 +10,11 @@ let quiz10 = []; // finalize our 10 questions
 let currentQuestion = 0;
 const quizLength = 9; // ten questions, 0 index
 
+// hide on load here
+$("#q-and-a").hide();
+$("#game-over-encap").hide();
+$("#map-encap").hide();
+
 $(document).ready(() => {
   if (!localStorage.isAuthenticated) {
     window.location.replace("/login.html");
@@ -32,54 +37,54 @@ $(document).ready(() => {
     categoryChosen(categoryChoice)
   });
 
-  $("#hide-toggle").on("click", function (event) {
-    let state = $("#q-and-a").data("state");
+  // $("#hide-toggle").on("click", function (event) {
+  //   let state = $("#q-and-a").data("state");
 
-    // console.log(state);
-    if (state === "showing") {
+  //   // console.log(state);
+  //   if (state === "showing") {
 
-      $("#q-and-a").data("state", "hiding");
-      $("#q-and-a").addClass("hide");
-      $("#cat-encap").data("state", "showing");
-      $("#cat-encap").removeClass("hide");
-    } else {
+  //     $("#q-and-a").data("state", "hiding");
+  //     $("#q-and-a").addClass("hide");
+  //     $("#cat-encap").data("state", "showing");
+  //     $("#cat-encap").removeClass("hide");
+  //   } else {
 
-      $("#q-and-a").data("state", "showing");
-      $("#q-and-a").removeClass("hide");
-      $("#cat-encap").data("state", "hiding");
-      $("#cat-encap").addClass("hide");
-    }
-  });
+  //     $("#q-and-a").data("state", "showing");
+  //     $("#q-and-a").removeClass("hide");
+  //     $("#cat-encap").data("state", "hiding");
+  //     $("#cat-encap").addClass("hide");
+  //   }
+  // });
 
   // hide game over overlays
-  $(".hide-toggle-game-over").on("click", function (event) {
-    // toggle the overlays
-    let state = $("#game-over-encap").data("state");
-    // console.log(state);
-    if (state === "showing") {
-      $("#game-over-encap").addClass("hide");
-      $("#game-over-encap").data("state", "hiding");
-    } else {
-      $("#game-over-encap").removeClass("hide");
-      $("#game-over-encap").data("state", "showing");
-    }
-  });
+  // $(".hide-toggle-game-over").on("click", function (event) {
+  //   // toggle the overlays
+  //   let state = $("#game-over-encap").data("state");
+  //   // console.log(state);
+  //   if (state === "showing") {
+  //     $("#game-over-encap").addClass("hide");
+  //     $("#game-over-encap").data("state", "hiding");
+  //   } else {
+  //     $("#game-over-encap").removeClass("hide");
+  //     $("#game-over-encap").data("state", "showing");
+  //   }
+  // });
 
-  $("#hide-toggle-map").on("click", function (event) {
-    let state = $("#map-encap").data("state");
-    // console.log(state);
-    if (state === "hiding") {
-      $("#map-encap").removeClass("hide");
-      $("#map-encap").data("state", "showing");
-      $("#q-and-a").data("state", "hiding");
-      $("#q-and-a").addClass("hide");
-    } else {
-      $("#map-encap").addClass("hide");
-      $("#map-encap").data("state", "hiding");
-      $("#q-and-a").data("state", "showing");
-      $("#q-and-a").removeClass("hide");
-    }
-  });
+  // $("#hide-toggle-map").on("click", function (event) {
+  //   let state = $("#map-encap").data("state");
+  //   // console.log(state);
+  //   if (state === "hiding") {
+  //     $("#map-encap").removeClass("hide");
+  //     $("#map-encap").data("state", "showing");
+  //     $("#q-and-a").data("state", "hiding");
+  //     $("#q-and-a").addClass("hide");
+  //   } else {
+  //     $("#map-encap").addClass("hide");
+  //     $("#map-encap").data("state", "hiding");
+  //     $("#q-and-a").data("state", "showing");
+  //     $("#q-and-a").removeClass("hide");
+  //   }
+  // });
 
   function categoryChosen(category) {
     $.get(`/api/questions/category/${category}`, (data) => {
@@ -110,15 +115,26 @@ $(document).ready(() => {
   $(".answer").on("click", verifyResponse);
 
   // event listeners for retaking quizzes
-  $("#play-this-again").on("click", startQuiz);
+  $("#play-this-again").on("click", function(event){
+    $("#game-over-encap").hide();
+    startQuiz();
+  });
   $("#play-new-cat").on("click", function(event) {
-    $("#game-over-encap").fadeOut("slow");
-    $("#game-over-encap").addClass("hide");
-    $("#game-over-encap").data("state", "hiding");
-    $("#q-and-a").data("state", "hiding");
-    $("#q-and-a").addClass("hide");
-    $("#cat-encap").data("state", "showing");
-    $("#cat-encap").removeClass("hide");
+    $("#game-over-encap").hide();
+    // $("#game-over-encap").addClass("hide");
+    // $("#game-over-encap").data("state", "hiding");
+    // $("#q-and-a").data("state", "hiding");
+    $("#q-and-a").hide();
+    // $("#cat-encap").data("state", "showing");
+    // $("#cat-encap").removeClass("hide");
+    $("#cat-encap").fadeIn("slow");
+  });
+
+  // go to map button!
+  $("#mark-map").on("click", function(event){
+    $("#game-over-encap").hide();
+    $("#map-encap").fadeIn("slow");
+    // $("#map-encap").removeClass("hide");
   });
 
 
@@ -230,16 +246,20 @@ function renderQuestion() {
 function startQuiz() {
   // ? show and hide divs stuff goes here
   // hide game over screen
+  $("#cat-encap").hide();
+  $("#q-and-a").fadeIn("fast");
   $("#congratulations-msg").addClass("hide");
   $("#try-again-msg").addClass("hide");
   $("#map-btn").addClass("hide");
-  $("#game-over-encap").fadeOut("slow");
-  $("#game-over-encap").addClass("hide");
-  $("#game-over-encap").data("state", "hiding");
-  $("#q-and-a").data("state", "showing");
-  $("#q-and-a").removeClass("hide");
-  $("#cat-encap").data("state", "hiding");
-  $("#cat-encap").addClass("hide");
+  // $("#game-over-encap").fadeOut("slow");
+  // $("#game-over-encap").addClass("hide");
+  // $("#game-over-encap").data("state", "hiding");
+  // $("#q-and-a").data("state", "showing");
+  // $("#q-and-a").removeClass("hide");
+  
+  // $("#cat-encap").data("state", "hiding");
+  // $("#cat-encap").addClass("hide");
+  
   // ! reset quiz index and score
   currentQuestion = 0;
   score = 0;
@@ -256,14 +276,15 @@ function startQuiz() {
 }
 
 function gameOver() {
-  $("#q-and-a").addClass("hide");
+  // $("#q-and-a").addClass("hide");
+  $("#q-and-a").hide();
   $("#game-over-encap").fadeIn("slow");
-  $("#game-over-encap").removeClass("hide");
-  $("#game-over-encap").data("state", "showing");
+  // $("#game-over-encap").removeClass("hide");
+  // $("#game-over-encap").data("state", "showing");
   // $("#user-name").text(userName);
   $("#user-score").text(score);
 
-  if(score >= 700) {
+  if(score >= 100) {
     // reveal congrats
     $("#congratulations-msg").removeClass("hide");
     // reveal go to map button
