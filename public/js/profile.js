@@ -10,6 +10,7 @@ $(document).ready(() => {
 
    $.get("/api/user/" + localStorage.userEmail, (data) => {
       // debugger;
+
       console.log(data)
       firstName.text(data.firstName)
       lastName.text(data.lastName)

@@ -30,7 +30,7 @@ module.exports = function (sequelize, DataTypes) {
     // The default score is zero
     score: {
       type: DataTypes.BIGINT,
-      defaultValue: 0,
+      defaultValue: "",
     },
     // squad name cannot be null
     squad: {
