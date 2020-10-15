@@ -13,14 +13,16 @@ $('nav a').on('click', function (e) {
    e.preventDefault();
 });
 
-//////* Banner Section *//////
-// document.addEventListener('DOMContentLoaded', function () {
-//    var elems = document.querySelectorAll('.slider');
-//    var options = { indicators: true, height: 450, interval: 2500 }
-//    var instance = M.Slider.init(elems, options);
 
-// });
+////* Banner Section *//////
+document.addEventListener('DOMContentLoaded', function () {
+   var elems = document.querySelectorAll('.slider');
+   var options = { indicators: true, height: 450, interval: 2500 }
+   var instance = M.Slider.init(elems, options);
 
+});
+
+//////* nav bar menu *///////
 document.addEventListener('DOMContentLoaded', function () {
    var elems = document.querySelectorAll('.sidenav');
    // var options = {}
@@ -44,13 +46,26 @@ function validateUser() {
 }
 
 if (localStorage.isAuthenticated === "true") {
-
    document.getElementById("login").style.display = "none"
    document.getElementById("logout").style.display = "block"
 } else {
    document.getElementById("login").style.display = "block"
    document.getElementById("logout").style.display = "none"
 }
+if (localStorage.isAuthenticated === "true") {
+   document.getElementById("loginMenu").style.display = "none"
+   document.getElementById("logoutMenu").style.display = "block"
+} else {
+   document.getElementById("loginMenu").style.display = "block"
+   document.getElementById("logoutMenu").style.display = "none"
+}
+// function login() {
+//      window.location.replace("/login.html");
+
+
+// }
+
+
 
 function logout() {
    localStorage.clear();
