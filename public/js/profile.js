@@ -8,22 +8,31 @@ $(document).ready(() => {
 
    console.log(localStorage.userEmail)
 
-   a.get("/api/user/;" + localStorage.userEmail, (data) => {
+   $.get("/api/user/" + localStorage.userEmail, (data) => {
+      // debugger;
       console.log(data)
-      firstName.val(data.firstName)
-      lastName.val(data.lastName)
-      email.val(data.email)
-      password.val(data.password)
-      squad.val(data.squad)
-      score.val(data.score)
+      firstName.text(data.firstName)
+      lastName.text(data.lastName)
+      email.text(data.email)
+      password.text(data.password)
+      squad.text(data.squad)
+      score.text(data.score)
    })
 
-
 })
+
+//////* nav bar menu *///////
+document.addEventListener('DOMContentLoaded', function () {
+   var elems = document.querySelectorAll('.sidenav');
+   // var options = {}
+   var instances = M.Sidenav.init(elems, {});
+});
+var collapsibleElem = document.querySelector(".collapsible");
+var collapsibleInstance = M.Collapsible.init(collapsibleElem, {});
+
 /////// nav bar profile picture //////
 document.addEventListener('DOMContentLoaded', function () {
    var elems = document.querySelectorAll('.dropdown-trigger');
    var options = { constrainWidth: false, coverTrigger: false, alignment: 'left', closeOnClick: false }
    var instances = M.Dropdown.init(elems, options);
 });
-var instance = M.Dropdown.getInstance(elem);

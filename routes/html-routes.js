@@ -29,12 +29,19 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
-  app.get("/highscore", (req, res) => {
+  app.get("/top10", (req, res) => {
     // If the user already has an account send them to the play page
     if (req.user) {
-      res.redirect("/highscore");
+      res.redirect("/top10");
     }
-    res.sendFile(path.join(__dirname, "../public/highscore.html"));
+    res.sendFile(path.join(__dirname, "../public/top10.html"));
+  });
+  app.get("/profile", (req, res) => {
+    // If the user already has an account send them to the play page
+    if (req.user) {
+      res.redirect("/profile");
+    }
+    res.sendFile(path.join(__dirname, "../public/profile.html"));
   });
 
   // Here we've add our isAuthenticated middleware to this route.
