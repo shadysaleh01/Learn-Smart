@@ -14,9 +14,11 @@ const quizLength = 9; // ten questions, 0 index
 var timerInterval;
 
 // hide on load here
+$("#score-time-encap").hide();
 $("#q-and-a").hide();
 $("#game-over-encap").hide();
 $("#map-encap").hide();
+
 
 $(document).ready(() => {
   if (!localStorage.isAuthenticated) {
@@ -127,6 +129,7 @@ $(document).ready(() => {
     // $("#game-over-encap").addClass("hide");
     // $("#game-over-encap").data("state", "hiding");
     // $("#q-and-a").data("state", "hiding");
+    $("#score-time-encap").hide();
     $("#q-and-a").hide();
     // $("#cat-encap").data("state", "showing");
     // $("#cat-encap").removeClass("hide");
@@ -136,6 +139,7 @@ $(document).ready(() => {
   // go to map button!
   $("#mark-map").on("click", function(event){
     $("#game-over-encap").hide();
+    $("#score-time-encap").hide();
     $("#map-encap").fadeIn("slow");
     // $("#map-encap").removeClass("hide");
   });
@@ -189,14 +193,16 @@ function verifyResponse() {
   if (thisAnswer === quiz10[currentQuestion].answer) {
     // score increases by this questions progressive value
     score = score + moneyArray[currentQuestion];  // correct!
-    $(this).attr("style", "background-color: rgb(104, 226, 56); color: white; box-shadow: 0px 5px 2px rgb(104, 226, 56);pointer-events:none");
     console.log(`CORRECT! your score is now ${score}`);
-    // TODO: change score display here
-    // !!!!!!!!!!!!!!!!!
+    $("#cash-display").text(`Cash: $${score}`);
+    $(".answer").attr("style","pointer-events:none");
+    $(this).attr("style", "background-color: rgb(104, 226, 56); border-color: black; color: white; box-shadow: 0px 5px 2px rgb(104, 226, 56); pointer-events: none");
+
     // timeOutId = window.setTimeout(renderQuestion, 600);
   } else {
     console.log("WRONG"); // wrong!
-    $(this).attr("style", "background-color: red; color: white; box-shadow: 0px 5px 2px red;pointer-events:none");
+    $(".answer").attr("style","pointer-events:none");
+    $(this).attr("style", "background-color: red; border-color: black; color: white; box-shadow: 0px 5px 2px red; pointer-events:none");
 
   }
   currentQuestion++;
@@ -260,10 +266,16 @@ function renderQuestion() {
 }
 
 function startQuiz() {
+  // ! reset quiz index and score and time
+  currentQuestion = 0;
+  score = 0;
+  currentTime = 50;
   // ? show and hide divs stuff goes here
-  // hide game over screen
+  $("#cash-display").text(`Cash: $${score}`);
+  $("#time-display").text("Time: 40");
   $("#cat-encap").hide();
   $("#q-and-a").fadeIn("fast");
+  $("#score-time-encap").fadeIn("fast");
   $("#congratulations-msg").addClass("hide");
   $("#try-again-msg").addClass("hide");
   $("#map-btn").addClass("hide");
@@ -276,10 +288,11 @@ function startQuiz() {
   // $("#cat-encap").data("state", "hiding");
   // $("#cat-encap").addClass("hide");
   
-  // ! reset quiz index and score
-  currentQuestion = 0;
-  score = 0;
+
+ 
+  
   // ? set the timer here
+  setTime();
   // ? shuffle then start rendering questions
   categoryData = shuffle(categoryData);
   // ! reset the 10 questions
@@ -291,6 +304,23 @@ function startQuiz() {
   renderQuestion();
 }
 
+function setTime(){
+  timerInterval = setInterval(function () {
+    currentTime--;
+    $("#time-display").text(`Time: ${currentTime}`);
+    // Time is up, game over
+    if (currentTime <= 0) {
+      clearInterval(timerInterval);
+      gameOver();
+    }
+    // if you have less than 10 secs left
+    // display a red shadow around the timer
+    if (currentTime <= 10) {
+      $("#time-display").attr("style", "color: red");
+    }
+  }, 1000);
+}
+
 function gameOver() {
   // $("#q-and-a").addClass("hide");
   $("#q-and-a").hide();
@@ -299,6 +329,8 @@ function gameOver() {
   // $("#game-over-encap").data("state", "showing");
   // $("#user-name").text(userName);
   $("#user-score").text(score);
+  clearInterval(timerInterval); // freeze time
+
 
   if(score >= 100) {
     // reveal congrats

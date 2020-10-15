@@ -55,7 +55,23 @@
         </ul>
       </div>
     </nav>
+    <!-- score -->
+    <!-- score end -->
+    <!-- timer -->
+    <!-- timer end -->
     <section id="monster">
+
+
+      <div id="score-time-encap">
+        <div class="row">
+          <div class="col s6">
+              <p class="flow-text no-select" id="cash-display"></p>
+          </div>
+          <div class="col s6">
+            <p class="flow-text no-select color-change" id="time-display"></p>
+          </div>
+        </div>
+      </div>
     <!-- <main id="main-contain" class="container"> -->
       <!-- categories section -->
       <div id="cat-encap" class="monkey" data-state="showing">
@@ -131,10 +147,10 @@
             </div>
           </div>
           <div class="row center-align">
-            <div class="col offset-s3 s3">
+            <div class="col offset-s2 s4">
               <p class="team-choice no-select" data-squad="yellow">yellow</p>
             </div>
-            <div class="col s3">
+            <div class="col s4">
               <p class="team-choice no-select" data-squad="blue">blue</p>
             </div>
           </div>
@@ -162,7 +178,7 @@
       <div id="q-and-a" class="monkey" data-state="hiding">
         <div class="row">
           <div class="col s12 center-align">
-            <div id="question-display" class="section">
+            <div id="question-display" class="section flow-text">
               This tiny tyrant ruled across Europe at 5 feet 6 inches
             </div>
           </div>
@@ -215,20 +231,20 @@
       <!-- <section class="container" id="game-over"> -->
         <div class="row">
           <div class="col s12">
-            <h2>GAME OVER</h2>
+            <h2 id="game-over-header">GAME OVER</h2>
           </div>
         </div>
         <div class="row">
           <div class="col s12">
-            <h3> <span id="user-name">XXXXXX</span> scored <span id="user-score">XXXXXX</span> points!</h3>
+            <h5> <span id="user-name">XXXXXX</span> scored <span id="user-score">XXXXXX</span> points!</h5>
           </div>
         </div>
         
         <!-- make sure this is hidden on load-->
         <div class="row" id="results-msg">
           <div class="col offset-s1 s10">
-            <h4 id="congratulations-msg" class="hide">you have scored enough points! mark your territory! X</h4>
-            <h4 id="try-again-msg" class="hide">not enough points! you have failed your squad! try again!</h4>
+            <h5 id="congratulations-msg" class="hide">You have earned enough cash! Mark your territory! X</h5>
+            <h5 id="try-again-msg" class="hide">You need at least $3000 to claim your space! Try again!</h5>
           </div>
         </div>
         <div class="row hide" id="map-btn">
@@ -256,7 +272,7 @@
     <div class="monkey" id="map-encap" data-state="hiding">
         <div class="row center-align">
           <div class="col s12">
-            <h2>Claim Your Space!</h2>
+            <h4 id="claim-yours-header">Claim Your Space!</h4>
           </div>
         </div>
         <div class="row">
