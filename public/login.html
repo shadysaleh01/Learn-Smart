@@ -23,24 +23,29 @@
     <nav>
       <div class="nav-wrapper">
         <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>Learn Squad</a>
-        <a href="#!" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <li><a href="home.html"><i class="material-icons left">home</i>Home</a></li>
           <li><a onclick="validateUser()"><i class="material-icons left">tour</i>Play</a></li>
           <li ><a href="home.html#aboutUs"><i class="material-icons left">more</i>About Us</a></li>
           <li><a href="login.html"><i class="material-icons left">login</i>Login</a></li>
         </ul>
+        <ul id="slide-out" class="sidenav">
+          <li><div class="user-view">
+             <div class="background">
+               <img src="https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg">
+             </div>
+             <a href="#user"><img class="circle" src="https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg"></a>
+             <a href="#name"><span class="white-text name">John Doe</span></a>
+             <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+           </div></li>
+           <li><a href="home.html"><i class="material-icons left">home</i>Home</a></li>
+           <li><a onclick="validateUser()"><i class="material-icons left">tour</i>Play</a></li>
+           <li ><a href="home.html#aboutUs"><i class="material-icons left">more</i>About Us</a></li>
+           <li><a href="login.html"><i class="material-icons left">login</i>Login</a></li>
+       </ul>
+      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
     </nav>
-
-    <!-- <ul class="sidenav" id="mobile-demo">
-      <li><a href="home.html"><i class="material-icons left">home</i>Home</a></li>
-      <li><a onclick="validateUser()"><i class="material-icons left">tour</i>Play</a></li>
-      <li ><a href="home.html#aboutUs"><i class="material-icons left">more</i>About Us</a></li>
-      <li><a href="login.html"><i class="material-icons left">login</i>Login</a></li>
-    </ul> -->
-
-
 
     <section id="login-section">
       <div class="row" id="formDiv">

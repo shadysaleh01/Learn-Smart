@@ -11,12 +11,7 @@
     />
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
-    <!--Import Google Icon Font-->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <!--Import materialize.css-->
+    <!--Import materialize.css Import Google Icon Font-->
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -47,12 +42,46 @@
               ><i class="material-icons left">more</i>About Us</a
             >
           </li>
+          <li id="logout">
+
+            <a class='dropdown-trigger' href='#' data-target='dropdown1'><img class="circle" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"></a>
+            <ul id='dropdown1' class='dropdown-content'>
+               <li><a href="profile.html">My Profile</a></li>
+               <li><a onclick="logout()">Logout</a></li>
+             </ul>
+         
+         </li>
+        </ul>
+        <ul id="slide-out" class="sidenav">
+          <li><div class="user-view">
+             <div class="background">
+               <img src="https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg">
+             </div>
+             <a href="profile.html"><img class="circle" src="https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg"></a>
+             <a href="#name"><span class="white-text name">John Doe</span></a>
+             <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+           </div></li>
+           <li>
+           <a href="home.html"><i class="material-icons left">home</i>Home</a>
+          </li>
           <li>
-            <a onclick="logout()"
-              ><i class="material-icons left">login</i>Logout</a
+            <a href="play.html"
+              ><i class="material-icons left">tour</i>Play</a
             >
           </li>
-        </ul>
+          <li><a href="top10.html"><i class="material-icons left">perm_identity</i>Top10</a></li>
+          <li>
+            <a href="home.html#aboutUs"
+              ><i class="material-icons left">more</i>About Us</a
+            >
+          </li>
+          <li>
+            <a onclick="logout()"
+              ><i class="material-icons left">logout</i>Logout</a
+            >
+          </li>
+       </ul>
+      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
     </nav>
     <section id="monster">

@@ -8,14 +8,19 @@ nav img {
    padding: 0;
    margin: 4px;
 }
+.file-field .btn, .file-field .btn-large, .file-field .btn-small{
+   float: none;
+margin:auto;
+}
+
 .wrapper{
    height: 100%;
    margin: 0;
    margin-bottom: -60px;
  }
-/* Footer Section */
-footer{
+
+ footer{
    text-align: center;
-   padding: 25px;
+   padding: 20px;
    height: 60px;
-}
+ }

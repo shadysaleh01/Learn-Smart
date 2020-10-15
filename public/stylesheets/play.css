@@ -23,6 +23,13 @@ body {
   margin: auto;
   height: 30%;
 }
+nav img {
+  height: 55px;
+  width: 55px;
+  padding: 0;
+  margin: 4px;
+}
+
 .wrapper {
   min-height: 100%;
 
