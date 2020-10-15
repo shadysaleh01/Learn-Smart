@@ -109,6 +109,20 @@ $(document).ready(() => {
 
   $(".answer").on("click", verifyResponse);
 
+  // event listeners for retaking quizzes
+  $("#play-this-again").on("click", startQuiz);
+  $("#play-new-cat").on("click", function (event) {
+    $("#game-over-encap").fadeOut("slow");
+    $("#game-over-encap").addClass("hide");
+    $("#game-over-encap").data("state", "hiding");
+    $("#q-and-a").data("state", "hiding");
+    $("#q-and-a").addClass("hide");
+    $("#cat-encap").data("state", "showing");
+    $("#cat-encap").removeClass("hide");
+  });
+
+
+
   ///// ajax to update the uesr's squad //////
   function squadChosen(squad) {
     const twoValue = { squad: squad, email: localStorage.userEmail }
@@ -165,6 +179,7 @@ function verifyResponse() {
 function renderQuestion() {
   // ! game over if we run out of questions
   if (currentQuestion >= quiz10.length) {
+    currentQuestion = 0;
     console.log("GAME OVERRRRRRRRRRRRRRRRRR");
     gameOver();
     return;
@@ -214,6 +229,13 @@ function renderQuestion() {
 
 function startQuiz() {
   // ? show and hide divs stuff goes here
+  // hide game over screen
+  $("#congratulations-msg").addClass("hide");
+  $("#try-again-msg").addClass("hide");
+  $("#map-btn").addClass("hide");
+  $("#game-over-encap").fadeOut("slow");
+  $("#game-over-encap").addClass("hide");
+  $("#game-over-encap").data("state", "hiding");
   $("#q-and-a").data("state", "showing");
   $("#q-and-a").removeClass("hide");
   $("#cat-encap").data("state", "hiding");
@@ -227,17 +249,27 @@ function startQuiz() {
   // ! reset the 10 questions
   quiz10 = [];
   // ? how many questions do we want in our quiz? loop 10 times!
-  for (let k = 0; k < 9; k++) {
+  for (let k = 0; k < 10; k++) {
     quiz10.push(categoryData[k]);
   }
   renderQuestion();
 }
 
 function gameOver() {
+  $("#q-and-a").addClass("hide");
+  $("#game-over-encap").fadeIn("slow");
   $("#game-over-encap").removeClass("hide");
   $("#game-over-encap").data("state", "showing");
   // $("#user-name").text(userName);
   $("#user-score").text(score);
+  if (score >= 700) {
+    // reveal congrats
+    $("#congratulations-msg").removeClass("hide");
+    // reveal go to map button
+    $("#map-btn").removeClass("hide");
+  } else {  // you failed!
+    $("#try-again-msg").removeClass("hide");
+  }
 }
 
 
@@ -257,3 +289,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var instances = M.Dropdown.init(elems, options);
 });
 var instance = M.Dropdown.getInstance(elem);
+
+
+
