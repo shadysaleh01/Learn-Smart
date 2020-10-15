@@ -8,6 +8,10 @@ nav img {
    padding: 0;
    margin: 4px;
 }
+.file-field .btn, .file-field .btn-large, .file-field .btn-small{
+   float: none;
+margin:auto;
+}
 
 .wrapper{
    height: 100%;

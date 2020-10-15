@@ -1,12 +1,21 @@
+html, body {
+   height: 100%;
+   margin: 0;
+ }
 nav img {
    height: 55px;
    width: 55px;
    padding: 0;
    margin: 4px;
 }
+.wrapper{
+   height: 100%;
+   margin: 0;
+   margin-bottom: -60px;
+ }
 /* Footer Section */
 footer{
    text-align: center;
    padding: 25px;
-   /* height: 65px; */
+   height: 60px;
 }
