@@ -6,6 +6,12 @@ html, body {
   height: 100%;
   margin: 0;
 }
+nav img {
+  height: 55px;
+  width: 55px;
+  padding: 0;
+  margin: 4px;
+}
 
 .wrapper {
   min-height: 100%;
