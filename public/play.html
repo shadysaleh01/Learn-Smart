@@ -84,7 +84,23 @@
       <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
     </nav>
+    <!-- score -->
+    <!-- score end -->
+    <!-- timer -->
+    <!-- timer end -->
     <section id="monster">
+
+
+      <div id="score-time-encap">
+        <div class="row">
+          <div class="col s6">
+              <p class="flow-text no-select" id="cash-display"></p>
+          </div>
+          <div class="col s6">
+            <p class="flow-text no-select color-change" id="time-display"></p>
+          </div>
+        </div>
+      </div>
     <!-- <main id="main-contain" class="container"> -->
       <!-- categories section -->
       <div id="cat-encap" class="monkey" data-state="showing">
@@ -137,7 +153,7 @@
               <p
                 class="category-btn no-select flow-text"
                 data-category="history"
-                id="sports"
+                id="history"
               >
                 History
               </p>
@@ -160,11 +176,11 @@
             </div>
           </div>
           <div class="row center-align">
-            <div class="col offset-s3 s3">
-              <p class="team-choice no-select" data-squad="yellow">yellow</p>
+            <div class="col l1 s4 offset-s2 offset-l5">
+              <p class="team-choice no-select" data-squad="yellow" id="yellow-squad">yellow</p>
             </div>
-            <div class="col s3">
-              <p class="team-choice no-select" data-squad="blue">blue</p>
+            <div class="col l1 s4">
+              <p class="team-choice no-select" data-squad="blue" id="blue-squad">blue</p>
             </div>
           </div>
           <div class="row center-align">
@@ -188,10 +204,10 @@
 
 
       <!-- encapsulates -->
-      <div id="q-and-a" class="hide monkey" data-state="hiding">
+      <div id="q-and-a" class="monkey" data-state="hiding">
         <div class="row">
           <div class="col s12 center-align">
-            <div id="question-display" class="section">
+            <div id="question-display" class="section flow-text">
               This tiny tyrant ruled across Europe at 5 feet 6 inches
             </div>
           </div>
@@ -236,7 +252,7 @@
 
 
     <!-- GAME OVER POP UP AREA!!!!!!!!!!!!!!!!!!!!!! -->
-    <div class="hide monkey" id="game-over-encap" data-state="hiding">
+    <div class="monkey" id="game-over-encap" data-state="hiding">
 
 
       <!-- <div id="overlay-background"></div> -->
@@ -244,20 +260,20 @@
       <!-- <section class="container" id="game-over"> -->
         <div class="row">
           <div class="col s12">
-            <h2>GAME OVER</h2>
+            <h2 id="game-over-header">GAME OVER</h2>
           </div>
         </div>
         <div class="row">
           <div class="col s12">
-            <h3> <span id="user-name">XXXXXX</span> scored <span id="user-score">XXXXXX</span> points!</h3>
+            <h5> <span id="user-name">XXXXXX</span> earned $<span id="user-score">XXXXXX</span>!</h5>
           </div>
         </div>
         
         <!-- make sure this is hidden on load-->
         <div class="row" id="results-msg">
           <div class="col offset-s1 s10">
-            <h4 id="congratulations-msg" class="hide">you have scored enough points! mark your territory! X</h4>
-            <h4 id="try-again-msg" class="hide">not enough points! you have failed your squad! try again!</h4>
+            <h5 id="congratulations-msg" class="hide">You have earned enough cash! Mark your territory! X</h5>
+            <h5 id="try-again-msg" class="hide">You need at least $3000 to claim your space! Try again!</h5>
           </div>
         </div>
         <div class="row hide" id="map-btn">
@@ -282,10 +298,10 @@
     </div>
     <!-- GAME OVER AREA END!!!!!!!!!!!!!!!!!!!!!! -->
     <!-- MAP AREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
-    <div class="hide monkey" id="map-encap" data-state="hiding">
+    <div class="monkey" id="map-encap" data-state="hiding">
         <div class="row center-align">
           <div class="col s12">
-            <h2>Claim Your Space!</h2>
+            <h4 id="claim-yours-header">Claim Your Space!</h4>
           </div>
         </div>
         <div class="row">

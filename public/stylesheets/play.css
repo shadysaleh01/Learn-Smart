@@ -14,12 +14,12 @@ body {
 }
 #monster {
   width: 100%;
-  margin-top: 3%;
+  margin-top: 1.5%;
   margin-bottom: 3%;
   height: 30%;
 }
 .monkey {
-  width: 60%;
+  width: 70%;
   margin: auto;
   height: 30%;
 }
@@ -38,19 +38,74 @@ nav img {
   /* margin-bottom: -60px; */
 }
 
-#answer-column {
-  /* padding-top: 1.5rem; */
+#score-time-encap {
+  width: 100%;
+}
+#cash-display {
+  /* background-color: green; */
+  text-align: center;
+  width: 30%;
+  float: left;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 12%;
+  /* border: solid rgb(84, 206, 94);
+   */
+  color: rgb(133, 218, 84);
+  border-radius: 10px;
+  padding: 5px;
+}
+#time-display {
+  /* background-color: yellow; */
+  float: right;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 12%;
+  border: solid;
+  border-radius: 10px;
+  padding: 5px;
+}
+/* got this from stack overflow
+  change colors of user // score final display
+https://stackoverflow.com/questions/43371912/how-to-make-an-html-css-js-color-changing-background-like-kahoot-it-has */
+.color-change {
+  animation: 2500ms ease-in-out infinite color-change;
+}
+@keyframes color-change {
+  0% {
+    border-color: orange;
+  }
+  20% {
+    border-color: yellowgreen;
+  }
+  40% {
+    border-color: rgb(0, 102, 255);
+  }
+  60% {
+    border-color: purple;
+  }
+  70% {
+    border-color: violet;
+  }
+  80% {
+    border-color: red;
+  }
+  100% {
+    border-color: orange;
+  }
 }
 
-#question-display {
-  font-size: 36px;
+.col.s4 {
+  padding: 0;
 }
+
+/* #question-display {
+  font-size: 28px;
+} */
 .answer,
 .clickers,
 .category-btn,
-.team-choice,
 #play-btn,
-#mark-map,
 #play-this-again,
 #play-new-cat {
   margin: 8px;
@@ -62,10 +117,137 @@ nav img {
   transition: all ease 0.1s;
 }
 
+.team-choice {
+  text-align: center;
+  margin: 8px;
+  padding: 15px;
+  border-style: solid;
+  border-radius: 50%;
+  border-width: 1px;
+  cursor: pointer;
+  box-shadow: 0px 5px 0px black;
+  transition: all ease 0.1s;
+}
+#yellow-squad:active {
+  transform: translateY(3px);
+  box-shadow: 0px 2px 3px yellow;
+}
+#blue-squad:active {
+  transform: translateY(3px);
+  box-shadow: 0px 2px 3px blue;
+}
+
+#yellow-squad {
+  animation: 2000ms ease-in-out infinite color-changeYellow;
+}
+@keyframes color-changeYellow {
+  0% {
+    background-color: yellow;
+  }
+  20% {
+    background-color: yellow;
+  }
+  40% {
+    background-color: rgb(255, 251, 0);
+  }
+  60% {
+    background-color: rgb(252, 235, 50);
+  }
+  80% {
+    background-color: rgb(253, 255, 124);
+  }
+  100% {
+    background-color: yellow;
+  }
+}
+
+#blue-squad {
+  animation: 1500ms ease-in-out infinite color-changeBlue;
+}
+@keyframes color-changeBlue {
+  0% {
+    background-color: blue;
+    color: white;
+    border-color: black;
+  }
+  20% {
+    background-color: blue;
+    color: white;
+    border-color: black;
+  }
+  40% {
+    background-color: dodgerblue;
+    color: white;
+    border-color: black;
+  }
+  60% {
+    background-color: rgb(27, 112, 197);
+    color: white;
+    border-color: black;
+  }
+  80% {
+    background-color: rgb(68, 101, 248);
+    color: white;
+    border-color: black;
+  }
+  100% {
+    background-color: blue;
+    color: white;
+    border-color: black;
+  }
+}
+
+#science {
+  background-image: linear-gradient(
+      rgba(0, 0, 255, 0.5),
+      rgba(255, 255, 0, 0.5)
+    ),
+    url("https://cdn.vox-cdn.com/thumbor/e2Um7q0m7on___wZuahZ3raO8qg=/0x0:3950x3000/1200x800/filters:focal(2520x1020:3480x1980)/cdn.vox-cdn.com/uploads/chorus_image/image/53873973/shutterstock_442550650.0.jpg");
+}
+#miscellaneous {
+  background-image: linear-gradient(
+      rgba(0, 0, 255, 0.5),
+      rgba(255, 255, 0, 0.5)
+    ),
+    url("https://www.cshl.edu/wp-content/uploads/2013/01/science-chess-2013.jpg");
+}
+#computerScience {
+  background-image: linear-gradient(
+      rgba(0, 0, 255, 0.5),
+      rgba(255, 255, 0, 0.5)
+    ),
+    url("https://www.jasonmpittman.com/wp-content/uploads/2019/03/comp-sci.jpg");
+}
+#geography {
+  background-image: linear-gradient(
+      rgba(0, 0, 255, 0.5),
+      rgba(255, 255, 0, 0.5)
+    ),
+    url("https://www.free-largeimages.com/wp-content/uploads/2014/11/World_map-3.jpg");
+}
+#history {
+  background-image: linear-gradient(
+      rgba(0, 0, 255, 0.5),
+      rgba(255, 255, 0, 0.5)
+    ),
+    url("https://wallpapermemory.com/uploads/787/cool-sports-background-hd-2048x1080-131322.jpg");
+}
+#entertainment {
+  background-image: linear-gradient(
+      rgba(0, 0, 255, 0.5),
+      rgba(255, 255, 0, 0.5)
+    ),
+    url("https://media.npr.org/assets/img/2015/12/04/best-books-2015_wide-18ea71bcef7792d9fd6ea5183846999a06b17eee.jpg?s=1400");
+}
+
 /* .category-btn {
   padding-top: 1.66rem;
   padding-bottom: 1.66rem;
 } */
+
+.answer {
+  margin-top: 2rem;
+}
 
 #cat-setting,
 #squad-setting {
@@ -81,9 +263,7 @@ nav img {
 .answer:active,
 .clickers:active,
 .category-btn:active,
-.team-choice:active,
 #play-btn:active,
-#mark-map:active,
 #play-this-again:active,
 #play-new-cat:active {
   transform: translateY(3px);
@@ -121,8 +301,12 @@ nav img {
 #game-over-encap {
   text-align: center;
 }
+#game-over-header {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 
-#overlay-background {
+/* #overlay-background {
   position: absolute;
   top: 0%;
   left: 0%;
@@ -131,10 +315,9 @@ nav img {
   background-color: black;
   opacity: 0.66;
   z-index: 1;
-}
+} */
 
-#game-over {
-  /* position: absolute; */
+/* #game-over {
   border: solid black;
   top: 15%;
   left: 16.665%;
@@ -144,12 +327,12 @@ nav img {
   text-align: center;
   z-index: 2;
   background-color: white;
-}
+} */
 
 .mapSquare {
-  background-color: blue;
+  /* background-color: blue; */
   justify-content: center;
-  height: 100px;
+  height: 80px;
   color: white;
   width: 100%;
   border: solid black;
@@ -161,7 +344,7 @@ nav img {
 
 .mapSquare:active {
   transform: translateY(3px);
-  box-shadow: 0px 2px 3px black;
+  box-shadow: 0px 2px 3px rgb(212, 60, 65);
 }
 
 .mapSquare:hover {
@@ -173,8 +356,8 @@ nav img {
   width: 75%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 #restart-buttons {
@@ -190,6 +373,54 @@ nav img {
 #mark-map {
   padding-top: 1rem;
   padding-bottom: 1rem;
+  border-style: solid;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0px 5px 0px black;
+  transition: all ease 0.1s;
+  animation: 4500ms ease-in-out infinite color-changeMap;
+}
+@keyframes color-changeMap {
+  0% {
+    background-color: blue;
+    color: white;
+    border-color: black;
+  }
+  20% {
+    background-color: yellow;
+    color: black;
+  }
+  40% {
+    background-color: blue;
+    color: white;
+    border-color: black;
+  }
+  60% {
+    background-color: yellow;
+    color: black;
+  }
+  80% {
+    background-color: blue;
+    color: white;
+    border-color: black;
+  }
+  90% {
+    background-color: yellow;
+    color: black;
+  }
+  100% {
+    background-color: blue;
+    color: white;
+    border-color: black;
+  }
+}
+#mark-map:active {
+  transform: translateY(3px);
+  box-shadow: 0px 2px 3px rgb(212, 60, 65);
+}
+
+#claim-yours-header {
+  margin-top: 0;
 }
 
 footer {
@@ -200,6 +431,23 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
+}
+
+@media only screen and (max-width: 870px) {
+  .flow-text {
+    font-size: 1.1rem;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .flow-text {
+    font-size: 0.9rem;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .flow-text {
+    font-size: 0.75rem;
+  }
 }
 
 /* #mark-map */

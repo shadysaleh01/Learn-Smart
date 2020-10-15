@@ -6,9 +6,19 @@ let fourChoices = []; // four possible choices
 let squadChoice = "____"; // our choices start blank
 let categoryChoice = "____";
 let score = 0;
+let moneyArray = [100, 150, 325, 610, 830, 1000, 1250, 1460, 1680, 1800];
 let quiz10 = []; // finalize our 10 questions
 let currentQuestion = 0;
 const quizLength = 9; // ten questions, 0 index
+
+var timerInterval;
+
+// hide on load here
+$("#score-time-encap").hide();
+$("#q-and-a").hide();
+$("#game-over-encap").hide();
+$("#map-encap").hide();
+
 
 $(document).ready(() => {
   if (!localStorage.isAuthenticated) {
@@ -32,54 +42,54 @@ $(document).ready(() => {
     categoryChosen(categoryChoice)
   });
 
-  $("#hide-toggle").on("click", function (event) {
-    let state = $("#q-and-a").data("state");
+  // $("#hide-toggle").on("click", function (event) {
+  //   let state = $("#q-and-a").data("state");
 
-    // console.log(state);
-    if (state === "showing") {
+  //   // console.log(state);
+  //   if (state === "showing") {
 
-      $("#q-and-a").data("state", "hiding");
-      $("#q-and-a").addClass("hide");
-      $("#cat-encap").data("state", "showing");
-      $("#cat-encap").removeClass("hide");
-    } else {
+  //     $("#q-and-a").data("state", "hiding");
+  //     $("#q-and-a").addClass("hide");
+  //     $("#cat-encap").data("state", "showing");
+  //     $("#cat-encap").removeClass("hide");
+  //   } else {
 
-      $("#q-and-a").data("state", "showing");
-      $("#q-and-a").removeClass("hide");
-      $("#cat-encap").data("state", "hiding");
-      $("#cat-encap").addClass("hide");
-    }
-  });
+  //     $("#q-and-a").data("state", "showing");
+  //     $("#q-and-a").removeClass("hide");
+  //     $("#cat-encap").data("state", "hiding");
+  //     $("#cat-encap").addClass("hide");
+  //   }
+  // });
 
   // hide game over overlays
-  $(".hide-toggle-game-over").on("click", function (event) {
-    // toggle the overlays
-    let state = $("#game-over-encap").data("state");
-    // console.log(state);
-    if (state === "showing") {
-      $("#game-over-encap").addClass("hide");
-      $("#game-over-encap").data("state", "hiding");
-    } else {
-      $("#game-over-encap").removeClass("hide");
-      $("#game-over-encap").data("state", "showing");
-    }
-  });
+  // $(".hide-toggle-game-over").on("click", function (event) {
+  //   // toggle the overlays
+  //   let state = $("#game-over-encap").data("state");
+  //   // console.log(state);
+  //   if (state === "showing") {
+  //     $("#game-over-encap").addClass("hide");
+  //     $("#game-over-encap").data("state", "hiding");
+  //   } else {
+  //     $("#game-over-encap").removeClass("hide");
+  //     $("#game-over-encap").data("state", "showing");
+  //   }
+  // });
 
-  $("#hide-toggle-map").on("click", function (event) {
-    let state = $("#map-encap").data("state");
-    // console.log(state);
-    if (state === "hiding") {
-      $("#map-encap").removeClass("hide");
-      $("#map-encap").data("state", "showing");
-      $("#q-and-a").data("state", "hiding");
-      $("#q-and-a").addClass("hide");
-    } else {
-      $("#map-encap").addClass("hide");
-      $("#map-encap").data("state", "hiding");
-      $("#q-and-a").data("state", "showing");
-      $("#q-and-a").removeClass("hide");
-    }
-  });
+  // $("#hide-toggle-map").on("click", function (event) {
+  //   let state = $("#map-encap").data("state");
+  //   // console.log(state);
+  //   if (state === "hiding") {
+  //     $("#map-encap").removeClass("hide");
+  //     $("#map-encap").data("state", "showing");
+  //     $("#q-and-a").data("state", "hiding");
+  //     $("#q-and-a").addClass("hide");
+  //   } else {
+  //     $("#map-encap").addClass("hide");
+  //     $("#map-encap").data("state", "hiding");
+  //     $("#q-and-a").data("state", "showing");
+  //     $("#q-and-a").removeClass("hide");
+  //   }
+  // });
 
   function categoryChosen(category) {
     $.get(`/api/questions/category/${category}`, (data) => {
@@ -110,15 +120,28 @@ $(document).ready(() => {
   $(".answer").on("click", verifyResponse);
 
   // event listeners for retaking quizzes
-  $("#play-this-again").on("click", startQuiz);
-  $("#play-new-cat").on("click", function (event) {
-    $("#game-over-encap").fadeOut("slow");
-    $("#game-over-encap").addClass("hide");
-    $("#game-over-encap").data("state", "hiding");
-    $("#q-and-a").data("state", "hiding");
-    $("#q-and-a").addClass("hide");
-    $("#cat-encap").data("state", "showing");
-    $("#cat-encap").removeClass("hide");
+  $("#play-this-again").on("click", function(event){
+    $("#game-over-encap").hide();
+    startQuiz();
+  });
+  $("#play-new-cat").on("click", function(event) {
+    $("#game-over-encap").hide();
+    // $("#game-over-encap").addClass("hide");
+    // $("#game-over-encap").data("state", "hiding");
+    // $("#q-and-a").data("state", "hiding");
+    $("#score-time-encap").hide();
+    $("#q-and-a").hide();
+    // $("#cat-encap").data("state", "showing");
+    // $("#cat-encap").removeClass("hide");
+    $("#cat-encap").fadeIn("slow");
+  });
+
+  // go to map button!
+  $("#mark-map").on("click", function(event){
+    $("#game-over-encap").hide();
+    $("#score-time-encap").hide();
+    $("#map-encap").fadeIn("slow");
+    // $("#map-encap").removeClass("hide");
   });
 
 
@@ -165,15 +188,26 @@ function verifyResponse() {
   console.log("verifying.....");
   // grab the elements answer text
   let thisAnswer = $(this).text();
+  let timeOutId = 0;
   console.log(`this answer: ${thisAnswer}`);
   if (thisAnswer === quiz10[currentQuestion].answer) {
-    score = score + 100;  // correct!
+    // score increases by this questions progressive value
+    score = score + moneyArray[currentQuestion];  // correct!
     console.log(`CORRECT! your score is now ${score}`);
+    $("#cash-display").text(`Cash: $${score}`);
+    $(".answer").attr("style","pointer-events:none");
+    $(this).attr("style", "background-color: rgb(104, 226, 56); border-color: black; color: white; box-shadow: 0px 5px 2px rgb(104, 226, 56); pointer-events: none");
+
+    // timeOutId = window.setTimeout(renderQuestion, 600);
   } else {
     console.log("WRONG"); // wrong!
+    $(".answer").attr("style","pointer-events:none");
+    $(this).attr("style", "background-color: red; border-color: black; color: white; box-shadow: 0px 5px 2px red; pointer-events:none");
+
   }
   currentQuestion++;
-  renderQuestion();
+  // renderQuestion();
+  timeOutId = window.setTimeout(renderQuestion, 600);
 }
 
 function renderQuestion() {
@@ -184,6 +218,10 @@ function renderQuestion() {
     gameOver();
     return;
   }
+  // ! reset correct/incorrect color display
+  $(".answer").attr("style", null);
+  // reset score display as well
+
   // ! reset our answer choices which each rendered question
   fourChoices = [];
   // ! establish our correct answer first
@@ -228,22 +266,33 @@ function renderQuestion() {
 }
 
 function startQuiz() {
+  // ! reset quiz index and score and time
+  currentQuestion = 0;
+  score = 0;
+  currentTime = 50;
   // ? show and hide divs stuff goes here
-  // hide game over screen
+  $("#cash-display").text(`Cash: $${score}`);
+  $("#time-display").text("Time: 40");
+  $("#cat-encap").hide();
+  $("#q-and-a").fadeIn("fast");
+  $("#score-time-encap").fadeIn("fast");
   $("#congratulations-msg").addClass("hide");
   $("#try-again-msg").addClass("hide");
   $("#map-btn").addClass("hide");
-  $("#game-over-encap").fadeOut("slow");
-  $("#game-over-encap").addClass("hide");
-  $("#game-over-encap").data("state", "hiding");
-  $("#q-and-a").data("state", "showing");
-  $("#q-and-a").removeClass("hide");
-  $("#cat-encap").data("state", "hiding");
-  $("#cat-encap").addClass("hide");
-  // ! reset quiz index and score
-  currentQuestion = 0;
-  score = 0;
+  // $("#game-over-encap").fadeOut("slow");
+  // $("#game-over-encap").addClass("hide");
+  // $("#game-over-encap").data("state", "hiding");
+  // $("#q-and-a").data("state", "showing");
+  // $("#q-and-a").removeClass("hide");
+  
+  // $("#cat-encap").data("state", "hiding");
+  // $("#cat-encap").addClass("hide");
+  
+
+ 
+  
   // ? set the timer here
+  setTime();
   // ? shuffle then start rendering questions
   categoryData = shuffle(categoryData);
   // ! reset the 10 questions
@@ -255,14 +304,35 @@ function startQuiz() {
   renderQuestion();
 }
 
+function setTime(){
+  timerInterval = setInterval(function () {
+    currentTime--;
+    $("#time-display").text(`Time: ${currentTime}`);
+    // Time is up, game over
+    if (currentTime <= 0) {
+      clearInterval(timerInterval);
+      gameOver();
+    }
+    // if you have less than 10 secs left
+    // display a red shadow around the timer
+    if (currentTime <= 10) {
+      $("#time-display").attr("style", "color: red");
+    }
+  }, 1000);
+}
+
 function gameOver() {
-  $("#q-and-a").addClass("hide");
+  // $("#q-and-a").addClass("hide");
+  $("#q-and-a").hide();
   $("#game-over-encap").fadeIn("slow");
-  $("#game-over-encap").removeClass("hide");
-  $("#game-over-encap").data("state", "showing");
+  // $("#game-over-encap").removeClass("hide");
+  // $("#game-over-encap").data("state", "showing");
   // $("#user-name").text(userName);
   $("#user-score").text(score);
-  if (score >= 700) {
+  clearInterval(timerInterval); // freeze time
+
+
+  if(score >= 100) {
     // reveal congrats
     $("#congratulations-msg").removeClass("hide");
     // reveal go to map button
