@@ -250,3 +250,10 @@ document.addEventListener('DOMContentLoaded', function () {
 var collapsibleElem = document.querySelector(".collapsible");
 var collapsibleInstance = M.Collapsible.init(collapsibleElem, {});
 
+/////// nav bar profile picture //////
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('.dropdown-trigger');
+  var options = { constrainWidth: false, coverTrigger: false, alignment: 'left', closeOnClick: false }
+  var instances = M.Dropdown.init(elems, options);
+});
+var instance = M.Dropdown.getInstance(elem);
