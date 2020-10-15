@@ -140,7 +140,7 @@ body {
 }
 
 .mapSquare {
-  background-color: blue;
+  /* background-color: blue; */
   justify-content: center;
   height: 100px;
   color: white;
@@ -154,7 +154,7 @@ body {
 
 .mapSquare:active {
   transform: translateY(3px);
-  box-shadow: 0px 2px 3px black;
+  box-shadow: 0px 2px 3px rgb(212, 60, 65);
 }
 
 .mapSquare:hover {

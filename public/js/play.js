@@ -6,9 +6,12 @@ let fourChoices = []; // four possible choices
 let squadChoice = "____"; // our choices start blank
 let categoryChoice = "____";
 let score = 0;
+let moneyArray = [100, 150, 325, 610, 830, 1000, 1250, 1460, 1680, 1800];
 let quiz10 = []; // finalize our 10 questions
 let currentQuestion = 0;
 const quizLength = 9; // ten questions, 0 index
+
+var timerInterval;
 
 // hide on load here
 $("#q-and-a").hide();
@@ -181,15 +184,24 @@ function verifyResponse() {
   console.log("verifying.....");
   // grab the elements answer text
   let thisAnswer = $(this).text();
+  let timeOutId = 0;
   console.log(`this answer: ${thisAnswer}`);
   if (thisAnswer === quiz10[currentQuestion].answer) {
-    score = score + 100;  // correct!
+    // score increases by this questions progressive value
+    score = score + moneyArray[currentQuestion];  // correct!
+    $(this).attr("style", "background-color: rgb(104, 226, 56); color: white; box-shadow: 0px 5px 2px rgb(104, 226, 56);pointer-events:none");
     console.log(`CORRECT! your score is now ${score}`);
+    // TODO: change score display here
+    // !!!!!!!!!!!!!!!!!
+    // timeOutId = window.setTimeout(renderQuestion, 600);
   } else {
     console.log("WRONG"); // wrong!
+    $(this).attr("style", "background-color: red; color: white; box-shadow: 0px 5px 2px red;pointer-events:none");
+
   }
   currentQuestion++;
-  renderQuestion();
+  // renderQuestion();
+  timeOutId = window.setTimeout(renderQuestion, 600);
 }
 
 function renderQuestion() {
@@ -200,6 +212,10 @@ function renderQuestion() {
     gameOver();
     return;
   }
+  // ! reset correct/incorrect color display
+  $(".answer").attr("style", null);
+  // reset score display as well
+
   // ! reset our answer choices which each rendered question
   fourChoices = [];
   // ! establish our correct answer first
