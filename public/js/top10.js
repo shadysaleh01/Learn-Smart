@@ -28,3 +28,12 @@ document.addEventListener('DOMContentLoaded', function () {
 var collapsibleElem = document.querySelector(".collapsible");
 var collapsibleInstance = M.Collapsible.init(collapsibleElem, {});
 
+////// for loop to update nav bar menu based user status //////
+if (localStorage.isAuthenticated === "true") {
+   document.getElementById("loginMenu").style.display = "none"
+   document.getElementById("logoutMenu").style.display = "block"
+} else {
+   document.getElementById("loginMenu").style.display = "block"
+   document.getElementById("logoutMenu").style.display = "none"
+}
+

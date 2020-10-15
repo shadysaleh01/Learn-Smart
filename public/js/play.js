@@ -249,3 +249,4 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 var collapsibleElem = document.querySelector(".collapsible");
 var collapsibleInstance = M.Collapsible.init(collapsibleElem, {});
+
