@@ -102,7 +102,7 @@ module.exports = function (app) {
   // PUT route for updating map table
   app.put("/api/maps", (req, res) => {
     db.Maps.update({
-      score: req.body.squad,
+      squad: req.body.squad,
       userInits: req.body.userInits,
       userScore: req.body.userScore
     }, {
@@ -118,6 +118,8 @@ module.exports = function (app) {
         res.json(err);
       });
   })
+
+
 
 
   // Route for logging user out
