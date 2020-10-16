@@ -4,7 +4,7 @@ const passport = require("../config/passport");
 
 module.exports = function (app) {
 
-  //////////////////////// Login & signup //////////////////////////
+  //////////////////////// Login  //////////////////////////
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
@@ -15,8 +15,6 @@ module.exports = function (app) {
       id: req.user.id
     });
   });
-
-
   ////////////////////////////////////////////////////////////////////////
   //////////////////////////// Users table //////////////////////////////
   // Get route for returning a all users
@@ -56,41 +54,41 @@ module.exports = function (app) {
   });
 
   // PUT route for updating squad
-  app.put("/api/squad", (req, res) => {
-    db.User.update({
-      squad: req.body.squad
-    }, {
-      where: {
-        email: req.body.email
-      }
-    }).then((data) => {
-      console.log(data)
-      res.json(data);
-    })
-      .catch((err) => {
-        // Whenever a validation or flag fails, an error is thrown
-        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
-        res.json(err);
-      });
-  })
+  // app.put("/api/squad", (req, res) => {
+  //   db.User.update({
+  //     squad: req.body.squad
+  //   }, {
+  //     where: {
+  //       email: req.body.email
+  //     }
+  //   }).then((data) => {
+  //     console.log(data)
+  //     res.json(data);
+  //   })
+  //     .catch((err) => {
+  //       // Whenever a validation or flag fails, an error is thrown
+  //       // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+  //       res.json(err);
+  //     });
+  // })
 
-  // PUT route for updating score
-  app.put("/api/score", (req, res) => {
-    db.User.update({
-      score: req.body.score
-    }, {
-      where: {
-        email: req.body.email
-      }
-    }).then((data) => {
-      res.json(data);
-    })
-      .catch((err) => {
-        // Whenever a validation or flag fails, an error is thrown
-        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
-        res.json(err);
-      });
-  })
+  // // PUT route for updating score
+  // app.put("/api/score", (req, res) => {
+  //   db.User.update({
+  //     score: req.body.score
+  //   }, {
+  //     where: {
+  //       email: req.body.email
+  //     }
+  //   }).then((data) => {
+  //     res.json(data);
+  //   })
+  //     .catch((err) => {
+  //       // Whenever a validation or flag fails, an error is thrown
+  //       // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+  //       res.json(err);
+  //     });
+  // })
   ///////////////////////////////////////////////////////////////////////////
   ///////////////////////////// Category ///////////////////////////////////
   // Get route for returning questoins of a specific category
@@ -113,42 +111,49 @@ module.exports = function (app) {
     })
   })
 
-  //// Post route to create data in maps table/////
-  app.post("api/maps", (req, res) => {
-    db.Maps.create({
-      email: req.body.email,
-      squad: req.body.squad,
-      inits: req.body.inits,
-      score: req.body.score,
-      category: req.body.category
-    }).then((data) => {
-      res.json(data);
-    })
-
-  });
-
 
   // PUT route for updating map table
-  app.put("/api/maps", (req, res) => {
-    db.Maps.update({
-      email: req.body.email,
-      squad: req.body.squad,
-      inits: req.body.inits,
-      score: req.body.score,
-      category: req.body.category
-    }, {
-      where: {
-        id: req.body.id
-      }
-    }).then((data) => {
-      res.json(data);
-    })
-      .catch((err) => {
-        // Whenever a validation or flag fails, an error is thrown
-        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
-        res.json(err);
-      });
-  })
+  // app.put("/api/maps", (req, res) => {
+  //   db.Maps.update({
+  //     email: req.body.email,
+  //     squad: req.body.squad,
+  //     inits: req.body.inits,
+  //     score: req.body.score,
+  //     category: req.body.category
+  //   }, {
+  //     where: {
+  //       id: req.body.id
+  //     }
+  //   }).then((data) => {
+  //     res.json(data);
+  //   })
+  //     .catch((err) => {
+  //       // Whenever a validation or flag fails, an error is thrown
+  //       // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+  //       res.json(err);
+  //     });
+  // })
+  ////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // Route for logging user out
   app.get("/logout", (req, res) => {

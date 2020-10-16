@@ -26,8 +26,7 @@ module.exports = function (sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-
+    }
     // The default score is zero
     // score: {
     //   type: DataTypes.BIGINT,
