@@ -111,7 +111,19 @@ module.exports = function (app) {
     })
   })
 
+  //// Post route to create data in maps table/////
+  app.post("/api/maps", (req, res) => {
+    db.Maps.create({
+      email: req.body.email,
+      squad: req.body.squad,
+      inits: req.body.inits,
+      score: req.body.score,
+      category: req.body.category
+    }).then((data) => {
+      res.json(data);
+    })
 
+  });
   // PUT route for updating map table
   // app.put("/api/maps", (req, res) => {
   //   db.Maps.update({
