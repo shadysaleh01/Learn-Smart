@@ -2,5 +2,5 @@
 CREATE DATABASE learning_db;
 USE learning_db;
 
-INSERT INTO maps(squad, userInits, userScore) VALUES
-("white", "Enter Inits", 0), ("white", "Enter Inits", 0), ("white", "Enter Inits", 0), ("white", "Enter Inits", 0), ("white", "Enter Inits", 0), ("white", "Enter Inits", 0), ("white", "Enter Inits", 0), ("white", "Enter Inits", 0), ("white", "Enter Inits", 0), ("white", "Enter Inits", 0), ("white", "Enter Inits", 0), ("white", "Enter Inits", 0), ("white", "Enter Inits", 0), ("white", "Enter Inits", 0), ("white", "Enter Inits", 0), ("white", "Enter Inits", 0);
+INSERT INTO mapsquares(color, inits) VALUES
+("white", "Enter Inits"), ("white", "Enter Inits"), ("white", "Enter Inits"), ("white", "Enter Inits"), ("white", "Enter Inits"), ("white", "Enter Inits"), ("white", "Enter Inits"), ("white", "Enter Inits"), ("white", "Enter Inits"), ("white", "Enter Inits"), ("white", "Enter Inits"), ("white", "Enter Inits"), ("white", "Enter Inits"), ("white", "Enter Inits"), ("white", "Enter Inits"), ("white", "Enter Inits");

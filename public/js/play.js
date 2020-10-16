@@ -18,6 +18,7 @@ $("#score-time-encap").hide();
 $("#q-and-a").hide();
 $("#game-over-encap").hide();
 $("#map-encap").hide();
+$(".mapSquare").attr("style", null);
 
 //////nav bar menu mobile view /////
 document.addEventListener('DOMContentLoaded', function () {
@@ -41,7 +42,8 @@ $(document).ready(() => {
   $(".category-btn").on("click", function (event) {
     categoryChoice = $(this).data("category");
     $("#cat-setting").text(categoryChoice);
-    localStorage.setItem("userChosenCat", categoryChoice)
+    localStorage.setItem("userChosenCat", categoryChoice);
+    playSound("bump");
     categoryChosen(categoryChoice)
   });
 
@@ -57,7 +59,7 @@ $(document).ready(() => {
     squadChoice = $(this).data("squad");
     $("#squad-setting").text(squadChoice);
     localStorage.setItem("userChosenSquad", squadChoice)
-    squadChosen(squadChoice);
+    // squadChosen(squadChoice);
   });
 
   $("#play-btn").on("click", function (event) {
@@ -90,6 +92,17 @@ $(document).ready(() => {
     $("#map-encap").fadeIn("slow");
     // $("#map-encap").removeClass("hide");
   });
+  // claiming a space
+  $(".mapSquare").on("click", function(event){
+    let id = $(this).data("id");
+    console.log(id);
+    $(this).removeClass();
+    $(this).addClass("mapSquare valign-wrapper no-select");
+    $(this).addClass(`${localStorage.userChosenSquad}`);
+    $(this).text(`${localStorage.userInits}`);
+    $(".mapSquare").attr("style", "pointer-events:none");
+    updateMapSquare({id: id, color: localStorage.userChosenSquad, inits: localStorage.userInits});
+  });
 
 });
 
@@ -111,16 +124,16 @@ function categoryChosen(category) {
   });
 }
 ///// ajax to update the uesr's squad //////
-function squadChosen(squad) {
-  const twoValue = { squad: squad, email: localStorage.userEmail }
-  $.ajax({
-    method: "PUT",
-    url: "/api/squad",
-    data: twoValue
-  }).then((res) => {
-    // res.json(res)
-  })
-}
+// function squadChosen(squad) {
+//   const twoValue = { squad: squad, email: localStorage.userEmail }
+//   $.ajax({
+//     method: "PUT",
+//     url: "/api/squad",
+//     data: twoValue
+//   }).then((res) => {
+//     // res.json(res)
+//   })
+// }
 
 ////////// Questions & Answers ///////////
 // taken from https://javascript.info/task/shuffle
@@ -134,22 +147,19 @@ function shuffle(array) {
 
 // ! START THE QUIZ LOGIC HERE -------------------------------------
 function verifyResponse() {
-  console.log("verifying.....");
   // grab the elements answer text
   let thisAnswer = $(this).text();
   let timeOutId = 0;
-  console.log(`this answer: ${thisAnswer}`);
   if (thisAnswer === quiz10[currentQuestion].answer) {
     // score increases by this questions progressive value
     score = score + moneyArray[currentQuestion];  // correct!
-    console.log(`CORRECT! your score is now ${score}`);
     $("#cash-display").text(`Cash: $${score}`);
     $(".answer").attr("style", "pointer-events:none");
     $(this).attr("style", "background-color: rgb(104, 226, 56); border-color: black; color: white; box-shadow: 0px 5px 2px rgb(104, 226, 56); pointer-events: none");
 
     // timeOutId = window.setTimeout(renderQuestion, 600);
   } else {
-    console.log("WRONG"); // wrong!
+    // wrong!
     $(".answer").attr("style", "pointer-events:none");
     $(this).attr("style", "background-color: red; border-color: black; color: white; box-shadow: 0px 5px 2px red; pointer-events:none");
 
@@ -163,7 +173,7 @@ function renderQuestion() {
   // ! game over if we run out of questions
   if (currentQuestion >= quiz10.length) {
     currentQuestion = 0;
-    console.log("GAME OVERRRRRRRRRRRRRRRRRR");
+    console.log("GAME OVER");
     gameOver();
     return;
   }
@@ -293,20 +303,30 @@ function gameOver() {
 
 //// funciton to update the square info////
 function updateMapSquare(data) {
-  const twoValue = { color: data.color, inits: data.inits }
-  const squareId = data.id
+  let twoValue = { color: data.color, inits: data.inits };
+  let squareId = data.id;
+  console.log(twoValue);
+  console.log(squareId);
   $.ajax({
     method: "PUT",
     url: "/api/mapsquare/" + squareId,
     data: twoValue
   }).then((res) => {
-    res.json(res)
+    console.log(".....after the put request for the squares");
+    res.json(res);
   })
 }
 
 ////funtion to get all data from map square table///
 $.get("/api/mapsquare", (data) => {
-  console.log(data)
+  console.log(data);
+
+  for(let i = 1; i < 17; i++){
+    $(`#${i}`).removeClass();
+    $(`#${i}`).addClass(`mapSquare valign-wrapper no-select ${data[i-1].color}`);
+    $(`#${i}`).text(`${data[i-1].inits}`);
+  }
+
 })
 
 /////// funtion to logout the user/////////

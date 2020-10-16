@@ -1,27 +1,27 @@
 var sounds = {
   "dead" : {
     url : "../sounds/dead.wav",
-    volume: .5
+    volume: .25
   },
   "smash" : {
     url : "../sounds/smash.mp3",
-    volume: .5
+    volume: .25
   },
   "ping" : {
     url : "../sounds/ping.mp3",
-    volume: .5
+    volume: .25
   },
   "bump" : {
     url : "../sounds/bump.mp3",
-    volume: .5
+    volume: .25
   },
   "jump" : {
     url : "../sounds/jump.wav",
-    volume: .5
+    volume: .25
   },
   "coin" : {
     url : "../sounds/coin.mp3",
-    volume: .5
+    volume: .25
   }
 };
 
