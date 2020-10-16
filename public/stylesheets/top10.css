@@ -13,6 +13,9 @@ nav img {
    margin: 0;
    margin-bottom: -60px;
  }
+ h2 {
+    text-align: center;
+ }
 /* Footer Section */
 footer{
    text-align: center;
