@@ -78,6 +78,8 @@ function imageIsLoaded() {
 }
 
 
+
+})
 function logout() {
    localStorage.clear();
    window.location.replace("/home.html");
