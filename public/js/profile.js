@@ -2,7 +2,7 @@ $(document).ready(() => {
    const firstName = $("#firstName")
    const lastName = $("#lastName")
    const email = $("#email")
-   const password = $("#password")
+   // const password = $("#password")
    const squad = $("#squad")
    const score = $("#score")
 
@@ -15,7 +15,7 @@ $(document).ready(() => {
       firstName.text(data.firstName)
       lastName.text(data.lastName)
       email.text(data.email)
-      password.text(data.password)
+      // password.text(data.password)
       squad.text(data.squad)
       score.text(data.score)
    })
