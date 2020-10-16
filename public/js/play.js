@@ -291,6 +291,20 @@ function gameOver() {
 ///////////////////////////////////////////////////////////////////////
 //////////////////////// Map Section /////////////////////////////////
 
+//// funciton to update the square info////
+function updateMapSquare(data) {
+  const twoValue = { color: data.color, inits: data.inits }
+  const squareId = data.id
+  $.ajax({
+    method: "PUT",
+    url: "/api/mapsquare/" + squareId,
+    data: twoValue
+  }).then((res) => {
+    res.json(res)
+  })
+}
+
+
 
 
 
