@@ -99,6 +99,33 @@ module.exports = function (app) {
       });
   });
 
+  // PUT route for updating map table
+  app.put("/api/maps", (req, res) => {
+    db.Maps.update({
+      squad: req.body.squad,
+      userInits: req.body.userInits,
+      userScore: req.body.userScore
+    }, {
+      where: {
+        id: req.body.id
+      }
+    }).then((data) => {
+      res.json(data);
+    })
+      .catch((err) => {
+        // Whenever a validation or flag fails, an error is thrown
+        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+        res.json(err);
+      });
+  })
+
+  //// GET route to  find all maps data ////
+  app.get("/api/maps", (req, res) => {
+    db.Maps.findAll({}).then((data) => {
+      res.json(data)
+    })
+  })
+
   // Route for logging user out
   app.get("/logout", (req, res) => {
     req.logout();
