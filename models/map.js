@@ -12,19 +12,23 @@ module.exports = function (sequelize, DataTypes) {
                 isEmail: true,
             },
         },
+        category: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         squad: {
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: "white"
         },
         // claim name cannot be null
-        userInits: {
+        inits: {
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: "Enter Inits",
         },
         // user score cannot be null
-        userScore: {
+        score: {
             type: DataTypes.INTEGER,
             allowNull: false,
             defaultValue: 0,

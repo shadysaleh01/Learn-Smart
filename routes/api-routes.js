@@ -113,12 +113,14 @@ module.exports = function (app) {
     })
   })
 
+  //// Post route to create data in maps table/////
   app.post("api/maps", (req, res) => {
     db.Maps.create({
       email: req.body.email,
       squad: req.body.squad,
       inits: req.body.inits,
-      score: req.body.score
+      score: req.body.score,
+      category: req.body.category
     }).then((data) => {
       res.json(data);
     })
@@ -129,12 +131,14 @@ module.exports = function (app) {
   // PUT route for updating map table
   app.put("/api/maps", (req, res) => {
     db.Maps.update({
+      email: req.body.email,
       squad: req.body.squad,
-      userInits: req.body.userInits,
-      userScore: req.body.userScore
+      inits: req.body.inits,
+      score: req.body.score,
+      category: req.body.category
     }, {
       where: {
-        email: req.body.email
+        id: req.body.id
       }
     }).then((data) => {
       res.json(data);
