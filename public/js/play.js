@@ -274,7 +274,19 @@ function gameOver() {
     $("#try-again-msg").removeClass("hide");
   }
 
-
+  $.post("/api/maps", {
+    email: localStorage.userEmail,
+    squad: localStorage.userChosenSquad,
+    inits: localStorage.userInits,
+    score: localStorage.finalScore,
+    category: localStorage.userChosenCat
+  })
+    .then((data) => {
+      console.log(data)
+      localStorage.removeItem("userChosenSquad")
+      localStorage.removeItem("userChosenCat")
+      localStorage.removeItem("finalScore")
+    })
 }
 ///////////////////////////////////////////////////////////////////////
 //////////////////////// Map Section /////////////////////////////////
