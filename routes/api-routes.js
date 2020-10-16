@@ -119,8 +119,12 @@ module.exports = function (app) {
       });
   })
 
-
-
+  //// GET route to  find all maps data ////
+  app.get("/api/maps", (req, res) => {
+    db.Maps.findAll({}).then((data) => {
+      res.json(data)
+    })
+  })
 
   // Route for logging user out
   app.get("/logout", (req, res) => {
