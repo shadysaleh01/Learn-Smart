@@ -77,10 +77,8 @@ function imageIsLoaded() {
 
 }
 
-//////// GET ajax to desplay user picture in the nav bar and profile page ////////
+//////// GET ajax to display user picture in the nav bar and profile page ////////
 $.get("/api/user/" + localStorage.userEmail, (data) => {
-   // firstName.text(data.firstName)
-   // console.log(data.img)
    localStorage.setItem("img", data.img)
    var img = document.querySelector('img');
    document.querySelector('#mainPic').src = data.img

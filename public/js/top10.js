@@ -45,4 +45,12 @@ document.addEventListener('DOMContentLoaded', function () {
    var instances = M.Dropdown.init(elems, options);
 });
 
+//////// GET ajax to display user picture in the nav bar ////////
+$.get("/api/user/" + localStorage.userEmail, (data) => {
+   var img = document.querySelector('img');
+   img.src = data.img
+   // console.log(img.src)
+}).then(() => {
+   // console.log(data)
 
+})
