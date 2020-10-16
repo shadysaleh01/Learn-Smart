@@ -146,6 +146,24 @@ module.exports = function (app) {
   //     });
   // })
   ////////////////////////////////////////////////////////////////////////////
+  //////////////////////////Map Square /////////////////////////
+  // PUT route for updating map square table
+  app.put("/api/mapsquare/:id", (req, res) => {
+    db.MapSquare.update({
+      color: req.body.color,
+      inits: req.body.inits
+    }, {
+      where: {
+        id: req.params.id
+      }
+    }).then((data) => {
+      res.json(data);
+    })
+      .catch((err) => {
+        res.json(err);
+      });
+  })
+
 
 
 
