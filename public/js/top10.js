@@ -44,4 +44,5 @@ document.addEventListener('DOMContentLoaded', function () {
    var options = { constrainWidth: false, coverTrigger: false, alignment: 'left', closeOnClick: false }
    var instances = M.Dropdown.init(elems, options);
 });
-var instance = M.Dropdown.getInstance(elem);
+
+

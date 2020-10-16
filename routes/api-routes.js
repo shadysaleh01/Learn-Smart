@@ -54,23 +54,21 @@ module.exports = function (app) {
   });
 
   // PUT route for updating squad
-  // app.put("/api/squad", (req, res) => {
-  //   db.User.update({
-  //     squad: req.body.squad
-  //   }, {
-  //     where: {
-  //       email: req.body.email
-  //     }
-  //   }).then((data) => {
-  //     console.log(data)
-  //     res.json(data);
-  //   })
-  //     .catch((err) => {
-  //       // Whenever a validation or flag fails, an error is thrown
-  //       // We can "catch" the error to prevent it from being "thrown", which could crash our node app
-  //       res.json(err);
-  //     });
-  // })
+  app.put("/api/img", (req, res) => {
+    db.User.update({
+      img: req.body.img
+    }, {
+      where: {
+        email: req.body.email
+      }
+    }).then((data) => {
+      console.log(data)
+      res.json(data);
+    })
+      .catch((err) => {
+        res.json(err);
+      });
+  })
 
   // // PUT route for updating score
   // app.put("/api/score", (req, res) => {

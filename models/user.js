@@ -26,6 +26,9 @@ module.exports = function (sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    img: {
+      type: DataTypes.STRING
     }
     // The default score is zero
     // score: {
