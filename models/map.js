@@ -7,16 +7,19 @@ module.exports = function (sequelize, DataTypes) {
         squad: {
             type: DataTypes.STRING,
             allowNull: false,
+            defaultValue: "white"
         },
         // claim name cannot be null
-        claimName: {
+        userInits: {
             type: DataTypes.STRING,
             allowNull: false,
+            defaultValue: "Enter Inits",
         },
         // user score cannot be null
-        claimUserScore: {
-            type: DataTypes.STRING,
+        userScore: {
+            type: DataTypes.INT,
             allowNull: false,
+            defaultValue: 0,
         }
     })
     return Maps;

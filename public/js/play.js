@@ -42,54 +42,6 @@ $(document).ready(() => {
     categoryChosen(categoryChoice)
   });
 
-  // $("#hide-toggle").on("click", function (event) {
-  //   let state = $("#q-and-a").data("state");
-
-  //   // console.log(state);
-  //   if (state === "showing") {
-
-  //     $("#q-and-a").data("state", "hiding");
-  //     $("#q-and-a").addClass("hide");
-  //     $("#cat-encap").data("state", "showing");
-  //     $("#cat-encap").removeClass("hide");
-  //   } else {
-
-  //     $("#q-and-a").data("state", "showing");
-  //     $("#q-and-a").removeClass("hide");
-  //     $("#cat-encap").data("state", "hiding");
-  //     $("#cat-encap").addClass("hide");
-  //   }
-  // });
-
-  // hide game over overlays
-  // $(".hide-toggle-game-over").on("click", function (event) {
-  //   // toggle the overlays
-  //   let state = $("#game-over-encap").data("state");
-  //   // console.log(state);
-  //   if (state === "showing") {
-  //     $("#game-over-encap").addClass("hide");
-  //     $("#game-over-encap").data("state", "hiding");
-  //   } else {
-  //     $("#game-over-encap").removeClass("hide");
-  //     $("#game-over-encap").data("state", "showing");
-  //   }
-  // });
-
-  // $("#hide-toggle-map").on("click", function (event) {
-  //   let state = $("#map-encap").data("state");
-  //   // console.log(state);
-  //   if (state === "hiding") {
-  //     $("#map-encap").removeClass("hide");
-  //     $("#map-encap").data("state", "showing");
-  //     $("#q-and-a").data("state", "hiding");
-  //     $("#q-and-a").addClass("hide");
-  //   } else {
-  //     $("#map-encap").addClass("hide");
-  //     $("#map-encap").data("state", "hiding");
-  //     $("#q-and-a").data("state", "showing");
-  //     $("#q-and-a").removeClass("hide");
-  //   }
-  // });
 
   function categoryChosen(category) {
     $.get(`/api/questions/category/${category}`, (data) => {
@@ -120,11 +72,11 @@ $(document).ready(() => {
   $(".answer").on("click", verifyResponse);
 
   // event listeners for retaking quizzes
-  $("#play-this-again").on("click", function(event){
+  $("#play-this-again").on("click", function (event) {
     $("#game-over-encap").hide();
     startQuiz();
   });
-  $("#play-new-cat").on("click", function(event) {
+  $("#play-new-cat").on("click", function (event) {
     $("#game-over-encap").hide();
     // $("#game-over-encap").addClass("hide");
     // $("#game-over-encap").data("state", "hiding");
@@ -137,7 +89,7 @@ $(document).ready(() => {
   });
 
   // go to map button!
-  $("#mark-map").on("click", function(event){
+  $("#mark-map").on("click", function (event) {
     $("#game-over-encap").hide();
     $("#score-time-encap").hide();
     $("#map-encap").fadeIn("slow");
@@ -195,13 +147,13 @@ function verifyResponse() {
     score = score + moneyArray[currentQuestion];  // correct!
     console.log(`CORRECT! your score is now ${score}`);
     $("#cash-display").text(`Cash: $${score}`);
-    $(".answer").attr("style","pointer-events:none");
+    $(".answer").attr("style", "pointer-events:none");
     $(this).attr("style", "background-color: rgb(104, 226, 56); border-color: black; color: white; box-shadow: 0px 5px 2px rgb(104, 226, 56); pointer-events: none");
 
     // timeOutId = window.setTimeout(renderQuestion, 600);
   } else {
     console.log("WRONG"); // wrong!
-    $(".answer").attr("style","pointer-events:none");
+    $(".answer").attr("style", "pointer-events:none");
     $(this).attr("style", "background-color: red; border-color: black; color: white; box-shadow: 0px 5px 2px red; pointer-events:none");
 
   }
@@ -284,13 +236,13 @@ function startQuiz() {
   // $("#game-over-encap").data("state", "hiding");
   // $("#q-and-a").data("state", "showing");
   // $("#q-and-a").removeClass("hide");
-  
+
   // $("#cat-encap").data("state", "hiding");
   // $("#cat-encap").addClass("hide");
-  
 
- 
-  
+
+
+
   // ? set the timer here
   setTime();
   // ? shuffle then start rendering questions
@@ -304,7 +256,7 @@ function startQuiz() {
   renderQuestion();
 }
 
-function setTime(){
+function setTime() {
   timerInterval = setInterval(function () {
     currentTime--;
     $("#time-display").text(`Time: ${currentTime}`);
@@ -332,7 +284,7 @@ function gameOver() {
   clearInterval(timerInterval); // freeze time
 
 
-  if(score >= 100) {
+  if (score >= 100) {
     // reveal congrats
     $("#congratulations-msg").removeClass("hide");
     // reveal go to map button
