@@ -3,6 +3,8 @@ const db = require("../models");
 const passport = require("../config/passport");
 
 module.exports = function (app) {
+
+  //////////////////////// Login & signup //////////////////////////
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
@@ -13,6 +15,27 @@ module.exports = function (app) {
       id: req.user.id
     });
   });
+
+
+  ////////////////////////////////////////////////////////////////////////
+  //////////////////////////// Users table //////////////////////////////
+  // Get route for returning a all users
+  app.get("/api/users", (req, res) => {
+    db.User.findAll({}).then((data) => {
+      res.json(data)
+    })
+  })
+
+  // Get route for returning a single user
+  app.get("/api/user/:email", (req, res) => {
+    db.User.findOne({
+      where: {
+        email: req.params.email
+      }
+    }).then((data) => {
+      res.json(data)
+    })
+  })
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
@@ -31,24 +54,6 @@ module.exports = function (app) {
         res.status(401).json(err);
       });
   });
-
-  // Get route for returning a all users
-  app.get("/api/users", (req, res) => {
-    db.User.findAll({}).then((data) => {
-      res.json(data)
-    })
-  })
-
-  // Get route for returning a single user
-  app.get("/api/user/:email", (req, res) => {
-    db.User.findOne({
-      where: {
-        email: req.params.email
-      }
-    }).then((data) => {
-      res.json(data)
-    })
-  })
 
   // PUT route for updating squad
   app.put("/api/squad", (req, res) => {
@@ -86,7 +91,8 @@ module.exports = function (app) {
         res.json(err);
       });
   })
-
+  ///////////////////////////////////////////////////////////////////////////
+  ///////////////////////////// Category ///////////////////////////////////
   // Get route for returning questoins of a specific category
   app.get("/api/questions/category/:category", (req, res) => {
     db.Questions.findAll({
@@ -98,6 +104,27 @@ module.exports = function (app) {
         res.json(data);
       });
   });
+  //////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////// Maps ////////////////////////////////////
+  //// GET route to  find all maps data ////
+  app.get("/api/maps", (req, res) => {
+    db.Maps.findAll({}).then((data) => {
+      res.json(data)
+    })
+  })
+
+  app.post("api/maps", (req, res) => {
+    db.Maps.create({
+      email: req.body.email,
+      squad: req.body.squad,
+      inits: req.body.inits,
+      score: req.body.score
+    }).then((data) => {
+      res.json(data);
+    })
+
+  });
+
 
   // PUT route for updating map table
   app.put("/api/maps", (req, res) => {
@@ -107,7 +134,7 @@ module.exports = function (app) {
       userScore: req.body.userScore
     }, {
       where: {
-        id: req.body.id
+        email: req.body.email
       }
     }).then((data) => {
       res.json(data);
@@ -119,13 +146,6 @@ module.exports = function (app) {
       });
   })
 
-  //// GET route to  find all maps data ////
-  app.get("/api/maps", (req, res) => {
-    db.Maps.findAll({}).then((data) => {
-      res.json(data)
-    })
-  })
-
   // Route for logging user out
   app.get("/logout", (req, res) => {
     req.logout();
@@ -135,3 +155,7 @@ module.exports = function (app) {
 
 };
 
+
+
+
+// "SELECT User.firstName, User.lastName, User.email, Maps.squad, Maps.userInits, Maps.userScore FROM User JOIN Maps ON User.email = Maps.email"
