@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 var instance = M.Dropdown.getInstance(elem);
 
-///////// put ajax to update the map table/////////
+///////// PUT ajax to update the map table/////////
 const twoValue = { squad: , userInits: , userScore: }
 $.ajax({
   method: "PUT",
@@ -322,3 +322,10 @@ $.ajax({
   console.log(res)
 
 })
+
+/////// GET ajax to get all maps table data /////////
+$.get("/api/maps/", (data) => {
+  console.log(data)
+
+})
+
