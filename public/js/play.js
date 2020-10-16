@@ -39,6 +39,7 @@ $(document).ready(() => {
     categoryChoice = $(this).data("category");
     console.log(categoryChoice);
     $("#cat-setting").text(categoryChoice);
+    playSound("bump");
     categoryChosen(categoryChoice)
   });
 
@@ -283,8 +284,8 @@ function gameOver() {
   $("#user-score").text(score);
   clearInterval(timerInterval); // freeze time
 
-
-  if (score >= 100) {
+  
+  if (score >= 1000) {
     // reveal congrats
     $("#congratulations-msg").removeClass("hide");
     // reveal go to map button
@@ -310,22 +311,22 @@ document.addEventListener('DOMContentLoaded', function () {
   var options = { constrainWidth: false, coverTrigger: false, alignment: 'left', closeOnClick: false }
   var instances = M.Dropdown.init(elems, options);
 });
-var instance = M.Dropdown.getInstance(elem);
+// var instance = M.Dropdown.getInstance(elem);
 
 ///////// PUT ajax to update the map table/////////
-const twoValue = { squad: , userInits: , userScore: }
-$.ajax({
-  method: "PUT",
-  url: "/api/maps",
-  data: twoValue
-}).then((res) => {
-  console.log(res)
+// const twoValue = { squad: , userInits: , userScore: }
+// $.ajax({
+//   method: "PUT",
+//   url: "/api/maps",
+//   data: twoValue
+// }).then((res) => {
+//   console.log(res)
 
-})
+// })
 
-/////// GET ajax to get all maps table data /////////
-$.get("/api/maps/", (data) => {
-  console.log(data)
+// /////// GET ajax to get all maps table data /////////
+// $.get("/api/maps/", (data) => {
+//   console.log(data)
 
-})
+// })
 
