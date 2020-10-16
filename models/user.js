@@ -35,7 +35,7 @@ module.exports = function (sequelize, DataTypes) {
     // squad name cannot be null
     squad: {
       type: DataTypes.STRING,
-      defaultValue: "",
+      defaultValue: 0,
     }
   });
 
