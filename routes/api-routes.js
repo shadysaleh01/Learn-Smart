@@ -147,6 +147,7 @@ module.exports = function (app) {
   // })
   ////////////////////////////////////////////////////////////////////////////
   //////////////////////////Map Square /////////////////////////
+
   // PUT route for updating map square table
   app.put("/api/mapsquare/:id", (req, res) => {
     db.MapSquare.update({
@@ -164,26 +165,12 @@ module.exports = function (app) {
       });
   })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  //// GET route to get all data from map square////
+  app.get("/api/mapsquare", (req, res) => {
+    db.MapSquare.findAll({}).then((data) => {
+      res.json(data)
+    })
+  })
 
   // Route for logging user out
   app.get("/logout", (req, res) => {
@@ -193,8 +180,3 @@ module.exports = function (app) {
 
 
 };
-
-
-
-
-// "SELECT User.firstName, User.lastName, User.email, Maps.squad, Maps.userInits, Maps.userScore FROM User JOIN Maps ON User.email = Maps.email"
