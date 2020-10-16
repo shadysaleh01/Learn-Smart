@@ -304,9 +304,10 @@ function updateMapSquare(data) {
   })
 }
 
-
-
-
+////funtion to get all data from map square table///
+$.get("/api/mapsquare", (data) => {
+  console.log(data)
+})
 
 /////// funtion to logout the user/////////
 function logout() {
@@ -314,63 +315,9 @@ function logout() {
   window.location.replace("/home.html");
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /////// GET ajax to get all maps table data /////////
 // $.get("/api/maps/", (data) => {
 //   console.log(data)
-
 // })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-///////// PUT ajax to update the map table/////////
-// const twoValue = { squad: , userInits: , userScore: }
-// $.ajax({
-//   method: "PUT",
-//   url: "/api/maps",
-//   data: twoValue
-// }).then((res) => {
-//   console.log(res)
-
-// })
-
-
-
-////// ajax to update the uesr's sore /////
-// function updateScore(score) {
-//   const twoValue = { score: score, email: localStorage.userEmail }
-//   $.ajax({
-//     method: "PUT",
-//     url: "/api/score",
-//     data: twoValue
-//   })
-// }
 
