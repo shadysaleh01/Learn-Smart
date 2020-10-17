@@ -7,7 +7,6 @@ module.exports = function (sequelize, DataTypes) {
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
             validate: {
                 isEmail: true,
             },
@@ -25,13 +24,13 @@ module.exports = function (sequelize, DataTypes) {
         inits: {
             type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: "Enter Inits",
+            defaultValue: "Enter Inits"
         },
         // user score cannot be null
         score: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            defaultValue: 0,
+            defaultValue: 0
         }
     })
 
