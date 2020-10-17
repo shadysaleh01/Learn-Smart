@@ -23,12 +23,14 @@ $(document).ready(() => {
    const score = $("#score")
 
    $.get("/api/user/" + localStorage.userEmail, (data) => {
+      console.log(data)
       firstName.text(data.firstName)
       lastName.text(data.lastName)
+      console.log(data.email)
       email.text(data.email)
       // password.text(data.password)
-      squad.text(localStorage.userChosenSquad)
-      score.text(localStorage.finalScore)
+      squad.text(localStorage.userChosenSquadProfile)
+      score.text(localStorage.finalScoreProfile)
    })
 })
 
@@ -79,9 +81,9 @@ function imageIsLoaded() {
 
 //////// GET ajax to display user picture in the nav bar and profile page ////////
 $.get("/api/user/" + localStorage.userEmail, (data) => {
-   console.log(data)
+   // console.log(data)
    $('#name').text(data.firstName + " " + data.lastName)
-   $('#email').text(data.email)
+   $('#emailSid').text(data.email)
    var navPic = document.getElementById('navPic')
    navPic.src = data.img
    var navSidPic = document.getElementById('navSidPic')

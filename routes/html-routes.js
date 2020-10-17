@@ -38,9 +38,9 @@ module.exports = function (app) {
   });
   app.get("/profile", (req, res) => {
     // If the user already has an account send them to the play page
-    if (req.user) {
-      res.redirect("/profile");
-    }
+    // if (req.user) {
+    //   res.redirect("/profile");
+    // }
     res.sendFile(path.join(__dirname, "../public/profile.html"));
   });
 
