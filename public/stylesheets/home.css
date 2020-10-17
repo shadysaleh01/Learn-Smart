@@ -1,42 +1,41 @@
 nav img {
-   height: 55px;
-   width: 55px;
-   padding: 0;
-   margin: 4px;
+  height: 55px;
+  width: 55px;
+  padding: 0;
+  margin: 4px;
 }
 #aboutUs {
-   /* background-color: rgb(136, 84, 15); */
-   overflow: auto;
-   display: flex;
-   /* min-height: 10000px; */
-   width: 100%;
-   margin-top: 10%;
-   margin-bottom: 10%;   
- }
-
-#title{
-   font-size:50px;
-font-family: serif;
-text-align: center;
-color: coral;
-margin-bottom: 60px;
-
- }
-section img {
-   opacity: 0.3;
+  /* background-color: rgb(136, 84, 15); */
+  overflow: auto;
+  display: flex;
+  /* min-height: 10000px; */
+  width: 100%;
+  margin-top: 10%;
+  margin-bottom: 10%;
 }
 
-#card{
-   font-size: 20px;
+#title {
+  font-size: 50px;
+  font-family: serif;
+  text-align: center;
+  color: coral;
+  margin-bottom: 60px;
+}
+section img {
+  opacity: 0.3;
+}
+
+#card {
+  font-size: 20px;
 }
 .row {
-   margin: auto;
-   height: auto;
+  margin: auto;
+  height: auto;
 }
 
 /* Footer Section */
-footer{
-   text-align: center;
-   padding: 25px;
-   /* height: 65px; */
+footer {
+  text-align: center;
+  padding: 25px;
+  /* height: 65px; */
 }

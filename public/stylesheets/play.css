@@ -140,6 +140,11 @@ https://stackoverflow.com/questions/43371912/how-to-make-an-html-css-js-color-ch
 #yellow-squad {
   animation: 2000ms ease-in-out infinite color-changeYellow;
 }
+
+.category-btn {
+  color: white;
+  border-color: black;
+}
 @keyframes color-changeYellow {
   0% {
     background-color: yellow;
@@ -209,7 +214,7 @@ https://stackoverflow.com/questions/43371912/how-to-make-an-html-css-js-color-ch
       rgba(0, 0, 255, 0.5),
       rgba(255, 255, 0, 0.5)
     ),
-    url("https://www.cshl.edu/wp-content/uploads/2013/01/science-chess-2013.jpg");
+    url("https://st2.depositphotos.com/1030956/5517/v/950/depositphotos_55175321-stock-illustration-question-marks-seamless-pattern-vector.jpg");
 }
 #computerScience {
   background-image: linear-gradient(
@@ -230,14 +235,14 @@ https://stackoverflow.com/questions/43371912/how-to-make-an-html-css-js-color-ch
       rgba(0, 0, 255, 0.5),
       rgba(255, 255, 0, 0.5)
     ),
-    url("https://wallpapermemory.com/uploads/787/cool-sports-background-hd-2048x1080-131322.jpg");
+    url("https://www.economist.com/sites/default/files/images/print-edition/20190720_BRD000_0.jpg");
 }
 #entertainment {
   background-image: linear-gradient(
       rgba(0, 0, 255, 0.5),
       rgba(255, 255, 0, 0.5)
     ),
-    url("https://media.npr.org/assets/img/2015/12/04/best-books-2015_wide-18ea71bcef7792d9fd6ea5183846999a06b17eee.jpg?s=1400");
+    url("https://thetopic.live/wp-content/uploads/2019/03/3.jpg");
 }
 
 /* .category-btn {
