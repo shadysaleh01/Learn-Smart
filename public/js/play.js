@@ -65,7 +65,6 @@ $(document).ready(() => {
     if (squadChoice === "____" || categoryChoice === "____") {
       return;
     }
-    console.log("--------- lets play! ----------");
     startQuiz();
   });
 
@@ -73,7 +72,7 @@ $(document).ready(() => {
 
   // event listeners for retaking quizzes
   $("#play-this-again").on("click", function (event) {
-    if($("#initials").val() === ""){
+    if($("#initials").val() === "" && retake === true){
       return;
     }
     localStorage.setItem("userInits", $("#initials").val()); 
@@ -86,7 +85,11 @@ $(document).ready(() => {
   });
 
   $("#play-new-cat").on("click", function (event) {
-    if($("#initials").val() === ""){
+    categoryChoice = "____";
+    squadChoice = "____";
+    $("#cat-setting").text(categoryChoice);
+    $("#squad-setting").text(squadChoice);
+    if($("#initials").val() === "" && retake === true){
       return;
     }
     localStorage.setItem("userInits", $("#initials").val()); 
@@ -263,6 +266,7 @@ function startQuiz() {
   // ? show and hide divs stuff goes here
   $("#cash-display").text(`Cash: $${score}`);
   $("#time-display").text("Time: 40");
+  $("#category-display").text(`${categoryChoice.toUpperCase()}`);
   $("#cat-encap").hide();
   $("#q-and-a").fadeIn("fast");
   $("#score-time-encap").fadeIn("fast");
@@ -313,6 +317,7 @@ function gameOver() {
     $("#map-btn").removeClass("hide");
   } else {  // you failed!
     $("#try-again-msg").removeClass("hide");
+    $("#initials").val("---");
   }
 }
 ///////////////////////////////////////////////////////////////////////
