@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const Sequelize = require("sequelize")
 
 module.exports = function (app) {
 
@@ -176,5 +177,22 @@ module.exports = function (app) {
     res.redirect("/");
   });
 
+
+
+
+  app.get("/api/joinUsersMaps", (req, res) => {
+
+    db.sequelize.query('SELECT User.firstName, User.lastname, User.img, Maps.category, Maps.squad, Maps.score FROM User JOIN Maps on Maps.email = User.email ORDER BY score DESC;', { nest: true }).then((data) => {
+      // console.log(data)
+      res.json(data)
+    });
+
+  })
+
+  // Raw query - use array destructuring
+
+  // Model1.belongsTo(Model2, { as: 'alias' })
+
+  // Model1.findAll({ include: [{ model: Model2, as: 'alias' }] }, { raw: true }).success(onSuccess).error(onError);
 
 };
