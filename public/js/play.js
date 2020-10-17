@@ -72,7 +72,7 @@ $(document).ready(() => {
 
   // event listeners for retaking quizzes
   $("#play-this-again").on("click", function (event) {
-    if($("#initials").val() === "" && retake === true){
+    if($("#initials").val() === ""){
       return;
     }
     localStorage.setItem("userInits", $("#initials").val()); 
@@ -89,7 +89,7 @@ $(document).ready(() => {
     squadChoice = "____";
     $("#cat-setting").text(categoryChoice);
     $("#squad-setting").text(squadChoice);
-    if($("#initials").val() === "" && retake === true){
+    if($("#initials").val() === ""){
       return;
     }
     localStorage.setItem("userInits", $("#initials").val()); 
