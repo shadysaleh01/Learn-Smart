@@ -378,4 +378,18 @@ function logout() {
 //   console.log(data)
 // })
 
+$.get("/api/user/" + localStorage.userEmail, (data) => {
+  console.log(data)
+  $('#name').text(data.firstName + " " + data.lastName)
+  $('#email').text(data.email)
+  var navPic = document.getElementById('navPic')
+  navPic.src = data.img
+  var navSidPic = document.getElementById('navSidPic')
+  navSidPic.src = data.img
 
+  // img.src = data.img
+  // console.log(img.src)
+}).then(() => {
+  // console.log(data)
+
+})
