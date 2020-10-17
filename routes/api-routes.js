@@ -54,7 +54,7 @@ module.exports = function (app) {
       });
   });
 
-  // PUT route for updating squad
+  // PUT route for updating img
   app.put("/api/img", (req, res) => {
     db.User.update({
       img: req.body.img

@@ -2,7 +2,7 @@ html, body {
    height: 100%;
    margin: 0;
  }
-nav img {
+ nav img.circle {
    height: 55px;
    width: 55px;
    padding: 0;

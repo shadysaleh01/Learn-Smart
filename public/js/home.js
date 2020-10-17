@@ -31,6 +31,32 @@ document.addEventListener('DOMContentLoaded', function () {
 var collapsibleElem = document.querySelector(".collapsible");
 var collapsibleInstance = M.Collapsible.init(collapsibleElem, {});
 
+//////// GET ajax to display user picture in the nav bar////////
+$.get("/api/user/" + localStorage.userEmail, (data) => {
+   console.log(data)
+   $('#name').text(data.firstName + " " + data.lastName)
+   $('#email').text(data.email)
+   var navPic = document.getElementById('navPic')
+   navPic.src = data.img
+   var navSidPic = document.getElementById('navSidPic')
+   navSidPic.src = data.img
+
+   // img.src = data.img
+   // console.log(img.src)
+}).then(() => {
+   // console.log(data)
+
+})
+
+// const twoValue = { img: squad, email: localStorage.userEmail }
+// $.ajax({
+//   method: "PUT",
+//   url: "/api/squad",
+//   data: twoValue
+// }).then((res) => {
+//   // res.json(res)
+// })
+
 // document.addEventListener('DOMContentLoaded', function () {
 //    var elems = document.querySelectorAll('.sidenav-trigger');
 //    // var options = {}
@@ -72,15 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-//////// GET ajax to display user picture in the nav bar////////
-$.get("/api/user/" + localStorage.userEmail, (data) => {
-   var img = document.querySelector('img');
-   img.src = data.img
-   // console.log(img.src)
-}).then(() => {
-   // console.log(data)
 
-})
 
 function logout() {
    localStorage.clear();

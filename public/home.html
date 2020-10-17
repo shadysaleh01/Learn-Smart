@@ -27,7 +27,7 @@
             <li id="login"><a href="login.html"><i class="material-icons left">login</i>Login</a></li>
             <!-- dropdown list direct to profile and logout -->
             <li id="logout">
-               <a class='dropdown-trigger' data-target='dropdown1'><img class="circle" src="blob:http://localhost:8080/ea30e4dd-7cdb-4472-af48-45dbfa26a55c"></a>
+               <a class='dropdown-trigger' data-target='dropdown1'><img class="circle" id="navPic" src=""></a>
                <ul id='dropdown1' class='dropdown-content'>
                   <li><a href="profile.html">My Profile</a></li>
                   <li><a onclick="logout()">Logout</a></li>
@@ -40,9 +40,9 @@
                <div class="background">
                  <img src="https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg">
                </div>
-               <a href="#user"><img class="circle" src="https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg"></a>
-               <a href="#name"><span class="white-text name">John Doe</span></a>
-               <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+               <a><img class="circle" src="" id="navSidPic"></a>
+               <p class="white-text name" id="name"></p>
+               <p class="white-text email" id="email"></p>
              </div></li>
             <li><a href="home.html"><i class="material-icons left">home</i>Home</a></li>
             <li><a onclick="validateUser()"><i class="material-icons left">tour</i>Play</a></li>
