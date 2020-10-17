@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 nav img {
   height: 55px;
   width: 55px;
   padding: 0;
   margin: 4px;
+=======
+nav img.circle {
+   height: 55px;
+   width: 55px;
+   padding: 0;
+   margin: 4px;
+>>>>>>> 7b237ec761ded8318276774011b69927d99ef5e9
 }
 #aboutUs {
   /* background-color: rgb(136, 84, 15); */

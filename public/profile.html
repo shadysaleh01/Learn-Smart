@@ -37,7 +37,7 @@
               <a href="home.html#aboutUs"><i class="material-icons left">more</i>About Us</a>
             </li>
             <li id="logout">
-              <a class='dropdown-trigger' href='#' data-target='dropdown1'><img class="circle" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"></a>
+              <a class='dropdown-trigger' data-target='dropdown1'><img id="navPic" class="circle" src=""></a>
               <ul id='dropdown1' class='dropdown-content'>
                  <li><a href="profile.html">My Profile</a></li>
                  <li><a onclick="logout()">Logout</a></li>
@@ -50,9 +50,9 @@
                 <div class="background">
                   <img src="https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg">
                 </div>
-                <a href="profile.html"><img class="circle" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"></a>
-                <a href="#name"><span class="white-text name">John Doe</span></a>
-                <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                <a><img id="navSidPic" class="circle" src=""></a>
+               <p id="name" class="white-text name"></p>
+               <p id="email"class="white-text email"></p>
               </div>
             </li>
             <li>
@@ -80,7 +80,7 @@
           <a class="btn-floating btn-large cyan right"><i class="material-icons">edit</i></a>
           <div class="row valign-wrapper">
             <div class="col s2 ">
-                <img src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="profile picture" class="circle responsive-img"> <!-- notice the "circle" class --> 
+                <img id="mainPic" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="your image" class="circle responsive-img "> <!-- notice the "circle" class --> 
                 <form action="#">
                   <div class="file-field input-field ">
                     <div class="btn">
@@ -112,7 +112,7 @@
                     <td id="Password"></td>
                   </tr> -->
                   <tr>
-                    <th>Squad:</td>
+                    <th>Earned:</td>
                     <td id="squad"></td>
                   </tr>
                   <tr>
