@@ -55,6 +55,7 @@ $(document).ready(() => {
   $("#cat-setting").text(categoryChoice);
 
   $(".team-choice").on("click", function (event) {
+    playSound("bump");
     squadChoice = $(this).data("squad");
     $("#squad-setting").text(squadChoice);
     localStorage.setItem("userChosenSquad", squadChoice)
@@ -67,6 +68,7 @@ $(document).ready(() => {
     if (squadChoice === "____" || categoryChoice === "____") {
       return;
     }
+    playSound("jump");
     startQuiz();
   });
 
@@ -126,19 +128,20 @@ $(document).ready(() => {
   // claiming a space
   $(".mapSquare").on("click", function (event) {
     let id = $(this).data("id");
+    playSound("ping");
     // allow play again to be clicked
     $("#play-again-map").attr("style", null);
     // remove remembered classes
     $(this).removeClass();
     $(this).addClass("mapSquare valign-wrapper no-select");
     // add the new color class and text
-    $(this).addClass(`${localStorage.userChosenSquad}`);
+    $(this).addClass(`${squadChoice}`);
     $(this).text(`${localStorage.userInits}`);
     // remove click-ability after one click
     $(".mapSquare").attr("style", "pointer-events:none");
     postScore();
     // map square table
-    updateMapSquare({ id: id, color: localStorage.userChosenSquad, inits: localStorage.userInits });
+    updateMapSquare({ id: id, color: squadChoice, inits: localStorage.userInits });
   });
 
   $("#play-again-map").on("click", function (event) {
@@ -194,14 +197,16 @@ function verifyResponse() {
     $("#cash-display").text(`Cash: $${score}`);
     $(".answer").attr("style", "pointer-events:none");
     $(this).attr("style", "background-color: rgb(104, 226, 56); border-color: black; color: white; box-shadow: 0px 5px 2px rgb(104, 226, 56); pointer-events: none");
-
+    playSound("coin");
     // timeOutId = window.setTimeout(renderQuestion, 600);
   } else {
     // wrong!
     $(".answer").attr("style", "pointer-events:none");
     $(this).attr("style", "background-color: red; border-color: black; color: white; box-shadow: 0px 5px 2px red; pointer-events:none");
+    playSound("dead");
 
   }
+
   currentQuestion++;
   // renderQuestion();
   timeOutId = window.setTimeout(renderQuestion, 600);
@@ -267,6 +272,7 @@ function startQuiz() {
   currentQuestion = 0;
   score = 0;
   currentTime = 50;
+  localStorage.setItem("userChosenCat", categoryChoice)
   // ? show and hide divs stuff goes here
   $("#cash-display").text(`Cash: $${score}`);
   $("#time-display").text("Time: 40");
@@ -318,9 +324,11 @@ function gameOver() {
   if (score >= 1000) {
     // reveal congrats
     $("#congratulations-msg").removeClass("hide");
+    playSound("coin");
     // reveal go to map button
     $("#map-btn").removeClass("hide");
   } else {  // you failed!
+    playSound("dead");
     $("#try-again-msg").removeClass("hide");
     $("#initials").val("---");
   }

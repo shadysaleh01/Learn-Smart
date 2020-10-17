@@ -56,9 +56,6 @@ $.get("/api/user/" + localStorage.userEmail, (data) => {
 
    // img.src = data.img
    // console.log(img.src)
-}).then(() => {
-   // console.log(data)
-
 })
 
 
