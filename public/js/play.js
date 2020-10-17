@@ -117,6 +117,7 @@ $(document).ready(() => {
     localStorage.setItem("userInits", $("#initials").val());
     console.log($("#initials").val());
     // postScore();
+
     $("#game-over-encap").hide();
     $("#score-time-encap").hide();
     $("#map-encap").fadeIn("slow");
@@ -143,6 +144,7 @@ $(document).ready(() => {
   $("#play-again-map").on("click", function (event) {
     $(".mapSquare").attr("style", null);
     // hide all displays
+    window.location.replace("/play.html")
     $("#game-over-encap").hide();
     $("#score-time-encap").hide();
     $("#q-and-a").hide();
