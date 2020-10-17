@@ -33,7 +33,7 @@
 ### To install necessary dependencies, run the following command:
 
 ```
-xxxxx
+
 ```
 
 ## Usage

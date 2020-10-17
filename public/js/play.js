@@ -19,8 +19,33 @@ $("#q-and-a").hide();
 $("#game-over-encap").hide();
 $("#map-encap").hide();
 
+//////nav bar menu mobile view /////
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('.sidenav');
+  // var options = {}
+  var instances = M.Sidenav.init(elems, {});
+});
+var collapsibleElem = document.querySelector(".collapsible");
+var collapsibleInstance = M.Collapsible.init(collapsibleElem, {});
+
+/////// nav bar profile picture //////
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('.dropdown-trigger');
+  var options = { constrainWidth: false, coverTrigger: false, alignment: 'left', closeOnClick: false }
+  var instances = M.Dropdown.init(elems, options);
+});
+// var instance = M.Dropdown.getInstance(elem);
 
 $(document).ready(() => {
+
+  $(".category-btn").on("click", function (event) {
+    categoryChoice = $(this).data("category");
+    $("#cat-setting").text(categoryChoice);
+    localStorage.setItem("userChosenCat", categoryChoice)
+    categoryChosen(categoryChoice)
+  });
+
+
   if (!localStorage.isAuthenticated) {
     window.location.replace("/login.html");
   }
@@ -30,35 +55,10 @@ $(document).ready(() => {
 
   $(".team-choice").on("click", function (event) {
     squadChoice = $(this).data("squad");
-    console.log(squadChoice);
     $("#squad-setting").text(squadChoice);
+    localStorage.setItem("userChosenSquad", squadChoice)
     squadChosen(squadChoice);
   });
-
-  $(".category-btn").on("click", function (event) {
-    categoryChoice = $(this).data("category");
-    console.log(categoryChoice);
-    $("#cat-setting").text(categoryChoice);
-    categoryChosen(categoryChoice)
-  });
-
-
-  function categoryChosen(category) {
-    $.get(`/api/questions/category/${category}`, (data) => {
-      // ! reset our arrays every time you select a new category
-      allAnswersArr = [];
-      fourChoices = [];
-      categoryData = [];
-      // copy the data onto our global array
-      for (let i = 0; i < data.length; i++) {
-        categoryData.push(data[i]);
-      }
-      // ! setting the pool of all answers in this category
-      for (let i = 0; i < data.length; i++) {
-        allAnswersArr.push(categoryData[i].answer);
-      }
-    });
-  }
 
   $("#play-btn").on("click", function (event) {
     // * verification to check if both a category && squad is chosen
@@ -78,13 +78,8 @@ $(document).ready(() => {
   });
   $("#play-new-cat").on("click", function (event) {
     $("#game-over-encap").hide();
-    // $("#game-over-encap").addClass("hide");
-    // $("#game-over-encap").data("state", "hiding");
-    // $("#q-and-a").data("state", "hiding");
     $("#score-time-encap").hide();
     $("#q-and-a").hide();
-    // $("#cat-encap").data("state", "showing");
-    // $("#cat-encap").removeClass("hide");
     $("#cat-encap").fadeIn("slow");
   });
 
@@ -96,31 +91,38 @@ $(document).ready(() => {
     // $("#map-encap").removeClass("hide");
   });
 
-
-
-  ///// ajax to update the uesr's squad //////
-  function squadChosen(squad) {
-    const twoValue = { squad: squad, email: localStorage.userEmail }
-    $.ajax({
-      method: "PUT",
-      url: "/api/squad",
-      data: twoValue
-    }).then((res) => {
-      // res.json(res)
-    })
-  }
-
-  ////// ajax to update the uesr's sore /////
-  function updateScore(score) {
-    const twoValue = { score: score, email: localStorage.userEmail }
-    $.ajax({
-      method: "PUT",
-      url: "/api/score",
-      data: twoValue
-    })
-  }
 });
 
+///////////// Category Div /////////////////
+function categoryChosen(category) {
+  $.get(`/api/questions/category/${category}`, (data) => {
+    // ! reset our arrays every time you select a new category
+    allAnswersArr = [];
+    fourChoices = [];
+    categoryData = [];
+    // copy the data onto our global array
+    for (let i = 0; i < data.length; i++) {
+      categoryData.push(data[i]);
+    }
+    // ! setting the pool of all answers in this category
+    for (let i = 0; i < data.length; i++) {
+      allAnswersArr.push(categoryData[i].answer);
+    }
+  });
+}
+///// ajax to update the uesr's squad //////
+function squadChosen(squad) {
+  const twoValue = { squad: squad, email: localStorage.userEmail }
+  $.ajax({
+    method: "PUT",
+    url: "/api/squad",
+    data: twoValue
+  }).then((res) => {
+    // res.json(res)
+  })
+}
+
+////////// Questions & Answers ///////////
 // taken from https://javascript.info/task/shuffle
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -128,11 +130,6 @@ function shuffle(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
-}
-
-function logout() {
-  localStorage.clear();
-  window.location.replace("/home.html");
 }
 
 // ! START THE QUIZ LOGIC HERE -------------------------------------
@@ -231,18 +228,6 @@ function startQuiz() {
   $("#congratulations-msg").addClass("hide");
   $("#try-again-msg").addClass("hide");
   $("#map-btn").addClass("hide");
-  // $("#game-over-encap").fadeOut("slow");
-  // $("#game-over-encap").addClass("hide");
-  // $("#game-over-encap").data("state", "hiding");
-  // $("#q-and-a").data("state", "showing");
-  // $("#q-and-a").removeClass("hide");
-
-  // $("#cat-encap").data("state", "hiding");
-  // $("#cat-encap").addClass("hide");
-
-
-
-
   // ? set the timer here
   setTime();
   // ? shuffle then start rendering questions
@@ -272,17 +257,13 @@ function setTime() {
     }
   }, 1000);
 }
-
+/////////////// Gameover Div ////////////////
 function gameOver() {
-  // $("#q-and-a").addClass("hide");
   $("#q-and-a").hide();
   $("#game-over-encap").fadeIn("slow");
-  // $("#game-over-encap").removeClass("hide");
-  // $("#game-over-encap").data("state", "showing");
-  // $("#user-name").text(userName);
   $("#user-score").text(score);
+  localStorage.setItem("finalScore", score)
   clearInterval(timerInterval); // freeze time
-
 
   if (score >= 100) {
     // reveal congrats
@@ -292,40 +273,51 @@ function gameOver() {
   } else {  // you failed!
     $("#try-again-msg").removeClass("hide");
   }
+
+  $.post("/api/maps", {
+    email: localStorage.userEmail,
+    squad: localStorage.userChosenSquad,
+    inits: localStorage.userInits,
+    score: localStorage.finalScore,
+    category: localStorage.userChosenCat
+  })
+    .then((data) => {
+      console.log(data)
+      localStorage.removeItem("userChosenSquad")
+      localStorage.removeItem("userChosenCat")
+      localStorage.removeItem("finalScore")
+    })
+}
+///////////////////////////////////////////////////////////////////////
+//////////////////////// Map Section /////////////////////////////////
+
+//// funciton to update the square info////
+function updateMapSquare(data) {
+  const twoValue = { color: data.color, inits: data.inits }
+  const squareId = data.id
+  $.ajax({
+    method: "PUT",
+    url: "/api/mapsquare/" + squareId,
+    data: twoValue
+  }).then((res) => {
+    res.json(res)
+  })
 }
 
-
-//////nav bar menu mobile view /////
-document.addEventListener('DOMContentLoaded', function () {
-  var elems = document.querySelectorAll('.sidenav');
-  // var options = {}
-  var instances = M.Sidenav.init(elems, {});
-});
-var collapsibleElem = document.querySelector(".collapsible");
-var collapsibleInstance = M.Collapsible.init(collapsibleElem, {});
-
-/////// nav bar profile picture //////
-document.addEventListener('DOMContentLoaded', function () {
-  var elems = document.querySelectorAll('.dropdown-trigger');
-  var options = { constrainWidth: false, coverTrigger: false, alignment: 'left', closeOnClick: false }
-  var instances = M.Dropdown.init(elems, options);
-});
-var instance = M.Dropdown.getInstance(elem);
-
-///////// PUT ajax to update the map table/////////
-const twoValue = { squad: , userInits: , userScore: }
-$.ajax({
-  method: "PUT",
-  url: "/api/maps",
-  data: twoValue
-}).then((res) => {
-  console.log(res)
-
+////funtion to get all data from map square table///
+$.get("/api/mapsquare", (data) => {
+  console.log(data)
 })
+
+/////// funtion to logout the user/////////
+function logout() {
+  localStorage.clear();
+  window.location.replace("/home.html");
+}
 
 /////// GET ajax to get all maps table data /////////
-$.get("/api/maps/", (data) => {
-  console.log(data)
+// $.get("/api/maps/", (data) => {
+//   console.log(data)
+// })
 
-})
 

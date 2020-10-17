@@ -6,20 +6,14 @@ $(document).ready(() => {
    const squad = $("#squad")
    const score = $("#score")
 
-   console.log(localStorage.userEmail)
-
    $.get("/api/user/" + localStorage.userEmail, (data) => {
-      // debugger;
-
-      console.log(data)
       firstName.text(data.firstName)
       lastName.text(data.lastName)
       email.text(data.email)
       // password.text(data.password)
-      squad.text(data.squad)
-      score.text(data.score)
+      squad.text(localStorage.userChosenSquad)
+      score.text(localStorage.finalScore)
    })
-
 })
 
 //////* nav bar menu *///////
