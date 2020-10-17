@@ -306,7 +306,7 @@ function gameOver() {
   localStorage.setItem("finalScore", score)
   clearInterval(timerInterval); // freeze time
 
-  if (score >= 100) {
+  if (score >= 1000) {
     // reveal congrats
     $("#congratulations-msg").removeClass("hide");
     // reveal go to map button
