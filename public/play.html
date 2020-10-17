@@ -94,10 +94,13 @@
 
       <div id="score-time-encap">
         <div class="row">
-          <div class="col s6">
+          <div class="col s4">
               <p class="flow-text no-select" id="cash-display"></p>
           </div>
-          <div class="col s6">
+          <div class="col s4">
+            <p id="category-display"></p>
+          </div>
+          <div class="col s4">
             <p class="flow-text no-select color-change" id="time-display"></p>
           </div>
         </div>
@@ -234,15 +237,6 @@
             </p>
           </div>
         </div>
-        <!-- other row/columns that holds reflex clicker prompts -->
-        <div class="row center-align hide" id="clicker-area" data-state="hiding">
-          <div class="col s6 clicker-column">
-            <p class="flow-text clickers blue no-select">click me!</p>
-          </div>
-          <div class="col s6 clicker-column">
-            <p class="flow-text clickers red no-select">click me!</p>
-          </div>
-        </div>
       </div>
 
 
@@ -273,8 +267,8 @@
         <!-- make sure this is hidden on load-->
         <div class="row" id="results-msg">
           <div class="col offset-s1 s10">
-            <h5 id="congratulations-msg" class="hide">You have earned enough cash! Mark your territory! X</h5>
-            <h5 id="try-again-msg" class="hide">You need at least $3000 to claim your space! Try again!</h5>
+            <h5 id="congratulations-msg" class="hide">You have earned enough cash! Mark your territory!</h5>
+            <h5 id="try-again-msg" class="hide">You need at least $1000 to claim your space! Try again!</h5>
           </div>
         </div>
         <div class="row hide" id="map-btn">

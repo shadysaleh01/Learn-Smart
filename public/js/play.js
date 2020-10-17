@@ -65,7 +65,6 @@ $(document).ready(() => {
     if (squadChoice === "____" || categoryChoice === "____") {
       return;
     }
-    console.log("--------- lets play! ----------");
     startQuiz();
   });
 
@@ -86,6 +85,10 @@ $(document).ready(() => {
   });
 
   $("#play-new-cat").on("click", function (event) {
+    categoryChoice = "____";
+    squadChoice = "____";
+    $("#cat-setting").text(categoryChoice);
+    $("#squad-setting").text(squadChoice);
     if($("#initials").val() === ""){
       return;
     }
@@ -263,6 +266,7 @@ function startQuiz() {
   // ? show and hide divs stuff goes here
   $("#cash-display").text(`Cash: $${score}`);
   $("#time-display").text("Time: 40");
+  $("#category-display").text(`${categoryChoice.toUpperCase()}`);
   $("#cat-encap").hide();
   $("#q-and-a").fadeIn("fast");
   $("#score-time-encap").fadeIn("fast");
@@ -313,6 +317,7 @@ function gameOver() {
     $("#map-btn").removeClass("hide");
   } else {  // you failed!
     $("#try-again-msg").removeClass("hide");
+    $("#initials").val("---");
   }
 }
 ///////////////////////////////////////////////////////////////////////
