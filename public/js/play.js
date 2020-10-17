@@ -18,8 +18,6 @@ $("#score-time-encap").hide();
 $("#q-and-a").hide();
 $("#game-over-encap").hide();
 $("#map-encap").hide();
-$(".mapSquare").attr("style", null);
-
 //////nav bar menu mobile view /////
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.sidenav');
@@ -75,18 +73,29 @@ $(document).ready(() => {
 
   // event listeners for retaking quizzes
   $("#play-this-again").on("click", function (event) {
+    // restore click-ability of squares
+    $(".mapSquare").attr("style", null);
+    // hide game over display
     $("#game-over-encap").hide();
     startQuiz();
   });
   $("#play-new-cat").on("click", function (event) {
+    // restore click-ability of squares
+    $(".mapSquare").attr("style", null);
+    // hide all displays
     $("#game-over-encap").hide();
     $("#score-time-encap").hide();
     $("#q-and-a").hide();
+    // show only category display
     $("#cat-encap").fadeIn("slow");
   });
 
   // go to map button!
   $("#mark-map").on("click", function (event) {
+    // get initials input and save them
+    localStorage.setItem("userInits", $("#initials").val());
+    console.log($("#initials").val());
+    // postScore();
     $("#game-over-encap").hide();
     $("#score-time-encap").hide();
     $("#map-encap").fadeIn("slow");
@@ -95,18 +104,22 @@ $(document).ready(() => {
   // claiming a space
   $(".mapSquare").on("click", function(event){
     let id = $(this).data("id");
-    console.log(id);
+    // remove remembered classes
     $(this).removeClass();
     $(this).addClass("mapSquare valign-wrapper no-select");
+    // add the new color class and text
     $(this).addClass(`${localStorage.userChosenSquad}`);
     $(this).text(`${localStorage.userInits}`);
+    // remove click-ability after one click
     $(".mapSquare").attr("style", "pointer-events:none");
+    postScore();
+    // map square table
     updateMapSquare({id: id, color: localStorage.userChosenSquad, inits: localStorage.userInits});
   });
 
 });
 
-///////////// Category Div /////////////////
+/////////// Category Div /////////////////
 function categoryChosen(category) {
   $.get(`/api/questions/category/${category}`, (data) => {
     // ! reset our arrays every time you select a new category
@@ -123,17 +136,6 @@ function categoryChosen(category) {
     }
   });
 }
-///// ajax to update the uesr's squad //////
-// function squadChosen(squad) {
-//   const twoValue = { squad: squad, email: localStorage.userEmail }
-//   $.ajax({
-//     method: "PUT",
-//     url: "/api/squad",
-//     data: twoValue
-//   }).then((res) => {
-//     // res.json(res)
-//   })
-// }
 
 ////////// Questions & Answers ///////////
 // taken from https://javascript.info/task/shuffle
@@ -283,20 +285,6 @@ function gameOver() {
   } else {  // you failed!
     $("#try-again-msg").removeClass("hide");
   }
-
-  $.post("/api/maps", {
-    email: localStorage.userEmail,
-    squad: localStorage.userChosenSquad,
-    inits: localStorage.userInits,
-    score: localStorage.finalScore,
-    category: localStorage.userChosenCat
-  })
-    .then((data) => {
-      console.log(data)
-      localStorage.removeItem("userChosenSquad")
-      localStorage.removeItem("userChosenCat")
-      localStorage.removeItem("finalScore")
-    })
 }
 ///////////////////////////////////////////////////////////////////////
 //////////////////////// Map Section /////////////////////////////////
@@ -317,10 +305,26 @@ function updateMapSquare(data) {
   })
 }
 
+function postScore(){
+  $.post("/api/maps", {
+    email: localStorage.userEmail,
+    squad: localStorage.userChosenSquad,
+    inits: localStorage.userInits,
+    score: localStorage.finalScore,
+    category: localStorage.userChosenCat
+  })
+    .then((data) => {
+      console.log(data)
+      localStorage.removeItem("userChosenSquad")
+      localStorage.removeItem("userChosenCat")
+      localStorage.removeItem("finalScore")
+    });
+}
+
 ////funtion to get all data from map square table///
 $.get("/api/mapsquare", (data) => {
   console.log(data);
-
+  // loop through all squares and color them and write inits
   for(let i = 1; i < 17; i++){
     $(`#${i}`).removeClass();
     $(`#${i}`).addClass(`mapSquare valign-wrapper no-select ${data[i-1].color}`);

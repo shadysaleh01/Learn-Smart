@@ -278,7 +278,12 @@
           </div>
         </div>
         <div class="row hide" id="map-btn">
-          <div class="col offset-s4 s4">
+          <div class="col offset-s3 s3 offset-m2 m4">
+            <label for="initials">Initials:</label>
+            <input type="text" onkeyup="this.value = this.value.toUpperCase();" id="initials" name="initials" required
+                   minlength="2" maxlength="3" size="10"><span class="validity"></span>
+          </div>
+          <div class="col s3 m4">
             <!-- hide go to map on load -->
             <p class="no-select" id="mark-map">go to map</p>
           </div>
