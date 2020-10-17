@@ -30,10 +30,19 @@
 
 ## Installation
 
-### To install necessary dependencies, run the following command:
+### To install necessary dependencies, run the following commands:
 
 ```
-
+## npm init
+## npm bcryptjs
+## npm dotenv
+## npm express
+## npm express-session
+## npm mysql
+## npm mysql2
+## npm passport
+## npm passport-local
+## npm sequelize
 ```
 
 ## Usage
