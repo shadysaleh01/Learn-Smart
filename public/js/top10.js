@@ -56,9 +56,6 @@ $.get("/api/user/" + localStorage.userEmail, (data) => {
 
    // img.src = data.img
    // console.log(img.src)
-}).then(() => {
-   // console.log(data)
-
 })
 
 
@@ -67,52 +64,52 @@ $.get("/api/joinUsersMaps", (data) => {
    data.sort(function (a, b) { return b.score - a.score; });
    console.log(data)
 
-   $("#name1").text(data[0].name)
-   $("#category1").text(data[0].category)
+   $("#name1").text(data[0].firstName + " " + data[0].lastname)
+   $("#category1").text(data.category)
    $("#score1").text(data[0].score)
    $("#squad1").text(data[0].squad)
 
-   $("#name2").text(data[1].name)
+   $("#name2").text(data[1].firstName + " " + data[1].lastname)
    $("#category2").text(data[1].category)
    $("#score2").text(data[1].score)
    $("#squad2").text(data[1].squad)
 
-   $("#name3").text(data[2].name)
+   $("#name3").text(data[2].firstName + " " + data[2].lastname)
    $("#category3").text(data[2].category)
    $("#score3").text(data[2].score)
    $("#squad3").text(data[2].squad)
 
-   $("#name4").text(data[3].name)
+   $("#name4").text(data[3].firstName + " " + data[3].lastname)
    $("#category4").text(data[3].category)
    $("#score4").text(data[3].score)
    $("#squad4").text(data[3].squad)
 
-   $("#name5").text(data[4].name)
+   $("#name5").text(data[4].firstName + " " + data[4].lastname)
    $("#category5").text(data[4].category)
    $("#score5").text(data[4].score)
    $("#squad5").text(data[4].squad)
 
-   $("#name6").text(data[5].name)
+   $("#name6").text(data[5].firstName + " " + data[5].lastname)
    $("#category6").text(data[5].category)
    $("#score6").text(data[5].score)
    $("#squad6").text(data[5].squad)
 
-   $("#name7").text(data[6].name)
+   $("#name7").text(data[6].firstName + " " + data[6].lastname)
    $("#category7").text(data[6].category)
    $("#score7").text(data[6].score)
    $("#squad7").text(data[6].squad)
 
-   $("#name8").text(data[7].name)
+   $("#name8").text(data[7].firstName + " " + data[7].lastname)
    $("#category8").text(data[7].category)
    $("#score8").text(data[7].score)
    $("#squad8").text(data[7].squad)
 
-   $("#name9").text(data[8].name)
+   $("#name9").text(data[8].firstName + " " + data[8].lastname)
    $("#category9").text(data[8].category)
    $("#score9").text(data[8].score)
    $("#squad9").text(data[8].squad)
 
-   $("#name10").text(data[9].name)
+   $("#name10").text(data[9].firstName + " " + data[9].lastname)
    $("#category10").text(data[9].category)
    $("#score10").text(data[9].score)
    $("#squad10").text(data[9].squad)

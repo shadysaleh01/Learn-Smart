@@ -41,6 +41,7 @@ $(document).ready(() => {
     categoryChoice = $(this).data("category");
     $("#cat-setting").text(categoryChoice);
     localStorage.setItem("userChosenCat", categoryChoice);
+    localStorage.setItem("userChosenCatProfile", categoryChoice)
     playSound("bump");
     categoryChosen(categoryChoice)
   });
@@ -54,9 +55,11 @@ $(document).ready(() => {
   $("#cat-setting").text(categoryChoice);
 
   $(".team-choice").on("click", function (event) {
+    playSound("bump");
     squadChoice = $(this).data("squad");
     $("#squad-setting").text(squadChoice);
     localStorage.setItem("userChosenSquad", squadChoice)
+    localStorage.setItem("userChosenSquadProfile", squadChoice)
     // squadChosen(squadChoice);
   });
 
@@ -65,6 +68,7 @@ $(document).ready(() => {
     if (squadChoice === "____" || categoryChoice === "____") {
       return;
     }
+    playSound("jump");
     startQuiz();
   });
 
@@ -72,10 +76,10 @@ $(document).ready(() => {
 
   // event listeners for retaking quizzes
   $("#play-this-again").on("click", function (event) {
-    if($("#initials").val() === ""){
+    if ($("#initials").val() === "") {
       return;
     }
-    localStorage.setItem("userInits", $("#initials").val()); 
+    localStorage.setItem("userInits", $("#initials").val());
     // restore click-ability of squares
     $(".mapSquare").attr("style", null);
     // hide game over display
@@ -89,10 +93,10 @@ $(document).ready(() => {
     squadChoice = "____";
     $("#cat-setting").text(categoryChoice);
     $("#squad-setting").text(squadChoice);
-    if($("#initials").val() === ""){
+    if ($("#initials").val() === "") {
       return;
     }
-    localStorage.setItem("userInits", $("#initials").val()); 
+    localStorage.setItem("userInits", $("#initials").val());
     // restore click-ability of squares
     $(".mapSquare").attr("style", null);
     // hide all displays
@@ -106,7 +110,7 @@ $(document).ready(() => {
 
   // go to map button!
   $("#mark-map").on("click", function (event) {
-    if($("#initials").val() === ""){
+    if ($("#initials").val() === "") {
       return;
     }
     // cannot click on play again until map marked
@@ -115,32 +119,35 @@ $(document).ready(() => {
     localStorage.setItem("userInits", $("#initials").val());
     console.log($("#initials").val());
     // postScore();
+
     $("#game-over-encap").hide();
     $("#score-time-encap").hide();
     $("#map-encap").fadeIn("slow");
     // $("#map-encap").removeClass("hide");
   });
   // claiming a space
-  $(".mapSquare").on("click", function(event){
+  $(".mapSquare").on("click", function (event) {
     let id = $(this).data("id");
+    playSound("ping");
     // allow play again to be clicked
     $("#play-again-map").attr("style", null);
     // remove remembered classes
     $(this).removeClass();
     $(this).addClass("mapSquare valign-wrapper no-select");
     // add the new color class and text
-    $(this).addClass(`${localStorage.userChosenSquad}`);
+    $(this).addClass(`${squadChoice}`);
     $(this).text(`${localStorage.userInits}`);
     // remove click-ability after one click
     $(".mapSquare").attr("style", "pointer-events:none");
     postScore();
     // map square table
-    updateMapSquare({id: id, color: localStorage.userChosenSquad, inits: localStorage.userInits});
+    updateMapSquare({ id: id, color: squadChoice, inits: localStorage.userInits });
   });
 
-  $("#play-again-map").on("click", function(event){
+  $("#play-again-map").on("click", function (event) {
     $(".mapSquare").attr("style", null);
     // hide all displays
+    window.location.replace("/play.html")
     $("#game-over-encap").hide();
     $("#score-time-encap").hide();
     $("#q-and-a").hide();
@@ -190,14 +197,16 @@ function verifyResponse() {
     $("#cash-display").text(`Cash: $${score}`);
     $(".answer").attr("style", "pointer-events:none");
     $(this).attr("style", "background-color: rgb(104, 226, 56); border-color: black; color: white; box-shadow: 0px 5px 2px rgb(104, 226, 56); pointer-events: none");
-
+    playSound("coin");
     // timeOutId = window.setTimeout(renderQuestion, 600);
   } else {
     // wrong!
     $(".answer").attr("style", "pointer-events:none");
     $(this).attr("style", "background-color: red; border-color: black; color: white; box-shadow: 0px 5px 2px red; pointer-events:none");
+    playSound("dead");
 
   }
+
   currentQuestion++;
   // renderQuestion();
   timeOutId = window.setTimeout(renderQuestion, 600);
@@ -263,6 +272,7 @@ function startQuiz() {
   currentQuestion = 0;
   score = 0;
   currentTime = 50;
+  localStorage.setItem("userChosenCat", categoryChoice)
   // ? show and hide divs stuff goes here
   $("#cash-display").text(`Cash: $${score}`);
   $("#time-display").text("Time: 40");
@@ -308,14 +318,17 @@ function gameOver() {
   $("#game-over-encap").fadeIn("slow");
   $("#user-score").text(score);
   localStorage.setItem("finalScore", score)
+  localStorage.setItem("finalScoreProfile", score)
   clearInterval(timerInterval); // freeze time
 
   if (score >= 1000) {
     // reveal congrats
     $("#congratulations-msg").removeClass("hide");
+    playSound("coin");
     // reveal go to map button
     $("#map-btn").removeClass("hide");
   } else {  // you failed!
+    playSound("dead");
     $("#try-again-msg").removeClass("hide");
     $("#initials").val("---");
   }
@@ -339,7 +352,7 @@ function updateMapSquare(data) {
   })
 }
 
-function postScore(){
+function postScore() {
   $.post("/api/maps", {
     email: localStorage.userEmail,
     squad: localStorage.userChosenSquad,
@@ -359,10 +372,10 @@ function postScore(){
 $.get("/api/mapsquare", (data) => {
   console.log(data);
   // loop through all squares and color them and write inits
-  for(let i = 1; i < 17; i++){
+  for (let i = 1; i < 17; i++) {
     $(`#${i}`).removeClass();
-    $(`#${i}`).addClass(`mapSquare valign-wrapper no-select ${data[i-1].color}`);
-    $(`#${i}`).text(`${data[i-1].inits}`);
+    $(`#${i}`).addClass(`mapSquare valign-wrapper no-select ${data[i - 1].color}`);
+    $(`#${i}`).text(`${data[i - 1].inits}`);
   }
 
 })

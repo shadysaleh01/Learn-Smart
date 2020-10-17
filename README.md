@@ -1,6 +1,7 @@
 # **Learn Squad**
+*[Deployed Heroku App](https://blooming-everglades-09738.herokuapp.com)
 
-[Full Demo Video]()
+*[Full Demo Video]()
 
 ## Table of Contents
 
@@ -60,5 +61,5 @@
 ### To run tests, run the following command:
 
 ```
-xxxxx
+node server.js
 ```

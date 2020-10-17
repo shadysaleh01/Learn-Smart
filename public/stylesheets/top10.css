@@ -16,6 +16,33 @@ html, body {
  h2 {
     text-align: center;
  }
+ .color-change {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+   animation: 2500ms ease-in-out infinite color-change;
+ }
+ @keyframes color-change {
+   0% {
+     color: orange;
+   }
+   20% {
+     color: yellowgreen;
+   }
+   40% {
+     color: rgb(0, 102, 255);
+   }
+   60% {
+     color: purple;
+   }
+   70% {
+     color: violet;
+   }
+   80% {
+     color: red;
+   }
+   100% {
+     color: orange;
+   }
+ }
 /* Footer Section */
 footer{
    text-align: center;
