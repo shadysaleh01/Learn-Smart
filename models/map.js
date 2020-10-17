@@ -4,20 +4,35 @@ const bcrypt = require("bcryptjs");
 module.exports = function (sequelize, DataTypes) {
     const Maps = sequelize.define("Maps", {
         //squad cannot be null
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isEmail: true,
+            },
+        },
+        category: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         squad: {
             type: DataTypes.STRING,
             allowNull: false,
+            defaultValue: "white"
         },
         // claim name cannot be null
-        claimName: {
+        inits: {
             type: DataTypes.STRING,
             allowNull: false,
+            defaultValue: "Enter Inits"
         },
         // user score cannot be null
-        claimUserScore: {
-            type: DataTypes.STRING,
+        score: {
+            type: DataTypes.INTEGER,
             allowNull: false,
+            defaultValue: 0
         }
     })
+
     return Maps;
 }

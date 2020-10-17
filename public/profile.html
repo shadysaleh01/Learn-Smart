@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Passport Authentication</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css"
+    />
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
+    <!--Import materialize.css Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Courgette|Open+Sans&display=swap" rel="stylesheet"> 
+    <link href="stylesheets/profile.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>Learn Squad</a>
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <a href="home.html"><i class="material-icons left">home</i>Home</a>
+            </li>
+            <li>
+              <a href="play.html"><i class="material-icons left">tour</i>Play</a>
+            </li>
+            <li><a href="top10.html"><i class="material-icons left">perm_identity</i>Top10</a></li>
+            <li>
+              <a href="home.html#aboutUs"><i class="material-icons left">more</i>About Us</a>
+            </li>
+            <li id="logout">
+              <a class='dropdown-trigger' data-target='dropdown1'><img id="navPic" class="circle" src=""></a>
+              <ul id='dropdown1' class='dropdown-content'>
+                 <li><a href="profile.html">My Profile</a></li>
+                 <li><a onclick="logout()">Logout</a></li>
+               </ul>
+           </li>
+          </ul>
+          <ul id="slide-out" class="sidenav">
+            <li>
+              <div class="user-view">
+                <div class="background">
+                  <img src="https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg">
+                </div>
+                <a><img id="navSidPic" class="circle" src=""></a>
+               <p id="name" class="white-text name"></p>
+               <p id="email"class="white-text email"></p>
+              </div>
+            </li>
+            <li>
+              <a href="home.html"><i class="material-icons left">home</i>Home</a>
+            </li>
+            <li>
+              <a href="play.html"><i class="material-icons left">tour</i>Play</a>
+            </li>
+            <li>
+              <a href="top10.html"><i class="material-icons left">perm_identity</i>Top10</a>
+            </li>
+            <li>
+              <a href="home.html#aboutUs"><i class="material-icons left">more</i>About Us</a>
+            </li>
+            <li>
+              <a onclick="logout()"><i class="material-icons left">logout</i>Logout</a>
+            </li>
+          </ul>
+          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+      </nav>
+
+      <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card-panel grey lighten-5 z-depth-1">
+          <a class="btn-floating btn-large cyan right"><i class="material-icons">edit</i></a>
+          <div class="row valign-wrapper">
+            <div class="col s2 ">
+                <img id="mainPic" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="your image" class="circle responsive-img "> <!-- notice the "circle" class --> 
+                <form action="#">
+                  <div class="file-field input-field ">
+                    <div class="btn">
+                      <span>Upload</span>
+                      <input type="file">
+                    </div>
+                  </div>
+                </form>
+            </div>
+            <div class="col s9 highlight responsive-table">
+              <table>
+                <thead>
+                  <tr>
+                      <th>First Name:</th>
+                      <td id="firstName"></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Last Name:</td>
+                    <td id="lastName"></td>
+                  </tr>
+                  <tr>
+                    <th>Email Address:</td>
+                    <td id="email"></td>
+                  </tr>
+                  <!-- <tr>
+                    <th>Password:</td>
+                    <td id="Password"></td>
+                  </tr> -->
+                  <tr>
+                    <th>Earned:</td>
+                    <td id="squad"></td>
+                  </tr>
+                  <tr>
+                    <th>Score:</td>
+                    <td id="score"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      © 2020 Copyright Text
+    </footer>
+    <!-- <script type="text/javascript" src="js/materialize.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/profile.js"></script>
+</body>
+</html>

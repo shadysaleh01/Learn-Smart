@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <title>Learn Smart</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- Compiled and minified CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
+   <!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
+   <!--Import materialize.css Google Icon Font-->
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link rel="stylesheet" href="./stylesheets/top10.css">
+</head>
+
+<body>
+   <div class="wrapper">
+   <nav>
+      <div class="nav-wrapper">
+         <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>Learn Squad</a>
+         <ul class="right hide-on-med-and-down">
+            <li><a href="home.html"><i class="material-icons left">home</i>Home</a></li>
+            <li><a onclick="validateUser()"><i class="material-icons left">tour</i>Play</a></li>
+            <li><a href="home.html#aboutUs"><i class="material-icons left">more</i>About Us</a></li>
+            <li id="login"><a href="login.html"><i class="material-icons left">login</i>Login</a></li>
+            <li id="logout">
+
+               <a class='dropdown-trigger' data-target='dropdown1'><img class="circle" id="navPic" src=""></a>
+               <ul id='dropdown1' class='dropdown-content'>
+                  <li><a href="profile.html">My Profile</a></li>
+                  <li><a onclick="logout()">Logout</a></li>
+                </ul>
+            
+            </li>
+
+         </ul>
+         <ul id="slide-out" class="sidenav">
+            <li><div class="user-view">
+               <div class="background">
+                 <img src="https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg">
+               </div>
+               <a><img id="navSidPic" class="circle" src=""></a>
+               <p id="name" class="white-text name"></p>
+               <p id="email"class="white-text email"></p>
+             </div></li>
+             <li><a href="home.html"><i class="material-icons left">home</i>Home</a></li>
+             <li><a onclick="validateUser()"><i class="material-icons left">tour</i>Play</a></li>
+             <li><a href="home.html#aboutUs"><i class="material-icons left">more</i>About Us</a></li>
+             <li id="loginMenu"><a href="login.html"><i class="material-icons left">login</i>Login</a></li>
+             <li id="logoutMenu"><a onclick="logout()"><i class="material-icons left">logout</i>Logout</a></li>
+         </ul>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      </div>
+   </nav>
+
+   <!-- Top 10 Table -->
+   <h2>Top 10 Player</h2>
+   <div class="row ">
+      <div class="col l10 offset-l1 s10 offset-s1">
+   <table class="striped highlight responsive-table" id="myTable">
+      <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Earned</th>
+            <th>Squad</th> 
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="name1"><span>1. </span>shady saleh</td>
+          <td id="category1">Geography</td>
+          <td id="score1">$0.87</td>
+          <td id="squad1">Blue</td>
+        </tr>
+        <tr>
+         <td id="name2"><span>2. </span>shady saleh</td>
+         <td id="category2">Geography</td>
+         <td id="score2">$0.87</td>
+         <td id="squad2">Yellow</td>
+       </tr>
+       <tr>
+         <td id="name3"><span>3. </span>shady saleh</td>
+         <td id="category3">Geography</td>
+         <td id="score3">$0.87</td>
+         <td id="squad3">Blue</td>
+       </tr>
+       <tr>
+        <td id="name4"><span>4. </span>shady saleh</td>
+        <td id="category4">Geography</td>
+        <td id="score4">$0.87</td>
+        <td id="squad4">Yellow</td>
+      </tr>
+      <tr>
+         <td id="name5"><span>5. </span>shady saleh</td>
+         <td id="category5">Geography</td>
+         <td id="score5">$0.87</td>
+         <td id="squad5">Blue</td>
+       </tr>
+       <tr>
+        <td id="name6"><span>6. </span>shady saleh</td>
+        <td id="category6">Geography</td>
+        <td id="score6">$0.87</td>
+        <td id="squad6">Yellow</td>
+      </tr>
+      <tr>
+         <td id="name7"><span>7. </span>shady saleh</td>
+         <td id="category7">Geography</td>
+         <td id="score7">$0.87</td>
+         <td id="squad7">Blue</td>
+       </tr>
+       <tr>
+        <td id="name8"><span>8. </span>shady saleh</td>
+        <td id="category8">Geography</td>
+        <td id="score8">$0.87</td>
+        <td id="squad8">Yellow</td>
+      </tr>
+      <tr>
+         <td id="name9"><span>9. </span>shady saleh</td>
+         <td id="category9">Geography</td>
+         <td id="score9">$0.87</td>
+         <td id="squad9">Blue</td>
+       </tr>
+       <tr>
+        <td id="name10"><span>10. </span>shady saleh</td>
+        <td id="category10">Geography</td>
+        <td id="score10">$0.87</td>
+        <td id="squad10">Yellow</td>
+      </tr>
+      </tbody>
+    </table>
+   </div>
+   </div>
+</div>
+   <footer class="page-footer">
+      © 2020 Copyright Text
+   </footer>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="js/top10.js"></script>
+</body>
+</html>

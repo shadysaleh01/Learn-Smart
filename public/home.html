@@ -18,15 +18,40 @@
 <div class="wrapper">
    <nav>
       <div class="nav-wrapper">
-         <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>Learn Squad</a>
+         <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>Learn Squad</a>  
          <ul class="right hide-on-med-and-down">
             <li><a href="home.html"><i class="material-icons left">home</i>Home</a></li>
             <li><a onclick="validateUser()"><i class="material-icons left">tour</i>Play</a></li>
+            <li><a href="top10.html"><i class="material-icons left">perm_identity</i>Top10</a></li>
             <li><a href="#aboutUs"><i class="material-icons left">more</i>About Us</a></li>
             <li id="login"><a href="login.html"><i class="material-icons left">login</i>Login</a></li>
-            <li id="logout"><a onclick="logout()"><i class="material-icons left">login</i>Logout</a></li>
-
+            <!-- dropdown list direct to profile and logout -->
+            <li id="logout">
+               <a class='dropdown-trigger' data-target='dropdown1'><img class="circle" id="navPic" src=""></a>
+               <ul id='dropdown1' class='dropdown-content'>
+                  <li><a href="profile.html">My Profile</a></li>
+                  <li><a onclick="logout()">Logout</a></li>
+                </ul>
+            </li>
          </ul>
+         <!-- nav bar menu -->
+         <ul id="slide-out" class="sidenav">
+            <li><div class="user-view">
+               <div class="background">
+                 <img src="https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg">
+               </div>
+               <a><img class="circle" src="" id="navSidPic"></a>
+               <p class="white-text name" id="name"></p>
+               <p class="white-text email" id="email"></p>
+             </div></li>
+            <li><a href="home.html"><i class="material-icons left">home</i>Home</a></li>
+            <li><a onclick="validateUser()"><i class="material-icons left">tour</i>Play</a></li>
+            <li><a href="top10.html"><i class="material-icons left">perm_identity</i>Top10</a></li>
+            <li><a href="#aboutUs"><i class="material-icons left">more</i>About Us</a></li>
+            <li id="loginMenu"><a href="login.html"><i class="material-icons left">login</i>Login</a></li>
+            <li id="logoutMenu"><a onclick="logout()"><i class="material-icons left">logout</i>Logout</a></li>
+         </ul>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
    </nav>
 
@@ -80,24 +105,12 @@
    </div>
 
    <section id="aboutUs">
-      <div class="row">
-         <div class="col s12" id="col">
+      <div class="row ">
+         <div class="col l8 offset-l2 s10 offset-s1" id="col">
             <div class="card blue-grey darken-1" id="card">
                <div class="card-content white-text">
                   <span class="card-title" id="title">About Us</span>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate esse ab delectus et magnam sequi
-                     soluta eum. Corrupti distinctio officia voluptate! Rerum quasi consequuntur doloribus, optio porro
-                     quaerat eaque quis. I am a very simple card. I am good at containing small bits of information.
-                     I am convenient because I require little markup to use effectively Card Title Lorem ipsum dolor sit
-                     amet consectetur adipisicing elit.
-                     <br>
-                     Quidem
-                     ducimus voluptatem, totam illum dicta sit autem, tempore nostrum maxime vero, iusto quis molestiae
-                     facere aliquid voluptatibus quos quasi labore eligendi. Lorem ipsum dolor sit amet consectetur
-                     adipisicing elit. Accusantium autem earum expedita vel incidunt? Assumenda, voluptas recusandae
-                     laborum doloremque, beatae nemo dolorum architecto quisquam, quae ipsam perferendis molestiae eos
-                     officiis!<br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia ipsum cum sunt!
-                     Eius.</p>
+                  <p>Learn Squad application is a competitive clan based trivia game which consists of 6 categories of questions users can choose and answer to gain the cash along with marking the territory based on the acquired cash. Application requires the login credentials to access the information and play the game. First time users need to enter the signup information and the application stores the login information into the database for verification on further logins. After login, the user can start the game after clicking the Play button. There are 6 categories of questions to choose from the available list based on the user's interest. After selecting the category and the squad, each category displays 10 questions and each question has the 5 seconds time limit to answer. Users will get the cash amount that are pre defined based on the complexity of the question. When the user gets a minimum of 300 cash points, then they can mark their territory. Application stores the user information for the top 10 cash amounts and displays when any user wants to see. Applications profile page contains the user information where they can upload their own profile pictures. Simple sounds are implemented for some of the action buttons inside the application.</p>
                </div>
                <div class="card-action" id="card-action">
                   <a href="https://github.com/shadysaleh01/Learn-Smart" target="blank">This is the GitHub link of the

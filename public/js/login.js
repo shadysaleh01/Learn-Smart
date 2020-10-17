@@ -1,4 +1,5 @@
 $(document).ready(() => {
+
   // Getting references to our form and inputs
   const loginForm = $("form#form");
   const emailInput = $("input#email");
@@ -36,6 +37,9 @@ $(document).ready(() => {
       })
       .catch(err => {
         console.log(err);
+        // var toastHTML = '<span>Make sure your email address or password are corect</span>';
+        // M.toast({ html: toastHTML });
+
       });
   }
   ////////////////////////////////////////////////////////////////////
@@ -214,7 +218,15 @@ function validateUser() {
     window.location.replace("/play.html")
   } else {
     window.location.replace("/login.html");
-    alert("Please sign in first")
+
   }
 }
 
+//////nav bar menu mobile view /////
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('.sidenav');
+  // var options = {}
+  var instances = M.Sidenav.init(elems, {});
+});
+var collapsibleElem = document.querySelector(".collapsible");
+var collapsibleInstance = M.Collapsible.init(collapsibleElem, {});

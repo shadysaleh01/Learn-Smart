@@ -9,7 +9,7 @@ html, body {
 }
 #main{
 height: 100%;
-margin: 0;
+/* margin: 0; */
 /* Equal to height of footer */
 margin-bottom: -60px;
 }

@@ -1,0 +1,33 @@
+html, body {
+   height: 100%;
+   margin: 0;
+ }
+ nav img.circle {
+   height: 55px;
+   width: 55px;
+   padding: 0;
+   margin: 4px;
+}
+.file-field .btn, .file-field .btn-large, .file-field .btn-small{
+   float: none;
+margin:auto;
+}
+
+.wrapper{
+   height: 100%;
+   margin: 0;
+   margin-bottom: -60px;
+ }
+
+ footer{
+   text-align: center;
+   padding: 20px;
+   height: 60px;
+ }
+
+     /* Image Designing Propoerties */
+     /* .thumb {
+      height: 75px;
+      border: 1px solid #000;
+      margin: 10px 5px 0 0;
+  } */

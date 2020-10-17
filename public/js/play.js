@@ -6,11 +6,46 @@ let fourChoices = []; // four possible choices
 let squadChoice = "____"; // our choices start blank
 let categoryChoice = "____";
 let score = 0;
+let moneyArray = [100, 150, 325, 610, 830, 1000, 1250, 1460, 1680, 1800];
 let quiz10 = []; // finalize our 10 questions
 let currentQuestion = 0;
 const quizLength = 9; // ten questions, 0 index
 
+var timerInterval;
+
+// hide on load here
+$("#score-time-encap").hide();
+$("#q-and-a").hide();
+$("#game-over-encap").hide();
+$("#map-encap").hide();
+//////nav bar menu mobile view /////
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('.sidenav');
+  // var options = {}
+  var instances = M.Sidenav.init(elems, {});
+});
+var collapsibleElem = document.querySelector(".collapsible");
+var collapsibleInstance = M.Collapsible.init(collapsibleElem, {});
+
+/////// nav bar profile picture //////
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('.dropdown-trigger');
+  var options = { constrainWidth: false, coverTrigger: false, alignment: 'left', closeOnClick: false }
+  var instances = M.Dropdown.init(elems, options);
+});
+// var instance = M.Dropdown.getInstance(elem);
+
 $(document).ready(() => {
+
+  $(".category-btn").on("click", function (event) {
+    categoryChoice = $(this).data("category");
+    $("#cat-setting").text(categoryChoice);
+    localStorage.setItem("userChosenCat", categoryChoice);
+    playSound("bump");
+    categoryChosen(categoryChoice)
+  });
+
+
   if (!localStorage.isAuthenticated) {
     window.location.replace("/login.html");
   }
@@ -20,116 +55,121 @@ $(document).ready(() => {
 
   $(".team-choice").on("click", function (event) {
     squadChoice = $(this).data("squad");
-    console.log(squadChoice);
     $("#squad-setting").text(squadChoice);
-    squadChosen(squadChoice);
+    localStorage.setItem("userChosenSquad", squadChoice)
+    // squadChosen(squadChoice);
   });
-
-  $(".category-btn").on("click", function (event) {
-    categoryChoice = $(this).data("category");
-    console.log(categoryChoice);
-    $("#cat-setting").text(categoryChoice);
-    categoryChosen(categoryChoice)
-  });
-
-  $("#hide-toggle").on("click", function (event) {
-    let state = $("#q-and-a").data("state");
-
-    // console.log(state);
-    if (state === "showing") {
-
-      $("#q-and-a").data("state", "hiding");
-      $("#q-and-a").addClass("hide");
-      $("#cat-encap").data("state", "showing");
-      $("#cat-encap").removeClass("hide");
-    } else {
-
-      $("#q-and-a").data("state", "showing");
-      $("#q-and-a").removeClass("hide");
-      $("#cat-encap").data("state", "hiding");
-      $("#cat-encap").addClass("hide");
-    }
-  });
-
-  // hide game over overlays
-  $(".hide-toggle-game-over").on("click", function (event) {
-    // toggle the overlays
-    let state = $("#game-over-encap").data("state");
-    // console.log(state);
-    if (state === "showing") {
-      $("#game-over-encap").addClass("hide");
-      $("#game-over-encap").data("state", "hiding");
-    } else {
-      $("#game-over-encap").removeClass("hide");
-      $("#game-over-encap").data("state", "showing");
-    }
-  });
-
-  $("#hide-toggle-map").on("click", function (event) {
-    let state = $("#map-encap").data("state");
-    // console.log(state);
-    if (state === "hiding") {
-      $("#map-encap").removeClass("hide");
-      $("#map-encap").data("state", "showing");
-      $("#q-and-a").data("state", "hiding");
-      $("#q-and-a").addClass("hide");
-    } else {
-      $("#map-encap").addClass("hide");
-      $("#map-encap").data("state", "hiding");
-      $("#q-and-a").data("state", "showing");
-      $("#q-and-a").removeClass("hide");
-    }
-  });
-
-  function categoryChosen(category) {
-    $.get(`/api/questions/category/${category}`, (data) => {
-      // ! reset our arrays every time you select a new category
-      allAnswersArr = [];
-      fourChoices = [];
-      categoryData = [];
-      // copy the data onto our global array
-      for (let i = 0; i < data.length; i++) {
-        categoryData.push(data[i]);
-      }
-      // ! setting the pool of all answers in this category
-      for (let i = 0; i < data.length; i++) {
-        allAnswersArr.push(categoryData[i].answer);
-      }
-    });
-  }
 
   $("#play-btn").on("click", function (event) {
     // * verification to check if both a category && squad is chosen
     if (squadChoice === "____" || categoryChoice === "____") {
       return;
     }
-    console.log("--------- lets play! ----------");
     startQuiz();
   });
 
   $(".answer").on("click", verifyResponse);
 
-  function squadChosen(squad) {
-    const twoValue = { squad: squad, email: localStorage.userEmail }
-    $.ajax({
-      method: "PUT",
-      url: "/api/squad",
-      data: twoValue
-    }).then((res) => {
-      // res.json(res)
-    })
-  }
+  // event listeners for retaking quizzes
+  $("#play-this-again").on("click", function (event) {
+    if($("#initials").val() === ""){
+      return;
+    }
+    localStorage.setItem("userInits", $("#initials").val()); 
+    // restore click-ability of squares
+    $(".mapSquare").attr("style", null);
+    // hide game over display
+    $("#game-over-encap").hide();
+    postScore();
+    startQuiz();
+  });
 
-  function updateScore() {
-    const twoValue = { score: score, email: localStorage.userEmail }
-    $.ajax({
-      method: "PUT",
-      url: "/api/squad",
-      data: twoValue
-    })
-  }
+  $("#play-new-cat").on("click", function (event) {
+    categoryChoice = "____";
+    squadChoice = "____";
+    $("#cat-setting").text(categoryChoice);
+    $("#squad-setting").text(squadChoice);
+    if($("#initials").val() === ""){
+      return;
+    }
+    localStorage.setItem("userInits", $("#initials").val()); 
+    // restore click-ability of squares
+    $(".mapSquare").attr("style", null);
+    // hide all displays
+    $("#game-over-encap").hide();
+    $("#score-time-encap").hide();
+    $("#q-and-a").hide();
+    // show only category display
+    $("#cat-encap").fadeIn("slow");
+    postScore();
+  });
+
+  // go to map button!
+  $("#mark-map").on("click", function (event) {
+    if($("#initials").val() === ""){
+      return;
+    }
+    // cannot click on play again until map marked
+    $("#play-again-map").attr("style", "pointer-events:none; background-color: gray; color: white");
+    // get initials input and save them
+    localStorage.setItem("userInits", $("#initials").val());
+    console.log($("#initials").val());
+    // postScore();
+    $("#game-over-encap").hide();
+    $("#score-time-encap").hide();
+    $("#map-encap").fadeIn("slow");
+    // $("#map-encap").removeClass("hide");
+  });
+  // claiming a space
+  $(".mapSquare").on("click", function(event){
+    let id = $(this).data("id");
+    // allow play again to be clicked
+    $("#play-again-map").attr("style", null);
+    // remove remembered classes
+    $(this).removeClass();
+    $(this).addClass("mapSquare valign-wrapper no-select");
+    // add the new color class and text
+    $(this).addClass(`${localStorage.userChosenSquad}`);
+    $(this).text(`${localStorage.userInits}`);
+    // remove click-ability after one click
+    $(".mapSquare").attr("style", "pointer-events:none");
+    postScore();
+    // map square table
+    updateMapSquare({id: id, color: localStorage.userChosenSquad, inits: localStorage.userInits});
+  });
+
+  $("#play-again-map").on("click", function(event){
+    $(".mapSquare").attr("style", null);
+    // hide all displays
+    $("#game-over-encap").hide();
+    $("#score-time-encap").hide();
+    $("#q-and-a").hide();
+    $("#map-encap").hide();
+    // show only category display
+    $("#cat-encap").fadeIn("slow");
+  })
+
 });
 
+/////////// Category Div /////////////////
+function categoryChosen(category) {
+  $.get(`/api/questions/category/${category}`, (data) => {
+    // ! reset our arrays every time you select a new category
+    allAnswersArr = [];
+    fourChoices = [];
+    categoryData = [];
+    // copy the data onto our global array
+    for (let i = 0; i < data.length; i++) {
+      categoryData.push(data[i]);
+    }
+    // ! setting the pool of all answers in this category
+    for (let i = 0; i < data.length; i++) {
+      allAnswersArr.push(categoryData[i].answer);
+    }
+  });
+}
+
+////////// Questions & Answers ///////////
 // taken from https://javascript.info/task/shuffle
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -139,34 +179,42 @@ function shuffle(array) {
   return array;
 }
 
-function logout() {
-  localStorage.clear();
-  window.location.replace("/home.html");
-}
-
 // ! START THE QUIZ LOGIC HERE -------------------------------------
 function verifyResponse() {
-  console.log("verifying.....");
   // grab the elements answer text
   let thisAnswer = $(this).text();
-  console.log(`this answer: ${thisAnswer}`);
+  let timeOutId = 0;
   if (thisAnswer === quiz10[currentQuestion].answer) {
-    score = score + 100;  // correct!
-    console.log(`CORRECT! your score is now ${score}`);
+    // score increases by this questions progressive value
+    score = score + moneyArray[currentQuestion];  // correct!
+    $("#cash-display").text(`Cash: $${score}`);
+    $(".answer").attr("style", "pointer-events:none");
+    $(this).attr("style", "background-color: rgb(104, 226, 56); border-color: black; color: white; box-shadow: 0px 5px 2px rgb(104, 226, 56); pointer-events: none");
+
+    // timeOutId = window.setTimeout(renderQuestion, 600);
   } else {
-    console.log("WRONG"); // wrong!
+    // wrong!
+    $(".answer").attr("style", "pointer-events:none");
+    $(this).attr("style", "background-color: red; border-color: black; color: white; box-shadow: 0px 5px 2px red; pointer-events:none");
+
   }
   currentQuestion++;
-  renderQuestion();
+  // renderQuestion();
+  timeOutId = window.setTimeout(renderQuestion, 600);
 }
 
 function renderQuestion() {
   // ! game over if we run out of questions
   if (currentQuestion >= quiz10.length) {
-    console.log("GAME OVERRRRRRRRRRRRRRRRRR");
+    currentQuestion = 0;
+    console.log("GAME OVER");
     gameOver();
     return;
   }
+  // ! reset correct/incorrect color display
+  $(".answer").attr("style", null);
+  // reset score display as well
+
   // ! reset our answer choices which each rendered question
   fourChoices = [];
   // ! establish our correct answer first
@@ -211,29 +259,137 @@ function renderQuestion() {
 }
 
 function startQuiz() {
-  // ? show and hide divs stuff goes here
-  $("#q-and-a").data("state", "showing");
-  $("#q-and-a").removeClass("hide");
-  $("#cat-encap").data("state", "hiding");
-  $("#cat-encap").addClass("hide");
-  // ! reset quiz index and score
+  // ! reset quiz index and score and time
   currentQuestion = 0;
   score = 0;
+  currentTime = 50;
+  // ? show and hide divs stuff goes here
+  $("#cash-display").text(`Cash: $${score}`);
+  $("#time-display").text("Time: 40");
+  $("#category-display").text(`${categoryChoice.toUpperCase()}`);
+  $("#cat-encap").hide();
+  $("#q-and-a").fadeIn("fast");
+  $("#score-time-encap").fadeIn("fast");
+  $("#congratulations-msg").addClass("hide");
+  $("#try-again-msg").addClass("hide");
+  $("#map-btn").addClass("hide");
   // ? set the timer here
+  setTime();
   // ? shuffle then start rendering questions
   categoryData = shuffle(categoryData);
   // ! reset the 10 questions
   quiz10 = [];
   // ? how many questions do we want in our quiz? loop 10 times!
-  for (let k = 0; k < 9; k++) {
+  for (let k = 0; k < 10; k++) {
     quiz10.push(categoryData[k]);
   }
   renderQuestion();
 }
 
-function gameOver() {
-  $("#game-over-encap").removeClass("hide");
-  $("#game-over-encap").data("state", "showing");
-  // $("#user-name").text(userName);
-  $("#user-score").text(score);
+function setTime() {
+  timerInterval = setInterval(function () {
+    currentTime--;
+    $("#time-display").text(`Time: ${currentTime}`);
+    // Time is up, game over
+    if (currentTime <= 0) {
+      clearInterval(timerInterval);
+      gameOver();
+    }
+    // if you have less than 10 secs left
+    // display a red shadow around the timer
+    if (currentTime <= 10) {
+      $("#time-display").attr("style", "color: red");
+    }
+  }, 1000);
 }
+/////////////// Gameover Div ////////////////
+function gameOver() {
+  $("#q-and-a").hide();
+  $("#game-over-encap").fadeIn("slow");
+  $("#user-score").text(score);
+  localStorage.setItem("finalScore", score)
+  clearInterval(timerInterval); // freeze time
+
+  if (score >= 1000) {
+    // reveal congrats
+    $("#congratulations-msg").removeClass("hide");
+    // reveal go to map button
+    $("#map-btn").removeClass("hide");
+  } else {  // you failed!
+    $("#try-again-msg").removeClass("hide");
+    $("#initials").val("---");
+  }
+}
+///////////////////////////////////////////////////////////////////////
+//////////////////////// Map Section /////////////////////////////////
+
+//// funciton to update the square info////
+function updateMapSquare(data) {
+  let twoValue = { color: data.color, inits: data.inits };
+  let squareId = data.id;
+  console.log(twoValue);
+  console.log(squareId);
+  $.ajax({
+    method: "PUT",
+    url: "/api/mapsquare/" + squareId,
+    data: twoValue
+  }).then((res) => {
+    console.log(".....after the put request for the squares");
+    res.json(res);
+  })
+}
+
+function postScore(){
+  $.post("/api/maps", {
+    email: localStorage.userEmail,
+    squad: localStorage.userChosenSquad,
+    inits: localStorage.userInits,
+    score: localStorage.finalScore,
+    category: localStorage.userChosenCat
+  })
+    .then((data) => {
+      console.log(data)
+      localStorage.removeItem("userChosenSquad")
+      localStorage.removeItem("userChosenCat")
+      localStorage.removeItem("finalScore")
+    });
+}
+
+////funtion to get all data from map square table///
+$.get("/api/mapsquare", (data) => {
+  console.log(data);
+  // loop through all squares and color them and write inits
+  for(let i = 1; i < 17; i++){
+    $(`#${i}`).removeClass();
+    $(`#${i}`).addClass(`mapSquare valign-wrapper no-select ${data[i-1].color}`);
+    $(`#${i}`).text(`${data[i-1].inits}`);
+  }
+
+})
+
+/////// funtion to logout the user/////////
+function logout() {
+  localStorage.clear();
+  window.location.replace("/home.html");
+}
+
+/////// GET ajax to get all maps table data /////////
+// $.get("/api/maps/", (data) => {
+//   console.log(data)
+// })
+
+$.get("/api/user/" + localStorage.userEmail, (data) => {
+  console.log(data)
+  $('#name').text(data.firstName + " " + data.lastName)
+  $('#email').text(data.email)
+  var navPic = document.getElementById('navPic')
+  navPic.src = data.img
+  var navSidPic = document.getElementById('navSidPic')
+  navSidPic.src = data.img
+
+  // img.src = data.img
+  // console.log(img.src)
+}).then(() => {
+  // console.log(data)
+
+})
