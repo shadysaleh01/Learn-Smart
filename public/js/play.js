@@ -106,6 +106,8 @@ $(document).ready(() => {
     if($("#initials").val() === ""){
       return;
     }
+    // cannot click on play again until map marked
+    $("#play-again-map").attr("style", "pointer-events:none; background-color: gray; color: white");
     // get initials input and save them
     localStorage.setItem("userInits", $("#initials").val());
     console.log($("#initials").val());
@@ -118,6 +120,8 @@ $(document).ready(() => {
   // claiming a space
   $(".mapSquare").on("click", function(event){
     let id = $(this).data("id");
+    // allow play again to be clicked
+    $("#play-again-map").attr("style", null);
     // remove remembered classes
     $(this).removeClass();
     $(this).addClass("mapSquare valign-wrapper no-select");
@@ -130,6 +134,17 @@ $(document).ready(() => {
     // map square table
     updateMapSquare({id: id, color: localStorage.userChosenSquad, inits: localStorage.userInits});
   });
+
+  $("#play-again-map").on("click", function(event){
+    $(".mapSquare").attr("style", null);
+    // hide all displays
+    $("#game-over-encap").hide();
+    $("#score-time-encap").hide();
+    $("#q-and-a").hide();
+    $("#map-encap").hide();
+    // show only category display
+    $("#cat-encap").fadeIn("slow");
+  })
 
 });
 
