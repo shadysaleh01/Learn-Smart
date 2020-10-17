@@ -73,13 +73,23 @@ $(document).ready(() => {
 
   // event listeners for retaking quizzes
   $("#play-this-again").on("click", function (event) {
+    if($("#initials").val() === ""){
+      return;
+    }
+    localStorage.setItem("userInits", $("#initials").val()); 
     // restore click-ability of squares
     $(".mapSquare").attr("style", null);
     // hide game over display
     $("#game-over-encap").hide();
+    postScore();
     startQuiz();
   });
+
   $("#play-new-cat").on("click", function (event) {
+    if($("#initials").val() === ""){
+      return;
+    }
+    localStorage.setItem("userInits", $("#initials").val()); 
     // restore click-ability of squares
     $(".mapSquare").attr("style", null);
     // hide all displays
@@ -88,10 +98,14 @@ $(document).ready(() => {
     $("#q-and-a").hide();
     // show only category display
     $("#cat-encap").fadeIn("slow");
+    postScore();
   });
 
   // go to map button!
   $("#mark-map").on("click", function (event) {
+    if($("#initials").val() === ""){
+      return;
+    }
     // get initials input and save them
     localStorage.setItem("userInits", $("#initials").val());
     console.log($("#initials").val());
