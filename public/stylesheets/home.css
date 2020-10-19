@@ -4,6 +4,10 @@ nav img.circle {
   padding: 0;
   margin: 4px;
 }
+nav .brand-logo{
+  font-size: 1.9rem;
+}
+
 #aboutUs {
   /* background-color: rgb(136, 84, 15); */
   overflow: auto;
