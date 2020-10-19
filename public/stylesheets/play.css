@@ -245,11 +245,6 @@ https://stackoverflow.com/questions/43371912/how-to-make-an-html-css-js-color-ch
     url("https://thetopic.live/wp-content/uploads/2019/03/3.jpg");
 }
 
-/* .category-btn {
-  padding-top: 1.66rem;
-  padding-bottom: 1.66rem;
-} */
-
 .answer {
   margin-top: 2rem;
 }
@@ -284,24 +279,6 @@ https://stackoverflow.com/questions/43371912/how-to-make-an-html-css-js-color-ch
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
-
-/* #clicker-area {
-  padding-top: 4rem;
-} */
-/* .clicker-column {
-  margin-left: 10%;
-  margin-right: 10%;
-} */
-/* .clickers {
-  color: white;
-  border: solid black;
-} */
-
-/* #clickerSpan {
-  border: solid black;
-  border-radius: 33%;
-  padding: 0.5rem;
-} */
 
 #game-over-encap {
   text-align: center;
@@ -448,32 +425,3 @@ footer {
   }
 }
 
-/* #mark-map */
-/* .blob {
-	background: black;
-	border-radius: 50%;
-	margin: 10px;
-	height: 20px;
-	width: 20px;
-
-	box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
-	transform: scale(1);
-	animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-	0% {
-		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
-	}
-
-	70% {
-		transform: scale(1);
-		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
-	}
-
-	100% {
-		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-	}
-} */
