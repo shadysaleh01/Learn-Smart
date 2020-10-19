@@ -37,8 +37,9 @@ $(document).ready(() => {
       })
       .catch(err => {
         console.log(err);
-        var msg = '<span>Make sure your email address or password are corect</span>';
+        var msg = "Make sure your email address or password are corect";
         M.toast({ html: msg });
+        // alert()
       });
   }
   ////////////////////////////////////////////////////////////////////
