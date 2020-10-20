@@ -271,11 +271,11 @@ function startQuiz() {
   // ! reset quiz index and score and time
   currentQuestion = 0;
   score = 0;
-  currentTime = 50;
+  currentTime = 60;
   localStorage.setItem("userChosenCat", categoryChoice)
   // ? show and hide divs stuff goes here
   $("#cash-display").text(`Cash: $${score}`);
-  $("#time-display").text("Time: 40");
+  $("#time-display").text("Time:60");
   $("#category-display").text(`${categoryChoice.toUpperCase()}`);
   $("#cat-encap").hide();
   $("#q-and-a").fadeIn("fast");
