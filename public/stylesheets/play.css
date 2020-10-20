@@ -57,6 +57,7 @@ nav img.circle {
 }
 #time-display {
   /* background-color: yellow; */
+  text-align: center;
   float: right;
   margin-top: 0;
   margin-bottom: 0;
