@@ -15,23 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 $(document).ready(() => {
-   const firstName = $("#firstName")
-   const lastName = $("#lastName")
-   const email = $("#email")
-   // const password = $("#password")
-   const squad = $("#squad")
-   const score = $("#score")
 
-   $.get("/api/user/" + localStorage.userEmail, (data) => {
-      console.log(data)
-      firstName.text(data.firstName)
-      lastName.text(data.lastName)
-      console.log(data.email)
-      email.text(data.email)
-      // password.text(data.password)
-      squad.text(localStorage.userChosenSquadProfile)
-      score.text(localStorage.finalScoreProfile)
-   })
 })
 
 // /* The uploader form */
@@ -78,25 +62,44 @@ function imageIsLoaded() {
    })
 
 }
+const firstName = $("#firstName")
+const lastName = $("#lastName")
+const email = $("#email")
+// const password = $("#password")
+const squad = $("#squad")
+const score = $("#score")
 
-//////// GET ajax to display user picture in the nav bar and profile page ////////
 $.get("/api/user/" + localStorage.userEmail, (data) => {
-   // console.log(data)
-   $('#name').text(data.firstName + " " + data.lastName)
-   $('#emailSid').text(data.email)
+   console.log(data)
+   ////// nav bar pic //////
    var navPic = document.getElementById('navPic')
    navPic.src = data.img
-   var navSidPic = document.getElementById('navSidPic')
-   navSidPic.src = data.img
+   ////// profile info //////
+   firstName.text(data.firstName)
+   lastName.text(data.lastName)
+   email.text(data.email)
+   // password.text(data.password)
+   squad.text(localStorage.userChosenSquadProfile)
+   score.text(localStorage.finalScoreProfile)
    var mainPic = document.getElementById('mainPic')
    mainPic.src = data.img
-
-   // img.src = data.img
-   // console.log(img.src)
-}).then(() => {
-   // console.log(data)
+   ////// nav bar side //////
+   $('#name').text(data.firstName + " " + data.lastName)
+   $('#emailSid').text(data.email)
+   var navSidPic = document.getElementById('navSidPic')
+   navSidPic.src = data.img
 
 })
+
+////// GET ajax to display user picture in the nav bar and profile page ////////
+// $.get("/api/user/" + localStorage.userEmail, (data) => {
+//    // console.log(data)
+
+//    // img.src = data.img
+//    // console.log(img.src)
+// })
+// console.log(data)
+
 function logout() {
    localStorage.clear();
    window.location.replace("/home.html");
