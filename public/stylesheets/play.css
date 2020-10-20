@@ -119,8 +119,9 @@ https://stackoverflow.com/questions/43371912/how-to-make-an-html-css-js-color-ch
 
 .team-choice {
   text-align: center;
-  margin: 8px;
-  padding: 12px;
+  margin: center;
+  padding: 20px 8px;
+  min-width: 55px;
   border-style: solid;
   border-radius: 50%;
   border-width: 1px;
@@ -408,20 +409,20 @@ footer {
   width: 100%;
 }
 
-@media only screen and (max-width: 870px) {
+@media only screen and (max-width: 990px) {
   .flow-text {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
   }
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 610px) {
   .flow-text {
-    font-size: 0.9rem;
+    font-size: 1.3rem;
   }
 }
 @media only screen and (max-width: 550px) {
   .flow-text {
-    font-size: 0.75rem;
+    font-size: 1rem;
   }
 }
 
