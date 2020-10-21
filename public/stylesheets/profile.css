@@ -8,6 +8,10 @@ html, body {
    padding: 0;
    margin: 4px;
 }
+nav .brand-logo{
+  font-size: 1.9rem;
+}
+
 .file-field .btn, .file-field .btn-large, .file-field .btn-small{
    float: none;
 margin:auto;
