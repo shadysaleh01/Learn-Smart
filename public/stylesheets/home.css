@@ -4,6 +4,10 @@ nav img.circle {
   padding: 0;
   margin: 4px;
 }
+nav .brand-logo{
+  font-size: 1.9rem;
+}
+
 #aboutUs {
   /* background-color: rgb(136, 84, 15); */
   overflow: auto;
@@ -38,4 +42,10 @@ footer {
   text-align: center;
   padding: 25px;
   /* height: 65px; */
+}
+
+@media only screen and (max-width: 550px) {
+  h1 {
+    font-size: 1.8rem;
+  }
 }
