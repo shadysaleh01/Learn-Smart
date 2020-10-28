@@ -1,5 +1,5 @@
 # **Learn Squad**
-*[Deployed Heroku App](https://blooming-everglades-09738.herokuapp.com)
+*[Deployed Heroku App](https://learn-squad.herokuapp.com/)
 
 *[Full Demo Video]()
 

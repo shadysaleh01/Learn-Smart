@@ -1,4 +1,12 @@
-//////* Nav Bar */////
+function validateUser() {
+   if (localStorage.isAuthenticated === "true") {
+      window.location.replace("/play.html")
+   } else {
+      window.location.replace("/login.html");
+   }
+}
+
+//////* Nav Bar about button */////
 $('nav a').on('click', function (e) {
    // Define variable of the clicked »a« element (»this«) and get its href value.
    var href = $(this).attr('href');
@@ -11,15 +19,6 @@ $('nav a').on('click', function (e) {
       '300'
    );
    e.preventDefault();
-});
-
-
-////* Banner Section *//////
-document.addEventListener('DOMContentLoaded', function () {
-   var elems = document.querySelectorAll('.slider');
-   var options = { indicators: true, height: 450, interval: 2500 }
-   var instance = M.Slider.init(elems, options);
-
 });
 
 //////* nav bar menu *///////
@@ -40,12 +39,8 @@ $.get("/api/user/" + localStorage.userEmail, (data) => {
    navPic.src = data.img
    var navSidPic = document.getElementById('navSidPic')
    navSidPic.src = data.img
-
    // img.src = data.img
    // console.log(img.src)
-}).then(() => {
-   // console.log(data)
-
 })
 
 // const twoValue = { img: squad, email: localStorage.userEmail }
@@ -63,14 +58,6 @@ $.get("/api/user/" + localStorage.userEmail, (data) => {
 //    var instances = M.Sidenav.init(elems);
 // });
 
-function validateUser() {
-   if (localStorage.isAuthenticated === "true") {
-      window.location.replace("/play.html")
-   } else {
-      window.location.replace("/login.html");
-   }
-}
-
 if (localStorage.isAuthenticated === "true") {
    document.getElementById("login").style.display = "none"
    document.getElementById("logout").style.display = "block"
@@ -85,19 +72,11 @@ if (localStorage.isAuthenticated === "true") {
    document.getElementById("loginMenu").style.display = "block"
    document.getElementById("logoutMenu").style.display = "none"
 }
+
 // function login() {
 //      window.location.replace("/login.html");
 
-
 // }
-/////// nav bar profile picture //////
-document.addEventListener('DOMContentLoaded', function () {
-   var elems = document.querySelectorAll('.dropdown-trigger');
-   var options = { constrainWidth: false, coverTrigger: false, alignment: 'left', closeOnClick: false }
-   var instances = M.Dropdown.init(elems, options);
-});
-
-
 
 
 function logout() {
