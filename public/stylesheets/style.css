@@ -9,8 +9,6 @@ html, body {
 }
 #main{
 height: 100%;
-/* margin: 0; */
-/* Equal to height of footer */
 margin-bottom: -60px;
 }
 canvas {
@@ -26,7 +24,6 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
-
 section#login-section, section#signup-section {
   overflow: auto;
   width: 100%;
@@ -37,17 +34,13 @@ h3 {
   color: rgb(38,166,154);
 }
 #formDiv {
-  /* width: 50%; */
   margin: center;
   padding: 15px;
- 
   margin-bottom: 0
 }
-
 form.col {
   background-color: rgba(255, 255, 255, 0.9);
 }
-
 .row {
   margin-bottom: 0px;
 }

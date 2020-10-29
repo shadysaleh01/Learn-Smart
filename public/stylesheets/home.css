@@ -7,17 +7,13 @@ nav img.circle {
 nav .brand-logo{
   font-size: 1.9rem;
 }
-
 #aboutUs {
-  /* background-color: rgb(136, 84, 15); */
   overflow: auto;
   display: flex;
-  /* min-height: 10000px; */
   width: 100%;
   margin-top: 10%;
   margin-bottom: 10%;
 }
-
 #title {
   font-size: 50px;
   font-family: serif;
@@ -28,7 +24,6 @@ nav .brand-logo{
 section img {
   opacity: 0.3;
 }
-
 #card {
   font-size: 20px;
 }
@@ -36,14 +31,11 @@ section img {
   margin: auto;
   height: auto;
 }
-
 /* Footer Section */
 footer {
   text-align: center;
   padding: 25px;
-  /* height: 65px; */
 }
-
 @media only screen and (max-width: 550px) {
   h1 {
     font-size: 1.8rem;
