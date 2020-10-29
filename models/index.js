@@ -13,7 +13,6 @@ if (config.use_env_variable) {
 } else {
   var sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
-
 fs
   .readdirSync(__dirname)
   .filter(function (file) {
@@ -29,8 +28,6 @@ Object.keys(db).forEach(function (modelName) {
     db[modelName].associate(db);
   }
 });
-
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-
 module.exports = db;
