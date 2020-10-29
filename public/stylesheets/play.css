@@ -1,4 +1,3 @@
-
 html,
 body {
   height: 100%;
@@ -35,20 +34,16 @@ nav img.circle {
 .wrapper {
   min-height: 100%;
 }
-
 #score-time-encap {
   width: 100%;
 }
 #cash-display {
-  /* background-color: green; */
   text-align: center;
   width: 30%;
   float: left;
   margin-top: 0;
   margin-bottom: 0;
   margin-left: 12%;
-  /* border: solid rgb(84, 206, 94);
-   */
   color: rgb(133, 218, 84);
   border-radius: 10px;
   padding: 5px;
@@ -62,7 +57,6 @@ h3, h4{
   text-decoration: underline;
 }
 #time-display {
-  /* background-color: yellow; */
   text-align: center;
   float: right;
   margin-top: 0;
@@ -72,9 +66,6 @@ h3, h4{
   border-radius: 10px;
   padding: 5px;
 }
-/* got this from stack overflow
-  change colors of user // score final display
-https://stackoverflow.com/questions/43371912/how-to-make-an-html-css-js-color-changing-background-like-kahoot-it-has */
 .color-change {
   animation: 2500ms ease-in-out infinite color-change;
 }
@@ -101,14 +92,10 @@ https://stackoverflow.com/questions/43371912/how-to-make-an-html-css-js-color-ch
     border-color: orange;
   }
 }
-
 .col.s4 {
   padding: 0;
 }
 
-/* #question-display {
-  font-size: 28px;
-} */
 .answer,
 .clickers,
 .category-btn,
@@ -144,11 +131,9 @@ https://stackoverflow.com/questions/43371912/how-to-make-an-html-css-js-color-ch
   transform: translateY(3px);
   box-shadow: 0px 2px 3px blue;
 }
-
 #yellow-squad {
   animation: 2000ms ease-in-out infinite color-changeYellow;
 }
-
 .category-btn {
   color: white;
   border-color: black;
@@ -209,7 +194,6 @@ https://stackoverflow.com/questions/43371912/how-to-make-an-html-css-js-color-ch
     border-color: black;
   }
 }
-
 #science {
   background-image: linear-gradient(
       rgba(0, 0, 255, 0.5),
@@ -252,22 +236,18 @@ https://stackoverflow.com/questions/43371912/how-to-make-an-html-css-js-color-ch
     ),
     url("https://thetopic.live/wp-content/uploads/2019/03/3.jpg");
 }
-
 .answer {
   margin-top: 2rem;
 }
-
 #cat-setting,
 #squad-setting {
   color: red;
 }
-
 .answer:hover {
   background-color: dodgerblue;
   color: white;
   border: solid black;
 }
-
 .answer:active,
 .clickers:active,
 .category-btn:active,
@@ -277,7 +257,6 @@ https://stackoverflow.com/questions/43371912/how-to-make-an-html-css-js-color-ch
   transform: translateY(3px);
   box-shadow: 0px 2px 3px rgb(212, 60, 65);
 }
-
 .no-select {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -287,7 +266,6 @@ https://stackoverflow.com/questions/43371912/how-to-make-an-html-css-js-color-ch
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
-
 #game-over-encap {
   text-align: center;
 }
@@ -295,7 +273,6 @@ https://stackoverflow.com/questions/43371912/how-to-make-an-html-css-js-color-ch
   margin-top: 0;
   margin-bottom: 0;
 }
-
 #initials {
   text-align: center;
 }
@@ -311,17 +288,14 @@ https://stackoverflow.com/questions/43371912/how-to-make-an-html-css-js-color-ch
   box-shadow: 0px 5px 6px black;
   transition: all ease 0.1s;
 }
-
 .mapSquare:active {
   transform: translateY(3px);
   box-shadow: 0px 2px 3px rgb(212, 60, 65);
 }
-
 .mapSquare:hover {
   background-color: white;
   color: black;
 }
-
 div .divider {
   width: 80%;
   margin-left: auto;
@@ -329,17 +303,14 @@ div .divider {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-
 #restart-buttons {
   padding-top: 0.33rem;
 }
-
 #play-this-again,
 #play-new-cat {
   padding-top: 1.66rem;
   padding-bottom: 1.66rem;
 }
-
 #mark-map {
   padding: 1rem;
   border-style: solid;
@@ -387,11 +358,9 @@ div .divider {
   transform: translateY(3px);
   box-shadow: 0px 2px 3px rgb(212, 60, 65);
 }
-
 #claim-yours-header {
   margin-top: 0;
 }
-
 #play-again-map {
   text-align: center;
   margin: 8px;
@@ -417,13 +386,11 @@ footer {
   clear: both;
   width: 100%;
 }
-
 @media only screen and (max-width: 990px) {
   .flow-text {
     font-size: 1.5rem;
   }
 }
-
 @media only screen and (max-width: 610px) {
   .flow-text {
     font-size: 1.3rem;
@@ -440,26 +407,19 @@ footer {
     font-size: 2rem;
   }
 }
-
-  @media only screen and (max-width: 370px) {
-    nav .brand-logo{
-      font-size: 1.6rem;
-    }
-    .flow-text {
-      font-size: 0.9rem;
-    }
-    h3 {
-      font-size: 2.3rem;
-    }
-    h4 {
-      font-size: 1.7rem;
-    }
-    /* .team-choice {
-    margin-right: 30px;
-    } */
-
-    
-    
+@media only screen and (max-width: 370px) {
+  nav .brand-logo{
+    font-size: 1.6rem;
   }
+  .flow-text {
+    font-size: 0.9rem;
+  }
+  h3 {
+    font-size: 2.3rem;
+  }
+  h4 {
+    font-size: 1.7rem;
+  }
+}
 
 

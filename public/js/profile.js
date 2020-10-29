@@ -14,27 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
    var instances = M.Dropdown.init(elems, options);
 });
 
-$(document).ready(() => {
-
-})
-
-// /* The uploader form */
-// $(function () {
-//    $(":file").change(function () {
-//       if (this.files && this.files[0]) {
-//          var reader = new FileReader();
-
-//          reader.onload = imageIsLoaded;
-//          reader.readAsDataURL(this.files[0]);
-//       }
-//    });
-// });
-
-// function imageIsLoaded(e) {
-//    $('#myImg').attr('src', e.target.result);
-//    $('#yourImage').attr('src', e.target.result);
-// };
-
 window.addEventListener('load', function () {
    document.querySelector('input[type="file"]').addEventListener('change', function () {
       if (this.files && this.files[0]) {
@@ -45,14 +24,7 @@ window.addEventListener('load', function () {
    });
 });
 function imageIsLoaded() {
-   // localStorage.setItem("imgURL", this.src);
-   // var img = document.querySelector('img')  // blob url
-   // img.src = localStorage.imgURL
-   // const email = localStorage.userEmail
-   // const img = this.src
-
    const twoValue = { img: this.src, email: localStorage.userEmail }
-
    $.ajax({
       method: "PUT",
       url: "/api/img",
@@ -60,7 +32,6 @@ function imageIsLoaded() {
    }).then(() => {
 
    })
-
 }
 const firstName = $("#firstName")
 const lastName = $("#lastName")
@@ -68,7 +39,6 @@ const email = $("#email")
 // const password = $("#password")
 const squad = $("#squad")
 const score = $("#score")
-
 $.get("/api/user/" + localStorage.userEmail, (data) => {
    console.log(data)
    ////// nav bar pic //////
@@ -88,17 +58,7 @@ $.get("/api/user/" + localStorage.userEmail, (data) => {
    $('#emailSid').text(data.email)
    var navSidPic = document.getElementById('navSidPic')
    navSidPic.src = data.img
-
 })
-
-////// GET ajax to display user picture in the nav bar and profile page ////////
-// $.get("/api/user/" + localStorage.userEmail, (data) => {
-//    // console.log(data)
-
-//    // img.src = data.img
-//    // console.log(img.src)
-// })
-// console.log(data)
 
 function logout() {
    localStorage.clear();

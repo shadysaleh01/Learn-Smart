@@ -10,7 +10,6 @@ function validateUser() {
 $('nav a').on('click', function (e) {
    // Define variable of the clicked »a« element (»this«) and get its href value.
    var href = $(this).attr('href');
-
    // Run a scroll animation to the position of the element which has the same id like the href value.
    $('html, body').animate(
       {
@@ -24,7 +23,6 @@ $('nav a').on('click', function (e) {
 //////* nav bar menu *///////
 document.addEventListener('DOMContentLoaded', function () {
    var elems = document.querySelectorAll('.sidenav');
-   // var options = {}
    var instances = M.Sidenav.init(elems, {});
 });
 var collapsibleElem = document.querySelector(".collapsible");
@@ -43,21 +41,6 @@ $.get("/api/user/" + localStorage.userEmail, (data) => {
    // console.log(img.src)
 })
 
-// const twoValue = { img: squad, email: localStorage.userEmail }
-// $.ajax({
-//   method: "PUT",
-//   url: "/api/squad",
-//   data: twoValue
-// }).then((res) => {
-//   // res.json(res)
-// })
-
-// document.addEventListener('DOMContentLoaded', function () {
-//    var elems = document.querySelectorAll('.sidenav-trigger');
-//    // var options = {}
-//    var instances = M.Sidenav.init(elems);
-// });
-
 if (localStorage.isAuthenticated === "true") {
    document.getElementById("login").style.display = "none"
    document.getElementById("logout").style.display = "block"
@@ -72,12 +55,6 @@ if (localStorage.isAuthenticated === "true") {
    document.getElementById("loginMenu").style.display = "block"
    document.getElementById("logoutMenu").style.display = "none"
 }
-
-// function login() {
-//      window.location.replace("/login.html");
-
-// }
-
 
 function logout() {
    localStorage.clear();
