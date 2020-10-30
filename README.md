@@ -1,7 +1,7 @@
 # **Learn Squad**
-*[Deployed Heroku App](https://learn-squad.herokuapp.com/)
-
-*[Full Demo Video]()
+- [Lern Sqoud - Heroku](https://learn-squad.herokuapp.com/)
+- [Lern Sqaud - IO](https://shadysaleh01.github.io/Learn-Smart/)
+- [Full Demo Video]()
 
 ## Table of Contents
 
