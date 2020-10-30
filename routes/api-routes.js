@@ -130,15 +130,5 @@ module.exports = function (app) {
       res.json(data)
     });
   })
-<<<<<<< HEAD
-
-  // Raw query - use array destructuring
-
-  // Model1.belongsTo(Model2, { as: 'alias' })
-
-  // Model1.findAll({ include: [{ model: Model2, as: 'alias' }] }, { raw: true }).success(onSuccess).error(onError);
 
 };
-=======
-};
->>>>>>> dbde745a8cc46fd3b9a09486bb26b8938d6b8add
