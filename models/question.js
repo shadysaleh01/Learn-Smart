@@ -3,22 +3,21 @@ const bcrypt = require("bcryptjs");
 // Creating our User model
 module.exports = function (sequelize, DataTypes) {
    const Questions = sequelize.define("Questions", {
-      // First name cannot be null
+      // Category cannot be null
       category: {
          type: DataTypes.STRING,
          allowNull: false,
       },
-      // Second name cannot be null
+      // Question cannot be null
       question: {
          type: DataTypes.STRING,
          allowNull: false,
       },
-      // The password cannot be null
+      // The answer cannot be null 
       answer: {
          type: DataTypes.STRING,
          allowNull: false,
       }
-
    }, {
       timestamps: false
    });

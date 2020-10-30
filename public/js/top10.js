@@ -1,5 +1,4 @@
 // const { query } = require("express");
-
 function validateUser() {
    if (localStorage.isAuthenticated === "true") {
       window.location.replace("/play.html")
@@ -8,7 +7,6 @@ function validateUser() {
    }
 }
 if (localStorage.isAuthenticated === "true") {
-
    document.getElementById("login").style.display = "none"
    document.getElementById("logout").style.display = "block"
 } else {
@@ -16,17 +14,15 @@ if (localStorage.isAuthenticated === "true") {
    document.getElementById("logout").style.display = "none"
 }
 
-
 //////nav bar menu mobile view /////
 document.addEventListener('DOMContentLoaded', function () {
    var elems = document.querySelectorAll('.sidenav');
-   // var options = {}
    var instances = M.Sidenav.init(elems, {});
 });
 var collapsibleElem = document.querySelector(".collapsible");
 var collapsibleInstance = M.Collapsible.init(collapsibleElem, {});
 
-////// for loop to update nav bar menu based user status //////
+////// If Statment to update nav bar menu based user status //////
 if (localStorage.isAuthenticated === "true") {
    document.getElementById("loginMenu").style.display = "none"
    document.getElementById("logoutMenu").style.display = "block"
@@ -35,14 +31,12 @@ if (localStorage.isAuthenticated === "true") {
    document.getElementById("logoutMenu").style.display = "none"
 }
 
-
 /////// nav bar profile picture //////
 document.addEventListener('DOMContentLoaded', function () {
    var elems = document.querySelectorAll('.dropdown-trigger');
    var options = { constrainWidth: false, coverTrigger: false, alignment: 'left', closeOnClick: false }
    var instances = M.Dropdown.init(elems, options);
 });
-
 
 //////// GET ajax to display user picture in the nav bar ////////
 $.get("/api/user/" + localStorage.userEmail, (data) => {
@@ -53,17 +47,11 @@ $.get("/api/user/" + localStorage.userEmail, (data) => {
    navPic.src = data.img
    var navSidPic = document.getElementById('navSidPic')
    navSidPic.src = data.img
-
-   // img.src = data.img
-   // console.log(img.src)
 })
 
-
 $.get("/api/joinUsersMaps", (data) => {
-
    data.sort(function (a, b) { return b.score - a.score; });
    console.log(data)
-
    $("#name1").text(data[0].firstName + " " + data[0].lastname)
    $("#category1").text(data.category)
    $("#score1").text(data[0].score)

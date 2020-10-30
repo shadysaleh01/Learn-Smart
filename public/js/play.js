@@ -2,7 +2,6 @@
 let categoryData = []; // array of answer/question/category objects
 let allAnswersArr = []; // all possible answers in our category
 let fourChoices = []; // four possible choices
-
 let squadChoice = "____"; // our choices start blank
 let categoryChoice = "____";
 let score = 0;
@@ -10,7 +9,6 @@ let moneyArray = [100, 150, 325, 610, 830, 1000, 1250, 1460, 1680, 1800];
 let quiz10 = []; // finalize our 10 questions
 let currentQuestion = 0;
 const quizLength = 9; // ten questions, 0 index
-
 var timerInterval;
 
 // hide on load here
@@ -33,10 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var options = { constrainWidth: false, coverTrigger: false, alignment: 'left', closeOnClick: false }
   var instances = M.Dropdown.init(elems, options);
 });
+
 // var instance = M.Dropdown.getInstance(elem);
-
 $(document).ready(() => {
-
   $(".category-btn").on("click", function (event) {
     categoryChoice = $(this).data("category");
     $("#cat-setting").text(categoryChoice);
@@ -45,8 +42,6 @@ $(document).ready(() => {
     playSound("bump");
     categoryChosen(categoryChoice)
   });
-
-
   if (!localStorage.isAuthenticated) {
     window.location.replace("/login.html");
   }
@@ -60,7 +55,6 @@ $(document).ready(() => {
     $("#squad-setting").text(squadChoice);
     localStorage.setItem("userChosenSquad", squadChoice)
     localStorage.setItem("userChosenSquadProfile", squadChoice)
-    // squadChosen(squadChoice);
   });
 
   $("#play-btn").on("click", function (event) {
@@ -71,7 +65,6 @@ $(document).ready(() => {
     playSound("jump");
     startQuiz();
   });
-
   $(".answer").on("click", verifyResponse);
 
   // event listeners for retaking quizzes
@@ -119,7 +112,6 @@ $(document).ready(() => {
     localStorage.setItem("userInits", $("#initials").val());
     console.log($("#initials").val());
     // postScore();
-
     $("#game-over-encap").hide();
     $("#score-time-encap").hide();
     $("#map-encap").fadeIn("slow");
@@ -204,11 +196,8 @@ function verifyResponse() {
     $(".answer").attr("style", "pointer-events:none");
     $(this).attr("style", "background-color: red; border-color: black; color: white; box-shadow: 0px 5px 2px red; pointer-events:none");
     playSound("dead");
-
   }
-
   currentQuestion++;
-  // renderQuestion();
   timeOutId = window.setTimeout(renderQuestion, 600);
 }
 
@@ -333,8 +322,7 @@ function gameOver() {
     $("#initials").val("---");
   }
 }
-///////////////////////////////////////////////////////////////////////
-//////////////////////// Map Section /////////////////////////////////
+/////////// Map Section /////////////
 
 //// funciton to update the square info////
 function updateMapSquare(data) {
@@ -351,7 +339,6 @@ function updateMapSquare(data) {
     res.json(res);
   })
 }
-
 function postScore() {
   $.post("/api/maps", {
     email: localStorage.userEmail,
@@ -377,7 +364,6 @@ $.get("/api/mapsquare", (data) => {
     $(`#${i}`).addClass(`mapSquare valign-wrapper no-select ${data[i - 1].color}`);
     $(`#${i}`).text(`${data[i - 1].inits}`);
   }
-
 })
 
 /////// funtion to logout the user/////////
@@ -385,11 +371,6 @@ function logout() {
   localStorage.clear();
   window.location.replace("/home.html");
 }
-
-/////// GET ajax to get all maps table data /////////
-// $.get("/api/maps/", (data) => {
-//   console.log(data)
-// })
 
 $.get("/api/user/" + localStorage.userEmail, (data) => {
   console.log(data)
@@ -400,9 +381,6 @@ $.get("/api/user/" + localStorage.userEmail, (data) => {
   var navSidPic = document.getElementById('navSidPic')
   navSidPic.src = data.img
 
-  // img.src = data.img
-  // console.log(img.src)
 }).then(() => {
   // console.log(data)
-
 })
